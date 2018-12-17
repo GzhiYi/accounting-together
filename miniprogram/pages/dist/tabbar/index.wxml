@@ -1,0 +1,6 @@
+<view
+  class="{{ tabbarClass }}"
+  style="{{ zIndex ? 'z-index: ' + zIndex : '' }}"
+>
+  <slot />
+</view>
