@@ -15,7 +15,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "demo",
     "navigationBarTextStyle": "black"
   },
   "cloud": true,
@@ -35,7 +35,7 @@
       },
       {
         "pagePath": "pages/personal/personal",
-        "text": "个人中心"
+        "text": "个人"
       }
     ],
     "selectedColor": "orange"
