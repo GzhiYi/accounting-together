@@ -1,2 +1,6 @@
-<!--pages/group/group.wxml-->
-<text>pages/group/group.wxml</text>
+<view class="group-body">
+  <view wx:for="{{groupList}}" wx:key="index">
+    <view>{{item.name}}</view>
+    <view>{{item.createTime}}</view>
+  </view>
+</view>

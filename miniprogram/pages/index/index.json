@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "van-dialog": "../dist/dialog/index",
+    "van-field": "../dist/field/index"
+  }
+}

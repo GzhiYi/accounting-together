@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/group/group",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -7,7 +8,7 @@
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/group/group",
+    
     "pages/history/history",
     "pages/personal/personal"
   ],
