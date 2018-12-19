@@ -33,3 +33,29 @@
   color: #313131;
   padding: 20rpx 20rpx;
 }
+/* 配置按钮样式 */
+.btn {
+  border: .5rpx solid #eee;
+  outline: none;
+  background: none;
+  color:#444;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  line-height:3;
+}
+.btn-default {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.btn::after{ border: none; }

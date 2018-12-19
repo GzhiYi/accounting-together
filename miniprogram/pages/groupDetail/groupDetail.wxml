@@ -39,7 +39,21 @@
       <!-- <view>{{item.createTime}}</view> -->
     </view>
   </view>
-  <button bindtap='newBill'>新建账单</button>
+
+<!-- 更多操作 -->
+  <view class='public-list'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      更多操作
+    </view>
+    <view class='setting'>
+      <button class='btn btn-default' bindtap='newBill'>新建账单</button>
+      <button class='btn btn-primary'>邀请加入群组</button>
+      <button class='btn btn-danger'>删除群组</button>
+    </view>
+  </view>
 
   <!-- 组内新增账单 -->
   <van-dialog

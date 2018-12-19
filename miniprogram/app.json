@@ -34,5 +34,12 @@
       }
     ],
     "selectedColor": "orange"
+  },
+  "usingComponents": {
+    "van-button": "./pages/dist/button/index",
+    "van-dialog": "./pages/dist/dialog/index",
+    "van-field": "./pages/dist/field/index",
+    "van-tag": "./pages/dist/tag/index",
+    "van-icon": "./pages/dist/icon/index"
   }
 }

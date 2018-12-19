@@ -1,9 +1,3 @@
 {
-  "usingComponents": {
-    "van-dialog": "../dist/dialog/index",
-    "van-field": "../dist/field/index",
-    "van-tag": "../dist/tag/index",
-    "van-icon": "../dist/icon/index"
-  },
   "navigationBarTitleText": "群组"
 }

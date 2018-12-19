@@ -5,7 +5,6 @@ page {
 .group-detail-body {
   background-color: #F2F2F2;
   width: 100%;
-  height: 100%;
   padding: 40rpx 0;
 }
 .group-detail {
@@ -27,6 +26,9 @@ page {
   font-size: 30rpx;
   color: #333;
 }
+.group-basic .name {
+  font-size:50rpx;
+}
 .user-avatar {
   width:70rpx;
   height:70rpx;
@@ -44,9 +46,15 @@ page {
   color:#444;
   text-align:right;
   width:100%;
+  margin-top:12rpx;
 }
 .paid-total {
   font-size: 26rpx;
   color: #313131;
   margin-right: 15rpx;
+}
+.setting {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20rpx;
 }
