@@ -10,6 +10,8 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      currentGroupInfo: null
+    }
   }
 })

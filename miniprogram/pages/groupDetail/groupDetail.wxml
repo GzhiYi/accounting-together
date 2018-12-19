@@ -1,0 +1,63 @@
+<view class='group-detail-body'>
+  <!--pages/groupDetail/groupDetail.wxml-->
+  <view class='group-detail'>
+    <view class='group-basic'>
+      <text class='name'>{{groupInfo.name}}</text>
+      <view class='group-basic-right'>
+        <van-tag mark>{{userList.length}}人</van-tag>
+        <view class='group-createtime'>{{groupCreateTime}}</view>
+      </view>
+    </view>
+    <view
+      class='user-item {{index === 0 ? "top" : ""}} {{index === groupList.length - 1 ? "bottom" : ""}}'
+      wx:for="{{userList}}"
+      wx:key="index"
+    >
+      <image src='{{item.avatarUrl}}' class='user-avatar'></image>
+      <view class='public-item-name'>{{item.nickName}}({{item.name}})</view>
+      <!-- <view>{{item.createTime}}</view> -->
+    </view>
+  </view>
+  <view class='public-list'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      账单列表
+    </view>
+    <view
+      wx:if="{{billList.length > 0}}"
+      class='public-item {{index === 0 ? "top" : ""}} {{index === billList.length - 1 ? "bottom" : ""}}'
+      wx:for="{{billList}}"
+      wx:key="index"
+    >
+      <view class='public-item-name'>{{item.name}}</view>
+      <view class='public-item-right'>
+        <text class='paid-total'>总付：{{item.paidTotal}}元</text>
+        <van-icon name="arrow" style='color: #C6C6C6;'/>
+      </view>
+      <!-- <view>{{item.createTime}}</view> -->
+    </view>
+  </view>
+  <button bindtap='newBill'>新建账单</button>
+
+  <!-- 组内新增账单 -->
+  <van-dialog
+    use-slot
+    async-close
+    show="{{ newBillModal }}"
+    show-cancel-button
+    bind:close="onBillModalClose"
+    title="组内新建一个账单"
+    bind:confirm="callNewBill"
+  >
+    <view class='bill-dialog-body'>
+      <van-field
+        value="{{ billName }}"
+        label="账单名"
+        placeholder="请输入账单名"
+        bind:change="onBillNameChange"
+      />
+    </view>
+  </van-dialog>
+</view>

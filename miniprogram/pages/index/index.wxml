@@ -1,10 +1,10 @@
 <!--index.wxml-->
 <view class="container">
   <view class="new-outer">
-    <view class="new-item" bindtap='showNewGroupModal'>
+    <view class="new-item">
       新建购项
     </view>
-     <view class="new-group">
+     <view class="new-group" bindtap='showNewGroupModal'>
       新建群组
     </view>
   </view>

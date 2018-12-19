@@ -1,0 +1,35 @@
+.public-list {
+  width:90%;
+  background-color:#fff;
+  margin:0 auto 20rpx;
+  border-radius:20rpx;
+}
+.public-header {
+  padding:30rpx 20rpx;
+  font-size:35rpx;
+  border-bottom:.5rpx solid #F2F2F2;
+  display: flex;
+}
+.public-icon {
+  margin-right: 18rpx;
+}
+.public-item {
+  border-bottom: .5rpx solid #F2F2F2;
+  padding:20rpx 20rpx;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+}
+.public-item-right {
+  display:flex;
+  align-items:center;
+}
+.public-item-name {
+  font-size: 30rpx;
+  color: #313131;
+}
+.load-info {
+  font-size: 24rpx;
+  color: #313131;
+  padding: 20rpx 20rpx;
+}

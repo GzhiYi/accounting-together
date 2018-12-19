@@ -1,6 +1,25 @@
 <view class="group-body">
-  <view wx:for="{{groupList}}" wx:key="index">
-    <view>{{item.name}}</view>
-    <view>{{item.createTime}}</view>
+  <view class='public-list'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://images.vrm.cn/2018/12/19/user.png" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      所在群组
+    </view>
+    <view
+      wx:if="{{groupList.length > 0}}"
+      class='public-item {{index === 0 ? "top" : ""}} {{index === groupList.length - 1 ? "bottom" : ""}}'
+      wx:for="{{groupList}}"
+      wx:key="index"
+      bindtap='goToGroupDetail'
+      data-group="{{item}}"
+    >
+      <view class='public-item-name'>{{item.name}}</view>
+      <van-icon name="arrow" style='color: #C6C6C6;'/>
+      <!-- <view>{{item.createTime}}</view> -->
+    </view>
+    <view wx:if="{{groupList.length === 0}}" class='load-info'>
+      加载群组中...
+    </view>
   </view>
 </view>

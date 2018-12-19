@@ -1,4 +1,5 @@
 // pages/group/group.js
+const app = getApp()
 Page({
 
   /**
@@ -72,5 +73,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  goToGroupDetail (event) {
+    console.log(event)
+    app.globalData.currentGroupInfo = event.currentTarget.dataset.group
+    wx.navigateTo({
+      url: `/pages/groupDetail/groupDetail`
+    })
   }
 })

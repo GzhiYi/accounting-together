@@ -1,16 +1,10 @@
 {
   "pages": [
     "pages/group/group",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    
+    "pages/index/index",   
     "pages/history/history",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "pages/groupDetail/groupDetail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
