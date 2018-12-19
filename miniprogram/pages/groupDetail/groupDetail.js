@@ -1,5 +1,6 @@
 // pages/groupDetail/groupDetail.js
 import { parseTime } from '../../utils/parseTime.js'
+import Dialog from '../dist/dialog/dialog'
 Page({
 
   /**
@@ -113,6 +114,26 @@ Page({
     })
   },
 
+  deleteGroup () {
+    Dialog.confirm({
+      message: `确定要删除组  ${this.data.groupInfo.name}  吗？`,
+      selector: '#confirm-delete-group'
+    }).then(() => {
+      wx.cloud.callFunction({
+        name: 'deleteGroup',
+        data: {
+          groupId: this.data.groupInfo._id
+        },
+        success (res) {
+          wx.navigateBack()
+        }
+      })
+    })
+    .catch(error => {
+      console.log("错误", error)
+    });
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

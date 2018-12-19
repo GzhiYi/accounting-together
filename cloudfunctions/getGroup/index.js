@@ -20,7 +20,10 @@ exports.main = async (event, context) => {
       deleted: false
     })
     .get()
-    returnResult.push(oneGroup.data[0]) 
+    console.log('打印onegroup', oneGroup)
+    if (oneGroup.data.length > 0) {
+      returnResult.push(oneGroup.data[0]) 
+    }
   }))
   return returnResult.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
 }
