@@ -13,8 +13,12 @@
       wx:for="{{userList}}"
       wx:key="index"
     >
+      
       <image src='{{item.avatarUrl}}' class='user-avatar'></image>
-      <view class='public-item-name'>{{item.nickName}}({{item.name}})</view>
+      <view class='public-item-name'>
+        {{item.nickName}}({{item.name}})
+        <van-tag round type="primary">{{groupInfo.createBy.openId === item.openId ? '发起' : ''}}</van-tag>
+      </view>
       <!-- <view>{{item.createTime}}</view> -->
     </view>
   </view>

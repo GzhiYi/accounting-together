@@ -14,7 +14,8 @@ Page({
     newBillModal: false,
     billName: '',
     billList: [],
-    groupCreateTime: null
+    groupCreateTime: null,
+
   },
 
   /**

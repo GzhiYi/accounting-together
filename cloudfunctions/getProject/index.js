@@ -21,14 +21,14 @@ exports.main = async (event, context) => {
       })
       .get()
     console.log('打印oneproject', oneProject)
-    const userInfo = await db.collection('user').where({
-      openId: oneProject.createBy
-    })
-    .get()
-    oneProject.data[0].createBy = userInfo.data[0]
     if (oneProject.data.length > 0) {
+      const userInfo = await db.collection('user').where({
+        openId: oneProject.createBy
+      })
+      .get()
+      oneProject.data[0].createBy = userInfo.data[0]
       returnResult.push(oneProject.data[0])
     }
   }))
-  return returnResult.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
+  return returnResult.sort((a, b) => a.paidDate < b.paidDate ? 1 : -1)
 }

@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentBill: null,
+    currentBill: {
+      paidTotal: 0
+    },
     currentGroupInfo: null,
     projectList: [],
     loadingEnd: false,
@@ -22,7 +24,8 @@ Page({
     paidDate: new Date().getTime(),
 
     projectTitle: '',
-    projectPrice: ''
+    projectPrice: '',
+    loadingConfirm: false
   },
 
   /**
@@ -36,12 +39,30 @@ Page({
     currentGroupUserList.forEach(item => {
       item.checked = true
     })
+    self.getBillLatest()
     self.setData({
-      currentBill: app.globalData.currentBill,
+      // currentBill: app.globalData.currentBill,
       currentGroupInfo: app.globalData.currentGroupInfo,
       currentGroupUserList
     })
     self.getProject()
+  },
+  getBillLatest () {
+    // 获取最新bill数据，主要是更新总价格
+    const self = this
+    wx.cloud.callFunction({
+      name: 'getOneBill',
+      data: {
+        billId: app.globalData.currentBill._id
+      },
+      success(res) {
+        console.log('最新bill数据', res)
+        self.setData({
+          currentBill: res.result
+        })
+        // app.globalData.currentBill = res.result
+      }
+    })
   },
   getProject () {
     const self = this
@@ -49,7 +70,7 @@ Page({
     wx.cloud.callFunction({
       name: 'getProject',
       data: {
-        billId: currentBill._id
+        billId: app.globalData.currentBill._id
       },
       success (res) {
         console.log("账单详情返回", res)
@@ -110,12 +131,12 @@ Page({
     })
   },
   onTimeChange(event) {
+    console.log('时间', event)
     this.setData({
-      paidDate: event.detail.value
+      paidDate: event.detail.data.innerValue
     });
   },
   addProjectInput (event) {
-    console.log('event', event)
     if (event.currentTarget.dataset.field === 'title') {
       this.setData({
         projectTitle: event.detail
@@ -133,9 +154,43 @@ Page({
     })
   },
   comfirmAddProject () {
-    const { projectTitle, projectPrice, currentGroupUserList,  paidDate } = this.data
+    const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate } = this.data
     console.log('提交', projectTitle, projectPrice, currentGroupUserList, paidDate)
-    // 记得new Date(paidDate)
+    const self = this
+    self.setData({
+      loadingConfirm: true
+    })
+    wx.cloud.callFunction({
+      name: 'createProject',
+      data: {
+        projectTitle,
+        projectPrice,
+        paidDate,
+        groupId: currentGroupInfo._id,
+        billId: currentBill._id,
+        containUser: currentGroupUserList.map(item => {
+          if (item.checked) {
+            return item.openId
+          }
+        })
+      },
+      success (res) {
+        console.log('创建project返回', res)
+        self.setData({
+          showAddProjectSheet: false
+        })
+        self.getProject()
+        self.getBillLatest()
+      },
+      fail (error) {
+        console.log("出现什么错误", error)
+      },
+      complete () {
+        self.setData({
+          loadingConfirm: false
+        })
+      }
+    })
   },
   onShow: function () {
 

@@ -22,6 +22,11 @@ exports.main = async (event, context) => {
     .get()
     console.log('打印onegroup', oneGroup)
     if (oneGroup.data.length > 0) {
+      const userInfo = await db.collection('user').where({
+        openId: oneGroup.createBy
+      })
+      .get()
+      oneGroup.data[0].createBy = userInfo.data[0]
       returnResult.push(oneGroup.data[0]) 
     }
   }))

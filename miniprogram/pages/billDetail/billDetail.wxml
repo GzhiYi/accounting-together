@@ -57,7 +57,7 @@
     <van-cell-group>
       <van-field
         value="{{ projectPrice }}"
-        type="number"
+        type="digit"
         label="价格"
         placeholder="花了多少钱"
         bind:change="addProjectInput"
@@ -94,6 +94,6 @@
           show-toolbar="{{false}}"
         />
     </van-cell-group>
-    <button class='btn btn-primary' bindtap="comfirmAddProject">确认</button>
+    <button class='btn btn-primary' bindtap="{{loadingConfirm ? '' : 'comfirmAddProject'}}">{{loadingConfirm ? '正在提交...' : '确认'}}</button>
   </view>
 </van-action-sheet>
