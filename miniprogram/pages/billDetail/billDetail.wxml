@@ -18,7 +18,7 @@
       <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
       <view class='item-and-name'>
         <view class='public-item-name'>{{item.title}}</view>
-        <view class='name'>{{item.createBy.nickName}}({{item.createBy.name}})</view>
+        <view class='name'>{{item.createBy.nickName}}</view>
       </view>
     </view>
     <view class='project-item-right'>

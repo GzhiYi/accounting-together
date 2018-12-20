@@ -1,0 +1,17 @@
+<view class="login">
+  <view class='public-list'>
+    <view class='public-header mp-info'>
+      <image src="https://images.vrm.cn/2018/12/19/avatar.png" class='icon'></image>
+      <text class='mp-name'>一起算账</text>
+    </view>
+    <view class='login-tips'>
+      <view class='header'>
+        一起算账小程序需要授权以下信息
+      </view>
+      <view class='tips-item'>
+        · <text>获取你的公开信息（昵称、头像等）\n</text>
+      </view>
+    </view>
+    <button class='btn btn-primary login-btn' open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">确认登录</button>
+  </view>
+</view>
