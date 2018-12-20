@@ -1,2 +1,68 @@
-<!--pages/personal/personal.wxml-->
-<text>pages/personal/personal.wxml</text>
+<view class='personal'>
+  <view class='public-list'>
+    <view class='public-header mp-info'>
+      <image src="{{userInfo.avatarUrl}}" class='icon'></image>
+      <text class='mp-name'>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class='public-list'>
+    <view class='public-item' >
+      <view class='public-item-name'>相关账单数</view>
+      <view class='public-item-right'>
+        <text class='sum'>123</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>相关账单数</view>
+      <view class='public-item-right'>
+        <text class='sum'>123</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>支付总数</view>
+      <view class='public-item-right'>
+        <text class='sum'>123</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>关联群组数</view>
+      <view class='public-item-right'>
+        <text class='sum'>123</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+  </view>
+
+    <view class='public-list'>
+    <view class='public-item' >
+      <view class='public-item-name'>意见反馈</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx'/>
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>源码地址</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>关于</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='end'>Created By GzhiYi</view>

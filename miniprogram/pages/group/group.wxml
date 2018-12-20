@@ -7,7 +7,7 @@
       所在群组
     </view>
     <view
-      wx:if="{{groupList.length > 0}}"
+      wx:if="{{!loadingGroupList}}"
       class='public-item {{index === 0 ? "top" : ""}} {{index === groupList.length - 1 ? "bottom" : ""}}'
       wx:for="{{groupList}}"
       wx:key="index"
@@ -18,8 +18,11 @@
       <van-icon name="arrow" style='color: #C6C6C6;'/>
       <!-- <view>{{item.createTime}}</view> -->
     </view>
-    <view wx:if="{{groupList.length === 0}}" class='load-info'>
+    <view wx:if="{{loadingGroupList}}" class='load-info'>
       加载群组中...
+    </view>
+    <view wx:if="{{groupList.length === 0 && !loadingGroupList}}" class='load-info'>
+      暂无加入群组，快去创建吧~
     </view>
   </view>
 </view>

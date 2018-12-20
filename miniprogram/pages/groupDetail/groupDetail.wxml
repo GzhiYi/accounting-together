@@ -18,6 +18,7 @@
       <view class='public-item-name'>
         {{item.nickName}}
         <van-tag round type="primary">{{groupInfo.createBy.openId === item.openId ? '发起' : ''}}</van-tag>
+        {{groupInfo.createBy.openId === item.openId ? '发起' : ''}}
       </view>
       <!-- <view>{{item.createTime}}</view> -->
     </view>

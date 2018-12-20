@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/group/group",
-    "pages/index/index",   
-    "pages/history/history",
+    "pages/index/index",
     "pages/personal/personal",
+    "pages/group/group",
+    "pages/history/history",
     "pages/groupDetail/groupDetail",
-    "pages/billDetail/billDetail"
+    "pages/billDetail/billDetail",
+    "pages/login/login"
   ],
   "window": {
     "backgroundColor": "#F2F2F2",

@@ -17,6 +17,9 @@ App({
           wx.getUserInfo({
             success (infoRes) {
               self.globalData.userInfo = infoRes.userInfo
+              if (self.catchUserInfo) {
+                self.catchUserInfo(infoRes.userInfo)
+              }
             }
           })
         } else {

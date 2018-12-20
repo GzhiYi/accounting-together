@@ -18,7 +18,9 @@ exports.main = async (event, context) => {
       openId: item.userId
     })
     .get()
-    returnResult.push(oneUser.data[0])
+    if (oneUser.data.length > 0) {
+      returnResult.push(oneUser.data[0])
+    }
   }))
   return returnResult.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
 }

@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    groupList: []
+    groupList: [],
+    loadingGroupList: false
   },
 
   /**
@@ -28,6 +29,9 @@ Page({
    */
   onShow: function () {
     const self = this
+    self.setData({
+      loadingGroupList: true
+    })
     wx.cloud.callFunction({
       name: 'getGroup',
       data: {},
@@ -35,6 +39,11 @@ Page({
         console.log('成功调用组列表', res)
         self.setData({
           groupList: res.result
+        })
+      },
+      complete () {
+        self.setData({
+          loadingGroupList: false
         })
       }
     })
