@@ -126,7 +126,7 @@ Page({
       wx.cloud.callFunction({
         name: 'deleteBill',
         data: {
-          groupId: currentBill._id
+          billId: currentBill._id
         },
         success (res) {
           // 删除提示
