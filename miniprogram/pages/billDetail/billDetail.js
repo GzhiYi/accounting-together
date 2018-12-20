@@ -1,5 +1,6 @@
 // pages/billDetail/billDetail.js
 import { parseTime } from '../../utils/parseTime.js'
+import Dialog from '../dist/dialog/dialog'
 import Notify from '../dist/notify/notify'
 const app = getApp()
 Page({
@@ -41,7 +42,6 @@ Page({
     })
     self.getBillLatest()
     self.setData({
-      // currentBill: app.globalData.currentBill,
       currentGroupInfo: app.globalData.currentGroupInfo,
       currentGroupUserList
     })
@@ -115,6 +115,36 @@ Page({
         })
       }
     })
+  },
+  // 删除账单操作
+  deleteBill () {
+    const { currentBill } = this.data
+    Dialog.confirm({
+      message: `确定要删除账单  ${currentBill.name}  吗？`,
+      selector: '#confirm-delete-bill'
+    }).then(() => {
+      wx.cloud.callFunction({
+        name: 'deleteBill',
+        data: {
+          groupId: currentBill._id
+        },
+        success (res) {
+          // 删除提示
+          Notify({
+            text: '已删除',
+            duration: 1500,
+            selector: '#bill-delete-selector',
+            backgroundColor: '#dc3545'
+          });
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 2000)
+        }
+      })
+    })
+    .catch(error => {
+      console.log("错误", error)
+    });
   },
   addProject () {
     this.setData({

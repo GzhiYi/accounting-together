@@ -20,7 +20,10 @@ exports.main = async (event, context) => {
         deleted: false
       })
       .get()
-    returnResult.push(oneBill.data[0])
+    
+    if (oneBill.data.length > 0) {
+      returnResult.push(oneBill.data[0])
+    }
   }))
   return returnResult.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
 }

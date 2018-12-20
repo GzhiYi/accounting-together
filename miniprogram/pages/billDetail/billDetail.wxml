@@ -27,6 +27,21 @@
     </view>
   </view>
 </view>
+
+<!-- 更多操作 -->
+  <view class='public-list setting-area'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      更多操作
+    </view>
+    <view class='setting'>
+      <button class='btn btn-primary' wx:if="{{currentBill.ended}}">查看结算结果</button>
+      <button class='btn btn-danger' bindtap='deleteBill'>删除账单</button>
+    </view>
+  </view>
+
 <van-submit-bar
   wx:if="{{!currentBill.ended}}"
   price="{{ currentBill.paidTotal * 100 }}"
@@ -42,6 +57,8 @@
   button-text="结算账单"
 />
 <van-notify id="bill-notify-selector" />
+<van-notify id="bill-delete-selector" />
+<van-dialog id="confirm-delete-bill" />
 <van-action-sheet show="{{ showAddProjectSheet }}" title="新建一个支出项" bind:close='closeAddProjectSheet'>
   <view class='sheet-body'>
     <van-field

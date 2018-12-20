@@ -55,3 +55,11 @@ page {
 .sheet-body {
   padding: 40rpx;
 }
+.setting-area {
+  margin-bottom:200rpx;
+}
+.setting {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20rpx;
+}
