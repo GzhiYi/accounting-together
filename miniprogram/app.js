@@ -11,7 +11,9 @@ App({
     }
 
     this.globalData = {
-      currentGroupInfo: null
+      currentGroupInfo: null,
+      currentGroupUserList: [],
+      currentBill: null
     }
   }
 })

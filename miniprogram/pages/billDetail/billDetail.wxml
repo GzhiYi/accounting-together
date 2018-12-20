@@ -1,0 +1,99 @@
+<view class='public-list'>
+  <view class='public-header' style='justify-content:space-between;'>
+    <view class='public-icon'>
+      <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
+      {{currentBill.name}}
+    </view>
+    <view class='add-project' bindtap='addProject' wx:if="{{!currentBill.ended}}">
+      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/plus.png?sign=9d8b5af3e2d96b9c510526ca6289189f&t=1545270583" />
+    </view>
+  </view>
+  <view
+    wx:if="{{projectList.length > 0}}"
+    class='public-item {{index === 0 ? "top" : ""}} {{index === projectList.length - 1 ? "bottom" : ""}}'
+    wx:for="{{projectList}}"
+    wx:key="index"
+  >
+    <view class="head">
+      <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
+      <view class='item-and-name'>
+        <view class='public-item-name'>{{item.title}}</view>
+        <view class='name'>{{item.createBy.nickName}}({{item.createBy.name}})</view>
+      </view>
+    </view>
+    <view class='project-item-right'>
+      <view class='paid-total'><text style='color: #28a745;font-weight: bold;'>{{item.price}}</text> 元</view>
+      <view class='paid-total'>{{item.paidDate}}</view>
+    </view>
+  </view>
+</view>
+<van-submit-bar
+  wx:if="{{!currentBill.ended}}"
+  price="{{ currentBill.paidTotal * 100 }}"
+  button-text="结算账单"
+  bind:submit="onSubmitBill"
+  loading="{{loadingEnd}}"
+/>
+<van-submit-bar
+  wx:else
+  disabled
+  price="{{ currentBill.paidTotal * 100 }}"
+  tip="此账单已完成结算，只供查看"
+  button-text="结算账单"
+/>
+<van-notify id="bill-notify-selector" />
+<van-action-sheet show="{{ showAddProjectSheet }}" title="新建一个支出项" bind:close='closeAddProjectSheet'>
+  <view class='sheet-body'>
+    <van-field
+      value="{{ projectTitle }}"
+      clearable
+      label="付了啥"
+      placeholder="请输入支出项名"
+      bind:change="addProjectInput"
+      required
+      data-field="title"
+    />
+
+    <van-cell-group>
+      <van-field
+        value="{{ projectPrice }}"
+        type="number"
+        label="价格"
+        placeholder="花了多少钱"
+        bind:change="addProjectInput"
+        required
+        data-field="price"
+      />
+      <van-cell
+        title="包含成员"
+        value=""
+        border="{{false}}"
+      />
+      <view class='check-list'>
+        <view class='one-avatar' wx:for="{{currentGroupUserList}}" wx:key="{{index}}" bindtap='clickAvatar' data-index="{{index}}">
+          <van-icon
+            wx:if="{{item.checked}}"
+            name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/checkmark-circle-2.png?sign=90bae0ca23a06bede5809c4f143177c3&t=1545275048"
+            class="user-checked"
+          />
+          <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+        </view>
+      </view>
+    </van-cell-group>
+    <van-cell-group>
+      <van-cell
+        title="时间"
+        value=""
+        border="{{false}}"
+      />
+        <van-datetime-picker
+          type="date"
+          value="{{ paidDate }}"
+          max-date="{{ maxDate }}"
+          bind:change="onTimeChange"
+          show-toolbar="{{false}}"
+        />
+    </van-cell-group>
+    <button class='btn btn-primary' bindtap="comfirmAddProject">确认</button>
+  </view>
+</van-action-sheet>

@@ -1,6 +1,8 @@
 // pages/groupDetail/groupDetail.js
 import { parseTime } from '../../utils/parseTime.js'
 import Dialog from '../dist/dialog/dialog'
+import Notify from '../dist/notify/notify'
+const app = getApp()
 Page({
 
   /**
@@ -19,42 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('具体参数', getApp())
-    const { currentGroupInfo } = getApp().globalData
-    const self = this
-    if (currentGroupInfo) {
-      self.setData({
-        groupInfo: currentGroupInfo,
-        groupCreateTime: parseTime(currentGroupInfo.createTime, '{y}-{m}-{d}')
-      })
-      wx.cloud.callFunction({
-        name: 'getGroupUser',
-        data: {
-          groupId: currentGroupInfo._id
-        },
-        success (res) {
-          console.log('返回', res)
-          self.setData({
-            userList: res.result
-          })
-        }
-      })
-      wx.cloud.callFunction({
-        name: 'getBill',
-        data: {
-          groupId: currentGroupInfo._id
-        },
-        success (res) {
-          console.log('bill返回', res)
-          self.setData({
-            billList: res.result
-          })
-        }
-      })
-      this.setData({
-        groupId: currentGroupInfo._id
-      })
-    }
+
   },
 
   onBillModalClose() {
@@ -125,14 +92,30 @@ Page({
           groupId: this.data.groupInfo._id
         },
         success (res) {
-          wx.navigateBack()
+          // 删除提示
+          Notify({
+            text: '已删除',
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#dc3545'
+          });
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 2000)
         }
       })
     })
     .catch(error => {
       console.log("错误", error)
     });
-
+  },
+  // 跳转到bill详情页面
+  goToBillDetail (event) {
+    console.log(event)
+    app.globalData.currentBill = event.currentTarget.dataset.bill
+    wx.navigateTo({
+      url: '/pages/billDetail/billDetail',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -145,7 +128,43 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log('具体参数', getApp())
+    const { currentGroupInfo } = getApp().globalData
+    const self = this
+    if (currentGroupInfo) {
+      self.setData({
+        groupInfo: currentGroupInfo,
+        groupCreateTime: parseTime(currentGroupInfo.createTime, '{y}-{m}-{d}')
+      })
+      wx.cloud.callFunction({
+        name: 'getGroupUser',
+        data: {
+          groupId: currentGroupInfo._id
+        },
+        success(res) {
+          console.log('返回', res)
+          self.setData({
+            userList: res.result
+          })
+          app.globalData.currentGroupUserList = res.result
+        }
+      })
+      wx.cloud.callFunction({
+        name: 'getBill',
+        data: {
+          groupId: currentGroupInfo._id
+        },
+        success(res) {
+          console.log('bill返回', res)
+          self.setData({
+            billList: res.result
+          })
+        }
+      })
+      this.setData({
+        groupId: currentGroupInfo._id
+      })
+    }
   },
 
   /**

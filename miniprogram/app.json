@@ -4,7 +4,8 @@
     "pages/index/index",   
     "pages/history/history",
     "pages/personal/personal",
-    "pages/groupDetail/groupDetail"
+    "pages/groupDetail/groupDetail",
+    "pages/billDetail/billDetail"
   ],
   "window": {
     "backgroundColor": "#F2F2F2",
@@ -40,6 +41,13 @@
     "van-dialog": "./pages/dist/dialog/index",
     "van-field": "./pages/dist/field/index",
     "van-tag": "./pages/dist/tag/index",
-    "van-icon": "./pages/dist/icon/index"
+    "van-icon": "./pages/dist/icon/index",
+    "van-notify": "./pages/dist/notify/index",
+    "van-submit-bar": "./pages/dist/submit-bar/index",
+    "van-action-sheet": "./pages/dist/action-sheet/index",
+    "van-cell-group": "./pages/dist/cell-group/index",
+    "van-cell": "./pages/dist/cell/index",
+    "van-tree-select": "./pages/dist/tree-select/index",
+    "van-datetime-picker": "./pages/dist/datetime-picker/index"
   }
 }

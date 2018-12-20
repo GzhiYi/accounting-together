@@ -1,0 +1,57 @@
+/* pages/billDetail/billDetail.wxss */
+.project-item-right {
+  text-align:right;
+  font-size:28rpx;
+}
+page {
+  background-color: #F2F2F2;
+  width: 100%;
+  height: 100%;
+  padding: 40rpx 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.head {
+  display:flex;
+  align-items:center;
+}
+.user-avatar {
+  width:70rpx;
+  height:70rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+.one-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+  margin: 10rpx 10rpx;
+}
+.check-list {
+  display:flex;
+  flex-wrap:wrap;
+  align-items: center;
+  margin-left:20rpx;
+}
+.user-avatar-list {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.user-checked {
+  position: absolute;
+  right:10rpx;
+  top:-10rpx;
+}
+.item-and-name .name {
+  font-size:28rpx;
+  color:#555;
+}
+.add-project {
+  position: relative;
+  top:17rpx;
+  right:4rpx;
+}
+.sheet-body {
+  padding: 40rpx;
+}

@@ -30,6 +30,8 @@
       class='public-item {{index === 0 ? "top" : ""}} {{index === billList.length - 1 ? "bottom" : ""}}'
       wx:for="{{billList}}"
       wx:key="index"
+      bindtap='goToBillDetail'
+      data-bill="{{item}}"
     >
       <view class='public-item-name'>{{item.name}}</view>
       <view class='public-item-right'>
@@ -76,3 +78,4 @@
   </van-dialog>
 </view>
 <van-dialog id="confirm-delete-group" />
+<van-notify id="notify-selector" />
