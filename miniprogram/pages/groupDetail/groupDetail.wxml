@@ -17,8 +17,7 @@
       <image src='{{item.avatarUrl}}' class='user-avatar'></image>
       <view class='public-item-name'>
         {{item.nickName}}
-        <van-tag round type="primary">{{groupInfo.createBy.openId === item.openId ? '发起' : ''}}</van-tag>
-        {{groupInfo.createBy.openId === item.openId ? '发起' : ''}}
+        <van-tag round type="primary" wx:if="{{groupInfo.createBy.openId === item.openId}}">发起</van-tag>
       </view>
       <!-- <view>{{item.createTime}}</view> -->
     </view>
@@ -57,7 +56,7 @@
     </view>
     <view class='setting'>
       <button class='btn btn-default' bindtap='newBill'>新建账单</button>
-      <button class='btn btn-primary'>邀请加入群组</button>
+      <button class='btn btn-primary' open-type='share'>邀请加入群组</button>
       <button class='btn btn-danger' bindtap='deleteGroup'>删除群组</button>
     </view>
   </view>

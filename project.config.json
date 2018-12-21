@@ -28,12 +28,25 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "组",
+					"pathName": "pages/group/group",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "share",
+					"pathName": "pages/share/share",
+					"query": "groupId=XBnGVnffS3SWGdJK&inviter=GzhiYi&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/KanL6870JUe4WvJlKDGDYYicgZibo9XOrm7WPEKwOB9pqnUV0Cv9EOZfPAH3WulBWYl5NSJA8ICSqSts5v6Cy92A/132&groupName=7B304"
 				}
 			]
 		}

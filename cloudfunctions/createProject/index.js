@@ -31,7 +31,7 @@ exports.main = (event, context) => {
       console.log('打印以前的总付款', res.data[0].paidTotal)
       db.collection('bill').doc(event.billId).update({
         data: {
-          paidTotal: Number(res.data[0].paidTotal) + Number(event.projectPrice)
+          paidTotal: parseFloat(Number((res.data[0].paidTotal) + Number(event.projectPrice)).toPrecision(12))
         }
       })
     })

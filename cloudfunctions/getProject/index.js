@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
     })
     .get()
   let returnResult = []
-  await Promise.all(projectList.data.map(async item => {
+  for (let item of projectList.data) {
     const oneProject = await db.collection('project')
       .where({
         _id: item.projectId,
@@ -23,12 +23,12 @@ exports.main = async (event, context) => {
     console.log('打印oneproject', oneProject)
     if (oneProject.data.length > 0) {
       const userInfo = await db.collection('user').where({
-        openId: oneProject.createBy
+        openId: oneProject.data[0].createBy
       })
-      .get()
+        .get()
       oneProject.data[0].createBy = userInfo.data[0]
       returnResult.push(oneProject.data[0])
     }
-  }))
+  }
   return returnResult.sort((a, b) => a.paidDate < b.paidDate ? 1 : -1)
 }
