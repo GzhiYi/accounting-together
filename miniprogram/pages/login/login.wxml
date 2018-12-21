@@ -15,3 +15,4 @@
     <button class='btn btn-primary login-btn' open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">确认登录</button>
   </view>
 </view>
+<van-notify id="login-tips" />

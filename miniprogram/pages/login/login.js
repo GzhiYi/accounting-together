@@ -1,5 +1,6 @@
 // pages/login/login.js
 const app = getApp()
+import Notify from '../dist/notify/notify'
 Page({
 
   /**
@@ -48,7 +49,14 @@ Page({
           url: `${backPath === '' ? '/pages/index/index' : `/pages/${backPath}/${backPath}`}`
         })
       }
-
+    } else {
+      // 加入提示
+      Notify({
+        text: "需要获取基本信息，请再次点击登录",
+        duration: 1500,
+        selector: '#login-tips',
+        backgroundColor: '#dc3545'
+      });
     }
   },
   /**
