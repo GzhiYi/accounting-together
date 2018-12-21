@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function (options) {
     const self = this
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -9,6 +9,8 @@ App({
         traceUser: true,
       })
     }
+    console.log("在app.js", options)
+    this.globalData.shareParam = options.query
     // 查看是否授权
     wx.getSetting({
       success (settingRes) {
@@ -23,8 +25,9 @@ App({
             }
           })
         } else {
+          console.log('测试', `/pages/login/login?back=${options.path.split('/')[1]}`)
           wx.redirectTo({
-            url: '/pages/login/login?back=index',
+            url: `/pages/login/login?back=${options.path.split('/')[1]}`,
           })
         }
       }
@@ -34,6 +37,7 @@ App({
     currentGroupInfo: null,
     currentGroupUserList: [],
     currentBill: null,
-    userInfo: null
+    userInfo: null,
+    shareParam: null
   }
 })

@@ -20,7 +20,7 @@ exports.main = async (event, context) => {
   })
   if (alreadyInGroup) {
     return {
-      msg: '你已在该组内',
+      msg: '你已在该组内，即将跳转至组页面',
       code: 0
     }
   } else {

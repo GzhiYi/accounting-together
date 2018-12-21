@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/share/share",
     "pages/index/index",
     "pages/personal/personal",
     "pages/group/group",
     "pages/history/history",
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/share/share"
   ],
   "window": {
     "backgroundColor": "#F2F2F2",

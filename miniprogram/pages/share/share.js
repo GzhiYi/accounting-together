@@ -1,5 +1,6 @@
 // pages/share/share.js
 import Notify from '../dist/notify/notify'
+const app = getApp()
 Page({
 
   /**
@@ -18,6 +19,11 @@ Page({
     if (options.hasOwnProperty('groupId')) {
       this.setData({
         inviteInfo: options
+      })
+    } else if (app.globalData.shareParam) {
+      console.log("shareParam", app.globalData.shareParam)
+      this.setData({
+        inviteInfo: app.globalData.shareParam
       })
     } else {
       wx.switchTab({

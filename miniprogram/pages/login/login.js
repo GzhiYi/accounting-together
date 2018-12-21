@@ -38,9 +38,17 @@ Page({
           console.log('增加返回')
         }
       })
-      wx.switchTab({
-        url: `${backPath === '' ? '/pages/index/index' : `/pages/${backPath}/${backPath}`}`
-      })
+      const tabList = ['index', 'group', 'history', 'personal']
+      if (tabList.indexOf(backPath) !== -1) {
+        wx.switchTab({
+          url: `${backPath === '' ? '/pages/index/index' : `/pages/${backPath}/${backPath}`}`
+        })
+      } else {
+        wx.redirectTo({
+          url: `${backPath === '' ? '/pages/index/index' : `/pages/${backPath}/${backPath}`}`
+        })
+      }
+
     }
   },
   /**
