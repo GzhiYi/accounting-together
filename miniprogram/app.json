@@ -29,10 +29,6 @@
         "text": "组"
       }, 
       {
-        "pagePath": "pages/history/history",
-        "text": "历史"
-      },
-      {
         "pagePath": "pages/personal/personal",
         "text": "个人"
       }

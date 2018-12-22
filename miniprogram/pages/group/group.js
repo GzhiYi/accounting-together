@@ -7,7 +7,7 @@ Page({
    */
   data: {
     groupList: [],
-    loadingGroupList: false
+    loaded: false
   },
 
   /**
@@ -29,22 +29,23 @@ Page({
    */
   onShow: function () {
     const self = this
-    self.setData({
-      loadingGroupList: true
-    })
+    if (!self.data.loaded) {
+      wx.showLoading({
+        title: '正在加载...'
+      })
+    }
     wx.cloud.callFunction({
       name: 'getGroup',
       data: {},
       success(res) {
         console.log('成功调用组列表', res)
         self.setData({
-          groupList: res.result
+          groupList: res.result,
+          loaded: true
         })
       },
       complete () {
-        self.setData({
-          loadingGroupList: false
-        })
+        wx.hideLoading()
       }
     })
   },
