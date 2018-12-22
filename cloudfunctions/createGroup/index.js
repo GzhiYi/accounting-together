@@ -21,7 +21,8 @@ exports.main = (event, context) => {
     db.collection('user-group').add({
       data: {
         groupId: res._id,
-        userId: userInfo.openId
+        userId: userInfo.openId,
+        invalid: false
       }
     })
   })

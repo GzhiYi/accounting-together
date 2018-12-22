@@ -1,5 +1,6 @@
 // pages/personal/personal.js
 import Notify from '../dist/notify/notify'
+import { parseTime } from '../../utils/parseTime.js'
 const app = getApp()
 Page({
 
@@ -10,7 +11,8 @@ Page({
     userInfo: {},
     showFeedback: false,
     stars: 5,
-    message: ''
+    message: '',
+    fetchUserInfo: {}
   },
 
   /**
@@ -19,6 +21,19 @@ Page({
   onLoad: function (options) {
   },
   onShow: function () {
+    const self = this
+    // 获取账单信息
+    wx.cloud.callFunction({
+      name: 'getUserInfo',
+      data: {},
+      success (res) {
+        console.log('拿到的信息', res)
+        res.result.storeUser.createTime = parseTime(res.result.storeUser.createTime, '{y}-{m}-{d}')
+        self.setData({
+          fetchUserInfo: res.result
+        })
+      }
+    })
     // 如果用户未进行授权就进入这个页面就跳转到登录
     app.catchUserInfo = res => {
       console.log('回调上', res)
@@ -27,14 +42,14 @@ Page({
           url: '/pages/login/login?back=personal',
         })
       } else {
-        this.setData({
+        self.setData({
           userInfo: res || app.globalData.userInfo
         })
       }
     }
     console.log('全局上', app.globalData.userInfo)
     if (app.globalData.userInfo) {
-      this.setData({
+      self.setData({
         userInfo: app.globalData.userInfo
       })
     }
@@ -79,7 +94,16 @@ Page({
       }
     })
   },
-  onShareAppMessage: function () {
-
+  showGithub () {
+    wx.showToast({
+      title: 'Github搜索“accounting-together“',
+      icon: 'none'
+    })
+  },
+  showAbout () {
+    wx.showToast({
+      title: '喜欢吗，还是空白惹',
+      icon: 'none'
+    })
   }
 })

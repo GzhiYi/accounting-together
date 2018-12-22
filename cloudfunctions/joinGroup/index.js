@@ -27,7 +27,8 @@ exports.main = async (event, context) => {
     await db.collection('user-group').add({
       data: {
         userId: wxContext.OPENID,
-        groupId: event.groupId
+        groupId: event.groupId,
+        invalid: false
       }
     })
     return {

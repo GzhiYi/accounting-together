@@ -22,8 +22,7 @@ exports.main = async (event, context) => {
       data: {
         avatarUrl: event.avatarUrl,
         nickName: event.nickName,
-        sex: event.sex,
-        createTime: new Date()
+        sex: event.sex
       }
     })
     console.log('是更新')
@@ -35,7 +34,8 @@ exports.main = async (event, context) => {
         nickName: event.nickName,
         sex: event.sex,
         name: '',
-        openId: event.userInfo.openId
+        openId: event.userInfo.openId,
+        createTime: new Date()
       }
     })
     console.log("插入返回", insertResult)

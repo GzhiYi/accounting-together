@@ -9,9 +9,6 @@ exports.main = async (event, context) => {
   await db.collection('group').doc(event.groupId).update({
     data: {
       deleted: true
-    },
-    success () {
-      console.log('更新成功')
     }
   })
 }

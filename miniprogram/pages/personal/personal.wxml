@@ -9,23 +9,7 @@
     <view class='public-item' >
       <view class='public-item-name'>相关账单数</view>
       <view class='public-item-right'>
-        <text class='sum'>123</text>
-        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
-      </view>
-    </view>
-
-    <view class='public-item' >
-      <view class='public-item-name'>相关账单数</view>
-      <view class='public-item-right'>
-        <text class='sum'>123</text>
-        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
-      </view>
-    </view>
-
-    <view class='public-item' >
-      <view class='public-item-name'>支付总数</view>
-      <view class='public-item-right'>
-        <text class='sum'>123</text>
+        <text class='sum'>{{fetchUserInfo.billNum || 0}}</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>
@@ -33,7 +17,15 @@
     <view class='public-item' >
       <view class='public-item-name'>关联群组数</view>
       <view class='public-item-right'>
-        <text class='sum'>123</text>
+        <text class='sum'>{{fetchUserInfo.groupNum || 0}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>加入时间</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{fetchUserInfo.storeUser.createTime}}</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>
@@ -48,7 +40,7 @@
       </view>
     </view>
 
-    <view class='public-item' >
+    <view class='public-item' bindtap='showGithub'>
       <view class='public-item-name'>源码地址</view>
       <view class='public-item-right'>
         <!-- <text class='sum'>123</text> -->
@@ -56,7 +48,7 @@
       </view>
     </view>
 
-    <view class='public-item' >
+    <view class='public-item' bindtap='showAbout'>
       <view class='public-item-name'>关于</view>
       <view class='public-item-right'>
         <!-- <text class='sum'>123</text> -->
