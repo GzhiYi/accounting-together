@@ -26,3 +26,13 @@ page {
   color:#666;
   text-align:center;
 }
+.feedback {
+  border-radius: 20rpx;
+}
+.feedback-body {
+  padding: 40rpx;
+  text-align: center;
+}
+.input-feedback {
+  min-height:300rpx;
+}

@@ -50,6 +50,8 @@
     "van-cell-group": "./pages/dist/cell-group/index",
     "van-cell": "./pages/dist/cell/index",
     "van-tree-select": "./pages/dist/tree-select/index",
-    "van-datetime-picker": "./pages/dist/datetime-picker/index"
+    "van-datetime-picker": "./pages/dist/datetime-picker/index",
+    "van-popup": "./pages/dist/popup/index",
+    "van-rate": "./pages/dist/rate/index"
   }
 }

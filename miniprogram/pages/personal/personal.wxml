@@ -39,8 +39,8 @@
     </view>
   </view>
 
-    <view class='public-list'>
-    <view class='public-item' >
+  <view class='public-list'>
+    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
       <view class='public-item-name'>意见反馈</view>
       <view class='public-item-right'>
         <!-- <text class='sum'>123</text> -->
@@ -66,3 +66,21 @@
   </view>
 </view>
 <view class='end'>Created By GzhiYi</view>
+
+<van-popup show="{{ showFeedback }}" bind:close="feedbackModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 80%;">
+  <view class='feedback-body'>
+    <van-rate value="{{ stars }}" bind:change="onStarChange" />
+    <view class='input-feedback'>
+      <van-field
+        value="{{ message }}"
+        type="textarea"
+        bind:change="onMessageChange"
+        placeholder="请输入留言"
+        autosize
+        border="{{ false }}"
+      />
+    </view>
+    <button class='btn btn-primary' bindtap='leaveMessage'>{{message === '' ? '确认' : '谢谢你的留言😘'}}</button>
+  </view>
+</van-popup>
+<van-notify id="feedback-tips" />

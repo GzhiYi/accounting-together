@@ -1,4 +1,5 @@
 // pages/personal/personal.js
+import Notify from '../dist/notify/notify'
 const app = getApp()
 Page({
 
@@ -6,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    userInfo: {},
+    showFeedback: false,
+    stars: 5,
+    message: ''
   },
 
   /**
@@ -34,6 +38,46 @@ Page({
         userInfo: app.globalData.userInfo
       })
     }
+  },
+  feedbackModal (event) {
+    this.setData({
+      showFeedback: event.currentTarget.dataset.modal === 'showFeedback'
+    })
+  },
+  onStarChange (event) {
+    console.log(event)
+    this.setData({
+      stars: event.detail
+    });
+  },
+  onMessageChange (event) {
+    this.setData({
+      message: event.detail
+    })
+  },
+  leaveMessage () {
+    const { stars, message } = this.data
+    this.setData({
+      showFeedback: false
+    })
+    wx.cloud.callFunction({
+      name: 'createFeedback',
+      data: {
+        stars,
+        message
+      },
+      success (res) {
+        console.log("反馈返回", res)
+        if (res.result.code == 1) {
+          Notify({
+            text: `${res.result.msg}`,
+            duration: 1000,
+            selector: '#feedback-tips',
+            backgroundColor: '#28a745'
+          });
+        }
+      }
+    })
   },
   onShareAppMessage: function () {
 
