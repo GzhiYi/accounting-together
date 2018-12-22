@@ -38,6 +38,9 @@ Page({
   onLoad: function (options) {
     console.log(app)
     const self = this
+    wx.showLoading({
+      title: '正在加载...',
+    })
     let currentGroupUserList = app.globalData.currentGroupUserList
     // 让默认情况下所有的头像勾选
     currentGroupUserList.forEach(item => {
@@ -94,6 +97,9 @@ Page({
         self.setData({
           projectList: tempList
         })
+      },
+      complete () {
+        wx.hideLoading()
       }
     })
   },

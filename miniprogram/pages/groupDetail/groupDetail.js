@@ -132,6 +132,9 @@ Page({
     console.log('具体参数', getApp())
     const { currentGroupInfo } = getApp().globalData
     const self = this
+    wx.showLoading({
+      title: '正在加载...',
+    })
     if (currentGroupInfo) {
       self.setData({
         groupInfo: currentGroupInfo,
@@ -160,6 +163,9 @@ Page({
           self.setData({
             billList: res.result
           })
+        },
+        complete () {
+          wx.hideLoading()
         }
       })
       this.setData({
