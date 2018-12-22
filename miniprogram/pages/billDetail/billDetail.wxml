@@ -8,24 +8,44 @@
       <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/plus.png?sign=9d8b5af3e2d96b9c510526ca6289189f&t=1545270583" />
     </view>
   </view>
-  <view
+  <van-collapse
+    value="{{ activeCollapse }}"
+    bind:change="onCollapseChange"
     wx:if="{{projectList.length > 0}}"
-    class='public-item {{index === 0 ? "top" : ""}} {{index === projectList.length - 1 ? "bottom" : ""}}'
+    class='public-item-collapse {{index === 0 ? "top" : ""}} {{index === projectList.length - 1 ? "bottom" : ""}}'
     wx:for="{{projectList}}"
     wx:key="index"
   >
-    <view class="head">
-      <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
-      <view class='item-and-name'>
-        <view class='public-item-name'>{{item.title}}</view>
-        <view class='name'>{{item.createBy.nickName}}</view>
+    <van-collapse-item name="{{index}}" bindlongtap="deleteProject">
+      <view slot="title" class='coll-outer'>
+        <view class="head">
+          <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
+          <view class='item-and-name'>
+            <view class='public-item-name'>{{item.title}}</view>
+            <view class='name'>{{item.createBy.nickName}}</view>
+          </view>
+        </view>
+        <view class='project-item-right'>
+          <view class='paid-total'><text style='color: #28a745;font-weight: bold;'>{{item.price}}</text> 元</view>
+          <view class='paid-total'>{{item.paidDate}}</view>
+        </view>
       </view>
-    </view>
-    <view class='project-item-right'>
-      <view class='paid-total'><text style='color: #28a745;font-weight: bold;'>{{item.price}}</text> 元</view>
-      <view class='paid-total'>{{item.paidDate}}</view>
-    </view>
-  </view>
+      <view class='contain-avatars'>
+        <van-tag mark type="success" style="margin-right:20rpx;">包含</van-tag>
+        <view>
+          <view class='check-list-contain'>
+            <view class='one-avatar' wx:for="{{item.containUser}}" wx:key="{{index}}">
+              <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+              <view class='user-name'>{{item.nickName}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='handle-project'>
+        <van-icon name="delete" style='color: #dc3545;' bindtap='deleteProject' data-item='{{item}}'/>
+      </view>
+    </van-collapse-item>
+  </van-collapse>
 </view>
 
 <!-- 更多操作 -->

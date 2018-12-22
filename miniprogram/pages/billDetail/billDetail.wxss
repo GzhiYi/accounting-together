@@ -63,3 +63,44 @@ page {
   margin: 0 auto;
   padding: 20rpx;
 }
+.coll-outer {
+  display:flex;
+  justify-content:space-between;
+}
+.van-cell {
+  /* 这里居中折叠板的图标 */
+  align-items:center;
+}
+.van-collapse {
+  width: 100%;
+}
+.public-item-collapse {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.contain-avatars {
+  display:flex;
+  align-items:center;
+}
+.check-list-contain {
+  display:flex;
+  flex-wrap:wrap;
+  align-items: center;
+}
+.user-avatar-list {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.user-name {
+  font-size:23rpx;
+  width: 80rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align:center;
+}
+.handle-project {
+  text-align:right;
+}

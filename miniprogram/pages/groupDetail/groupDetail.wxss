@@ -65,3 +65,34 @@ page {
   text-align: center;
   padding: 40rpx;
 }
+.one-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+  margin: 10rpx 15rpx;
+}
+.check-list {
+  display:flex;
+  flex-wrap:wrap;
+  align-items: center;
+  margin-left:26rpx;
+  padding:10rpx 0 29rpx;
+}
+.user-avatar-list {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.user-checked {
+  position: absolute;
+  right:13rpx;
+  top:-10rpx;
+}
+.user-name {
+  font-size:23rpx;
+  width: 80rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align:center;
+}

@@ -8,18 +8,16 @@
         <view class='group-createtime'>{{groupCreateTime}}</view>
       </view>
     </view>
-    <view
-      class='user-item {{index === 0 ? "top" : ""}} {{index === groupList.length - 1 ? "bottom" : ""}}'
-      wx:for="{{userList}}"
-      wx:key="index"
-    >
-      
-      <image src='{{item.avatarUrl}}' class='user-avatar'></image>
-      <view class='public-item-name'>
-        {{item.nickName}}
-        <van-tag round type="primary" wx:if="{{groupInfo.createBy.openId === item.openId}}">发起</van-tag>
+    <view class='check-list'>
+      <view class='one-avatar' wx:for="{{userList}}" wx:key="{{index}}" bindtap='{{groupInfo.createBy.openId === item.openId ? "showAvatarTips" : ""}}' >
+        <van-icon
+          wx:if="{{groupInfo.createBy.openId === item.openId}}"
+          name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/light.png?sign=ae740745ffd1e70912a8467c53e60a76&t=1545455766"
+          class="user-checked"
+        />
+        <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+        <view class='user-name'>{{item.nickName}}</view>
       </view>
-      <!-- <view>{{item.createTime}}</view> -->
     </view>
   </view>
   <view class='public-list'>

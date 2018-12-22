@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/group/group",
     "pages/index/index",
     "pages/personal/personal",
-    "pages/group/group",
+    
     "pages/history/history",
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
@@ -52,6 +53,8 @@
     "van-tree-select": "./pages/dist/tree-select/index",
     "van-datetime-picker": "./pages/dist/datetime-picker/index",
     "van-popup": "./pages/dist/popup/index",
-    "van-rate": "./pages/dist/rate/index"
+    "van-rate": "./pages/dist/rate/index",
+    "van-collapse": "./pages/dist/collapse/index",
+    "van-collapse-item": "./pages/dist/collapse-item/index"
   }
 }

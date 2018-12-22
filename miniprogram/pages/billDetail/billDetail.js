@@ -26,7 +26,10 @@ Page({
 
     projectTitle: '',
     projectPrice: '',
-    loadingConfirm: false
+    loadingConfirm: false,
+
+    // 折叠面板
+    activeCollapse: ['1']
   },
 
   /**
@@ -66,7 +69,7 @@ Page({
   },
   getProject () {
     const self = this
-    const { currentBill } = this.data
+    const { currentBill, currentGroupUserList } = this.data
     wx.cloud.callFunction({
       name: 'getProject',
       data: {
@@ -76,7 +79,17 @@ Page({
         console.log("账单详情返回", res)
         let tempList = res.result
         tempList.forEach(item => {
+          // 处理购买日期格式转换
           item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d}')
+
+          // 处理包含用户的转换
+          item.containUser.forEach((oneContainUser, index) => {
+            currentGroupUserList.forEach(user => {
+              if (user.openId === oneContainUser) {
+                item.containUser[index] = user
+              }
+            })
+          }) 
         })
         self.setData({
           projectList: tempList
@@ -146,6 +159,32 @@ Page({
       console.log("错误", error)
     });
   },
+  deleteProject (event) {
+    const projectInfo = event.currentTarget.dataset.item
+    const self =this
+    console.log("呼啦啦啦", event)
+    Dialog.confirm({
+      message: `确定要删除改项吗？`,
+      selector: '#confirm-delete-bill'
+    }).then(() => {
+      wx.cloud.callFunction({
+        name: 'deleteProject',
+        data: {
+          projectId: projectInfo._id,
+          billId: self.data.currentBill._id,
+          projectPrice: projectInfo.price
+        },
+        success(res) {
+          self.getProject()
+          self.getBillLatest()
+          self.setData({
+            activeCollapse: []
+          })
+          console.log('删除返回', res)
+        }
+      })
+    })
+  },
   addProject () {
     this.setData({
       showAddProjectSheet: true
@@ -153,12 +192,30 @@ Page({
   },
   clickAvatar (event) {
     console.log(event)
+    // 先算算勾选的人数
+    const { currentGroupUserList } = this.data
     const index = event.currentTarget.dataset.index
-    const checked = this.data.currentGroupUserList[index].checked
-    this.data.currentGroupUserList[index].checked = !checked
-    this.setData({
-      currentGroupUserList: this.data.currentGroupUserList
+    let checkedNum = 0
+    currentGroupUserList.forEach(item => {
+      if (item.checked) {
+        checkedNum ++
+      }
     })
+    if (checkedNum === 1 && currentGroupUserList[index].checked) {
+      Notify({
+        text: '总得有人埋单吧？',
+        duration: 1500,
+        selector: '#bill-notify-selector',
+        backgroundColor: '#dc3545'
+      });
+      return
+    } else {
+      const checked = this.data.currentGroupUserList[index].checked
+      this.data.currentGroupUserList[index].checked = !checked
+      this.setData({
+        currentGroupUserList: this.data.currentGroupUserList
+      })
+    }
   },
   onTimeChange(event) {
     console.log('时间', event)
@@ -207,7 +264,10 @@ Page({
       success (res) {
         console.log('创建project返回', res)
         self.setData({
-          showAddProjectSheet: false
+          showAddProjectSheet: false,
+          activeCollapse: [],
+          projectPrice: '',
+          projectTitle: ''
         })
         self.getProject()
         self.getBillLatest()
@@ -220,6 +280,11 @@ Page({
           loadingConfirm: false
         })
       }
+    })
+  },
+  onCollapseChange (event) {
+    this.setData({
+      activeCollapse: event.detail
     })
   },
   onShow: function () {

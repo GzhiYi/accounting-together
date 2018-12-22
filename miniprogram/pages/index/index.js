@@ -1,4 +1,5 @@
 //index.js
+import Notify from '../dist/notify/notify'
 const app = getApp()
 
 Page({
@@ -46,6 +47,12 @@ Page({
         self.setData({
           groupName: '',
           newGroupModal: false
+        })
+        Notify({
+          text: '新建成功，请到组页面查看',
+          duration: 1500,
+          selector: '#notify-selector',
+          backgroundColor: '#28a745'
         })
       },
       fail (error) {

@@ -145,9 +145,9 @@ Page({
         success(res) {
           console.log('返回', res)
           self.setData({
-            userList: res.result
+            userList: res.result.reverse()
           })
-          app.globalData.currentGroupUserList = res.result
+          app.globalData.currentGroupUserList = res.result.reverse()
         }
       })
       wx.cloud.callFunction({
@@ -166,6 +166,12 @@ Page({
         groupId: currentGroupInfo._id
       })
     }
+  },
+  showAvatarTips () {
+    wx.showToast({
+      title: '是群猪没错了',
+      icon: 'none'
+    })
   },
   onShareAppMessage: function () {
     const { groupInfo } = this.data

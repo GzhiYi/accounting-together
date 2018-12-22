@@ -22,7 +22,8 @@ exports.main = async (event, context) => {
       data: {
         avatarUrl: event.avatarUrl,
         nickName: event.nickName,
-        sex: event.sex
+        sex: event.sex,
+        createTime: new Date()
       }
     })
     console.log('是更新')
