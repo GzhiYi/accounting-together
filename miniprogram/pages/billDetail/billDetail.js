@@ -105,7 +105,7 @@ Page({
   },
   // 结算账单
   onSubmitBill () {
-    const { currentBill } = this.data
+    const { currentBill, currentGroupUserList, projectList } = this.data
     const self = this
     self.setData({
       loadingEnd: true
@@ -113,7 +113,9 @@ Page({
     wx.cloud.callFunction({
       name: 'endBill',
       data: {
-        billId: currentBill._id
+        projectList,
+        currentBill,
+        groupUserList: currentGroupUserList
       },
       success (res) {
         console.log('更新状态成功')

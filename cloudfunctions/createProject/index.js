@@ -13,7 +13,6 @@ exports.main = (event, context) => {
       createBy: userInfo.openId,
       paidDate: event.paidDate,
       deleted: false,
-      expectMe: false,
       groupId: event.groupId,
       price: event.projectPrice,
       type: 'paid',
