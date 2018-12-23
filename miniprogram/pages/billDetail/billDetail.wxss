@@ -55,9 +55,6 @@ page {
 .sheet-body {
   padding: 40rpx;
 }
-.setting-area {
-  margin-bottom:200rpx;
-}
 .setting {
   width: 90%;
   margin: 0 auto;
@@ -103,4 +100,9 @@ page {
 }
 .handle-project {
   text-align:right;
+}
+
+.space {
+  height: 230rpx;
+  width: 100%;
 }

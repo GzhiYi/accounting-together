@@ -27,6 +27,10 @@
 .public-item-name {
   font-size: 30rpx;
   color: #313131;
+  max-width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .load-info {
   font-size: 24rpx;

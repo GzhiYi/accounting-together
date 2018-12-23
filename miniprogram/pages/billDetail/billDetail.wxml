@@ -16,7 +16,7 @@
     wx:for="{{projectList}}"
     wx:key="index"
   >
-    <van-collapse-item name="{{index}}" bindlongtap="deleteProject">
+    <van-collapse-item name="{{index}}">
       <view slot="title" class='coll-outer'>
         <view class="head">
           <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
@@ -49,18 +49,21 @@
 </view>
 
 <!-- 更多操作 -->
-  <view class='public-list setting-area'>
-    <view class='public-header'>
-      <view class='public-icon'>
-        <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
-      </view>
-      更多操作
+<view class='public-list setting-area'>
+  <view class='public-header'>
+    <view class='public-icon'>
+      <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
     </view>
-    <view class='setting'>
-      <button class='btn btn-primary' wx:if="{{currentBill.ended}}">查看结算结果</button>
-      <button class='btn btn-danger' bindtap='deleteBill'>删除账单</button>
-    </view>
+    更多操作
   </view>
+  <view class='setting'>
+    <button class='btn btn-primary' wx:if="{{currentBill.ended}}" bindtap='goToResult'>查看结算结果</button>
+    <button class='btn btn-danger' bindtap='deleteBill'>删除账单</button>
+  </view>
+</view>
+<view class='space'>
+
+</view>
 
 <van-submit-bar
   wx:if="{{!currentBill.ended}}"
@@ -68,6 +71,7 @@
   button-text="结算账单"
   bind:submit="onSubmitBill"
   loading="{{loadingEnd}}"
+  custom-class="marginB"
 />
 <van-submit-bar
   wx:else
@@ -75,6 +79,7 @@
   price="{{ currentBill.paidTotal * 100 }}"
   tip="此账单已完成结算，只供查看"
   button-text="结算账单"
+  custom-class="marginB"
 />
 <van-notify id="bill-notify-selector" />
 <van-notify id="bill-delete-selector" />

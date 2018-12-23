@@ -8,7 +8,8 @@
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
     "pages/login/login",
-    "pages/share/share"
+    "pages/share/share",
+    "pages/result/result"
   ],
   "window": {
     "backgroundColor": "#F2F2F2",

@@ -127,7 +127,11 @@ Page({
           backgroundColor: '#28a745'
         });
         setTimeout(() => {
-          wx.navigateBack()
+          self.getBillLatest()
+          self.getProject()
+          wx.navigateTo({
+            url: `/pages/result/result?billId=${currentBill._id}`,
+          })
         }, 2000)
       },
       complete () {
@@ -297,6 +301,11 @@ Page({
   },
   onShow: function () {
 
+  },
+  goToResult () {
+    wx.navigateTo({
+      url: `/pages/result/result?billId=${this.data.currentBill._id}`,
+    })
   },
   /**
    * 用户点击右上角分享

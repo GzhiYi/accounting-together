@@ -55,6 +55,7 @@ exports.main = async (event, context) => {
   await db.collection('bill').doc(currentBill._id).update({
     data: {
       ended: true,
+      endTime: new Date(),
       result
     }
   })

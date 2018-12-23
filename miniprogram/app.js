@@ -38,6 +38,7 @@ App({
     currentGroupUserList: [],
     currentBill: null,
     userInfo: null,
-    shareParam: null
+    shareParam: null,
+    billId: '', // 用于展示结果的billid
   }
 })

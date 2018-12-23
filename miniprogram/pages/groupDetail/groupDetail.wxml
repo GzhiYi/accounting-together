@@ -35,7 +35,7 @@
       bindtap='goToBillDetail'
       data-bill="{{item}}"
     >
-      <view class='public-item-name'>{{item.name}}</view>
+      <view class='public-item-name'>{{item.name}}<van-tag wx:if="{{item.ended}}" plain type="default" style="margin-left: 20rpx;">已结算</van-tag></view>
       <view class='public-item-right'>
         <text class='paid-total'>总付：{{item.paidTotal}}元</text>
         <van-icon name="arrow" style='color: #C6C6C6;'/>
