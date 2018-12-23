@@ -10,7 +10,8 @@ Page({
    */
   data: {
     currentBill: {
-      paidTotal: 0
+      paidTotal: 0,
+      ended: true
     },
     currentGroupInfo: null,
     projectList: [],
@@ -256,6 +257,15 @@ Page({
     const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate } = this.data
     console.log('提交', projectTitle, projectPrice, currentGroupUserList, paidDate)
     const self = this
+    if (projectTitle=== '' && projectPrice === '') {
+      Notify({
+        text: '支出项填写出错，请确认',
+        duration: 1500,
+        selector: '#bill-notify-selector',
+        backgroundColor: '#dc3545'
+      })
+      return
+    }
     self.setData({
       loadingConfirm: true
     })

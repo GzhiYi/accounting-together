@@ -36,9 +36,9 @@
   async-close
   show="{{ newGroupModal }}"
   show-cancel-button
-  bind:close="onGroupModalClose"
+  bind:close="callNewGroup"
   title="创建一个群组"
-  bind:confirm="callNewGroup"
+  id="new-group-modal"
 >
   <view class='group-dialog-body'>
     <van-field

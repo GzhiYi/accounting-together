@@ -35,30 +35,52 @@ Page({
     })
   },
 
-  callNewGroup () {
-    const self = this
-    wx.cloud.callFunction({
-      name: 'createGroup',
-      data: {
-        groupName: this.data.groupName
-      },
-      success (res) {
-        console.log('成功返回', res)
-        self.setData({
-          groupName: '',
-          newGroupModal: false
-        })
+  callNewGroup (event) {
+    console.log(event)
+    if (event.detail === 'confirm') {
+      // 异步关闭弹窗
+      const self = this
+      if (this.data.groupName === '') {
         Notify({
-          text: '新建成功，请到组页面查看',
+          text: '起个名字吧',
           duration: 1500,
           selector: '#notify-selector',
-          backgroundColor: '#28a745'
+          backgroundColor: '#dc3545'
         })
-      },
-      fail (error) {
-        console.log('错误', error)
+        self.setData({
+          newGroupModal: true
+        })
+        self.selectComponent("#new-group-modal").stopLoading()
+        return
       }
-    })
+      wx.cloud.callFunction({
+        name: 'createGroup',
+        data: {
+          groupName: this.data.groupName
+        },
+        success(res) {
+          console.log('成功返回', res)
+          self.setData({
+            groupName: '',
+            newGroupModal: false
+          })
+          Notify({
+            text: '新建成功，请到组页面查看',
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#28a745'
+          })
+        },
+        fail(error) {
+          console.log('错误', error)
+        }
+      })
+    } else {
+      this.setData({
+        newGroupModal: false
+      });
+    }
+    
   },
   
   onGroupNameChange (event) {
