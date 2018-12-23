@@ -23,7 +23,7 @@
   <view class='public-list'>
     <view class='public-header'>
       <view class='public-icon'>
-        <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/list3.png?sign=6b4ffdf74a64b665fc7909246d60e355&t=1545558535" size='20px' style='color: #C6C6C6;'/>
       </view>
       账单列表
     </view>
@@ -48,7 +48,7 @@
   <view class='public-list'>
     <view class='public-header'>
       <view class='public-icon'>
-        <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
       </view>
       更多操作
     </view>

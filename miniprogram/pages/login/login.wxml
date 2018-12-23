@@ -1,7 +1,7 @@
 <view class="login">
   <view class='public-list'>
     <view class='public-header mp-info'>
-      <image src="https://images.vrm.cn/2018/12/19/avatar.png" class='icon'></image>
+      <image src="https://6163-account-release-73522d-1256703754.tcb.qcloud.la/revenue.png?sign=fe02d974044cf82e7eaf8eb22794ba67&t=1545560586" class='icon'></image>
       <text class='mp-name'>一起算账</text>
     </view>
     <view class='login-tips'>

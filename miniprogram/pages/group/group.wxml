@@ -2,7 +2,7 @@
   <view class='public-list'>
     <view class='public-header'>
       <view class='public-icon'>
-        <van-icon name="https://images.vrm.cn/2018/12/19/user.png" size='20px' style='color: #C6C6C6;'/>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/group3.png?sign=1119403c4109bbb505d07aa6d42ffdff&t=1545558495" size='20px' style='color: #C6C6C6;'/>
       </view>
       所在群组
     </view>

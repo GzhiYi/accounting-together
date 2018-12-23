@@ -56,7 +56,7 @@
   <view class='public-list'>
     <view class='public-header'>
       <view class='public-icon'>
-        <van-icon name="https://images.vrm.cn/2018/12/19/order.png" size='20px' style='color: #C6C6C6;'/>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
       </view>
       更多操作
     </view>
