@@ -107,42 +107,82 @@ Page({
     })
   },
   // 结算账单
-  onSubmitBill () {
+  onSubmitBill (event) {
+    console.log(event)
     const { currentBill, currentGroupUserList, projectList } = this.data
     const self = this
     self.setData({
       loadingEnd: true
     })
-    wx.cloud.callFunction({
-      name: 'endBill',
-      data: {
-        projectList,
-        currentBill,
-        groupUserList: currentGroupUserList
-      },
-      success (res) {
-        console.log('更新状态成功')
-        // 删除提示
-        Notify({
-          text: '账单已结算',
-          duration: 1500,
-          selector: '#bill-notify-selector',
-          backgroundColor: '#28a745'
-        });
-        setTimeout(() => {
+    if (event.currentTarget.dataset.isend === 'Y') {
+      wx.cloud.callFunction({
+        name: 'endBill',
+        data: {
+          projectList,
+          currentBill,
+          groupUserList: currentGroupUserList,
+          end: true
+        },
+        success (res) {
+          console.log('更新状态成功')
+          // 删除提示
+          Notify({
+            text: '账单已结算',
+            duration: 1500,
+            selector: '#bill-notify-selector',
+            backgroundColor: '#28a745'
+          })
+          self.setData({
+            currentBill: {
+              ended: true
+            }
+          })
+          setTimeout(() => {
+            self.getBillLatest()
+            self.getProject()
+            wx.navigateTo({
+              url: `/pages/result/result?billId=${currentBill._id}`,
+            })
+          }, 2000)
+        },
+        complete () {
+          self.setData({
+            loadingEnd: false
+          })
+        }
+      })
+    }
+    if (event.currentTarget.dataset.isend === 'N') {
+      wx.cloud.callFunction({
+        name: 'endBill',
+        data: {
+          projectList,
+          currentBill,
+          groupUserList: currentGroupUserList,
+          end: false
+        },
+        success(res) {
+          console.log('更新状态成功', res)
+          // 删除提示
+          Notify({
+            text: '取消结算成功',
+            duration: 1500,
+            selector: '#bill-notify-selector',
+            backgroundColor: '#28a745'
+          })
           self.getBillLatest()
           self.getProject()
-          wx.navigateTo({
-            url: `/pages/result/result?billId=${currentBill._id}`,
+        },
+        complete() {
+          self.setData({
+            loadingEnd: false
           })
-        }, 2000)
-      },
-      complete () {
-        self.setData({
-          loadingEnd: false
-        })
-      }
-    })
+        }
+      })
+    }
+  },
+  onRecoverBill () {
+
   },
   // 删除账单操作
   deleteBill () {

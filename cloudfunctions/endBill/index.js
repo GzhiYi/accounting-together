@@ -48,15 +48,22 @@ function cal(groupUserList, projectList) {
 }
 exports.main = async (event, context) => {
   console.log('打印入参', event)
-  const { groupUserList, currentBill, projectList} = event
-
-  const result = cal(groupUserList, projectList)
-  console.log('计算结果', result)
-  await db.collection('bill').doc(currentBill._id).update({
-    data: {
-      ended: true,
-      endTime: new Date(),
-      result
-    }
-  })
+  const { groupUserList, currentBill, projectList, end} = event
+  if (end) {
+    const result = cal(groupUserList, projectList)
+    console.log('计算结果', result)
+    await db.collection('bill').doc(currentBill._id).update({
+      data: {
+        ended: true,
+        endTime: new Date(),
+        result
+      }
+    })
+  } else {
+    await db.collection('bill').doc(currentBill._id).update({
+      data: {
+        ended: false
+      }
+    })
+  }
 }

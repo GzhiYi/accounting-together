@@ -57,6 +57,7 @@
     更多操作
   </view>
   <view class='setting'>
+    <button class='btn btn-default' wx:if="{{currentBill.ended}}" bindtap='onSubmitBill' data-isend="N">取消结算</button>
     <button class='btn btn-primary' wx:if="{{currentBill.ended}}" bindtap='goToResult'>查看结算结果</button>
     <button class='btn btn-danger' bindtap='deleteBill' wx:if="{{userInfoFromCloud.openId === currentBill.createBy}}">删除账单</button>
   </view>
@@ -72,6 +73,7 @@
   bind:submit="onSubmitBill"
   loading="{{loadingEnd}}"
   custom-class="marginB"
+  data-isend="Y" 
 />
 <van-submit-bar
   wx:else

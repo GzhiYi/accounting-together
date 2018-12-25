@@ -13,7 +13,7 @@ Page({
     userList: [],
     newBillModal: false,
     billName: '',
-    billList: [],
+    billList: null,
     groupCreateTime: null,
     userInfoFromCloud: {}
   },
