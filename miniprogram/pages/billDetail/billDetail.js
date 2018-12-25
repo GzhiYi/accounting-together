@@ -73,6 +73,9 @@ Page({
       }
     })
   },
+  roundFun(value, n) {
+    return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
+  },
   getProject () {
     const self = this
     const { currentBill, currentGroupUserList } = this.data
@@ -306,9 +309,17 @@ Page({
     const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate } = this.data
     console.log('提交', projectTitle, projectPrice, currentGroupUserList, paidDate)
     const self = this
-    if (projectTitle=== '' && projectPrice === '') {
+    if (projectTitle=== '') {
       Notify({
-        text: '支出项填写出错，请确认',
+        text: '请输入支出项标题',
+        duration: 1500,
+        selector: '#bill-notify-selector',
+        backgroundColor: '#dc3545'
+      })
+      return
+    } else if ( projectPrice === '') {
+      Notify({
+        text: '价格未填写',
         duration: 1500,
         selector: '#bill-notify-selector',
         backgroundColor: '#dc3545'
@@ -322,7 +333,7 @@ Page({
       name: 'createProject',
       data: {
         projectTitle,
-        projectPrice,
+        projectPrice: self.roundFun(projectPrice, 2),
         paidDate,
         groupId: currentGroupInfo._id,
         billId: currentBill._id,

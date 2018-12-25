@@ -49,6 +49,7 @@
           <text class='result-word {{item.shouldPay > 0 ? "up" : "down"}}'>{{item.shouldPay}}</text><text style='font-size: 23rpx;'>元</text>
         </view>
       </view>
+      <view class='result-tips'>结算结果可能存在少许误差，为计算精度丢失</view>
     </view>
   </view>
 </view>
