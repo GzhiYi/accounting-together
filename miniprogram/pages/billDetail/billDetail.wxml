@@ -41,7 +41,7 @@
           </view>
         </view>
       </view>
-      <view class='handle-project'>
+      <view class='handle-project' wx:if="{{userInfoFromCloud.openId === item.createBy.openId}}">
         <van-icon name="delete" style='color: #dc3545;' bindtap='deleteProject' data-item='{{item}}'/>
       </view>
     </van-collapse-item>
@@ -49,7 +49,7 @@
 </view>
 
 <!-- 更多操作 -->
-<view class='public-list setting-area'>
+<view class='public-list setting-area' wx:if="{{currentBill.ended || userInfoFromCloud.openId === currentBill.createBy}}">
   <view class='public-header'>
     <view class='public-icon'>
       <van-icon name="https://images.vrm.cn/2018/12/19/order.pnghttps://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
@@ -58,7 +58,7 @@
   </view>
   <view class='setting'>
     <button class='btn btn-primary' wx:if="{{currentBill.ended}}" bindtap='goToResult'>查看结算结果</button>
-    <button class='btn btn-danger' bindtap='deleteBill'>删除账单</button>
+    <button class='btn btn-danger' bindtap='deleteBill' wx:if="{{userInfoFromCloud.openId === currentBill.createBy}}">删除账单</button>
   </view>
 </view>
 <view class='space'>

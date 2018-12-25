@@ -55,7 +55,7 @@
     <view class='setting'>
       <button class='btn btn-default' bindtap='newBill'>新建账单</button>
       <button class='btn btn-primary' open-type='share'>邀请加入群组</button>
-      <button class='btn btn-danger' bindtap='deleteGroup'>删除群组</button>
+      <button class='btn btn-danger' bindtap='deleteGroup' wx:if="{{groupInfo.createBy.openId === userInfoFromCloud.openId}}">删除群组</button>
     </view>
   </view>
 

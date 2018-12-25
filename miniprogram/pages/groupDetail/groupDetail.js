@@ -15,14 +15,17 @@ Page({
     billName: '',
     billList: [],
     groupCreateTime: null,
-
+    userInfoFromCloud: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('app in groupDetail', app)
+    this.setData({
+      userInfoFromCloud: app.globalData.userInfoFromCloud
+    })
   },
 
   onBillModalClose() {

@@ -32,6 +32,14 @@ App({
         }
       }
     })
+     wx.cloud.callFunction({
+      name: 'getUserInfo',
+      data: {},
+      success (res) {
+        console.log('拿到的信息', res)
+        self.globalData.userInfoFromCloud = res.result.storeUser
+      }
+    })
   },
   globalData: {
     currentGroupInfo: null,
@@ -40,5 +48,6 @@ App({
     userInfo: null,
     shareParam: null,
     billId: '', // 用于展示结果的billid
+    userInfoFromCloud: null
   }
 })

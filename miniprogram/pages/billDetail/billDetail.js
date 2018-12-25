@@ -30,14 +30,15 @@ Page({
     loadingConfirm: false,
 
     // 折叠面板
-    activeCollapse: ['1']
+    activeCollapse: ['1'],
+    userInfoFromCloud: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app)
+    console.log('app in billDetail', app)
     const self = this
     wx.showLoading({
       title: '正在加载...',
@@ -50,7 +51,8 @@ Page({
     self.getBillLatest()
     self.setData({
       currentGroupInfo: app.globalData.currentGroupInfo,
-      currentGroupUserList
+      currentGroupUserList,
+      userInfoFromCloud: app.globalData.userInfoFromCloud
     })
     self.getProject()
   },
