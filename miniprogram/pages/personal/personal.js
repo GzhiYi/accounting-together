@@ -28,7 +28,7 @@ Page({
       data: {},
       success (res) {
         console.log('拿到的信息', res)
-        res.result.storeUser.createTime = parseTime(res.result.storeUser.createTime, '{y}-{m}-{d}')
+        res.result.storeUser.createTime = parseTime(res.result.storeUser.createTime, '{y}-{m}-{d} {h}:{m}')
         self.setData({
           fetchUserInfo: res.result
         })

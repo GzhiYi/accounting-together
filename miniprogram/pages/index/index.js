@@ -65,11 +65,16 @@ Page({
             newGroupModal: false
           })
           Notify({
-            text: '新建成功，请到组页面查看',
+            text: '新建成功',
             duration: 1500,
             selector: '#notify-selector',
             backgroundColor: '#28a745'
           })
+          setTimeout(() => {
+            wx.switchTab({
+              url: `/pages/group/group`,
+            })
+          , 1500})
         },
         fail(error) {
           console.log('错误', error)

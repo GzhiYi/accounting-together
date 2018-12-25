@@ -11,7 +11,7 @@ Page({
   data: {
     currentBill: {
       paidTotal: 0,
-      ended: true
+      ended: false
     },
     currentGroupInfo: null,
     projectList: [],

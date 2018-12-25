@@ -7,17 +7,17 @@
   </view>
   <view class='public-list'>
     <view class='public-item' >
-      <view class='public-item-name'>相关账单数</view>
+      <view class='public-item-name'>累计账单数</view>
       <view class='public-item-right'>
-        <text class='sum'>{{fetchUserInfo.billNum || 0}}</text>
+        <text class='sum'>{{fetchUserInfo.billNum}}</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>
 
     <view class='public-item' >
-      <view class='public-item-name'>关联群组数</view>
+      <view class='public-item-name'>累计群组数</view>
       <view class='public-item-right'>
-        <text class='sum'>{{fetchUserInfo.groupNum || 0}}</text>
+        <text class='sum'>{{fetchUserInfo.groupNum}}</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>

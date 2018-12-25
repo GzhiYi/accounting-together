@@ -28,7 +28,7 @@
       },
       {
         "pagePath": "pages/group/group",
-        "text": "组",
+        "text": "群组",
         "iconPath": "./images/group-dark.png",
         "selectedIconPath": "./images/group-light.png"
       }, 
