@@ -182,6 +182,13 @@ Page({
       icon: 'none'
     })
   },
+  showUserName (event) {
+    console.log(event)
+    wx.showToast({
+      title: event.currentTarget.dataset.user.nickName,
+      icon: 'none'
+    })
+  },
   onShareAppMessage: function () {
     const { groupInfo } = this.data
     const userInfo = app.globalData.userInfo

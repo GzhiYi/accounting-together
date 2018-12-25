@@ -9,7 +9,13 @@
       </view>
     </view>
     <view class='check-list'>
-      <view class='one-avatar' wx:for="{{userList}}" wx:key="{{index}}" bindtap='{{groupInfo.createBy.openId === item.openId ? "showAvatarTips" : ""}}' >
+      <view
+        class='one-avatar'
+        wx:for="{{userList}}"
+        wx:key="{{index}}"
+        bindtap='{{groupInfo.createBy.openId === item.openId ? "showAvatarTips" : "showUserName"}}'
+        data-user="{{item}}"
+      >
         <van-icon
           wx:if="{{groupInfo.createBy.openId === item.openId}}"
           name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/light.png?sign=ae740745ffd1e70912a8467c53e60a76&t=1545455766"
@@ -41,6 +47,9 @@
         <van-icon name="arrow" style='color: #C6C6C6;'/>
       </view>
       <!-- <view>{{item.createTime}}</view> -->
+    </view>
+    <view wx:if="{{billList.length === 0}}" class='public-item' style='font-size:27rpx;'>
+      快去新建账单吧~
     </view>
   </view>
 

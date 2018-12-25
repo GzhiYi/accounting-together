@@ -205,6 +205,13 @@ Page({
       showAddProjectSheet: true
     })
   },
+  showUserName(event) {
+    console.log(event)
+    wx.showToast({
+      title: event.currentTarget.dataset.user.nickName,
+      icon: 'none'
+    })
+  },
   clickAvatar (event) {
     console.log(event)
     // 先算算勾选的人数
