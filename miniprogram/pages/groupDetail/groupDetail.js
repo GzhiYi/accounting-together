@@ -40,37 +40,58 @@ Page({
     })
   },
 
-  callNewBill() {
+  callNewBill(event) {
     const self = this
-    wx.cloud.callFunction({
-      name: 'createBill',
-      data: {
-        billName: this.data.billName,
-        groupId: this.data.groupInfo._id
-      },
-      success(res) {
-        console.log('成功返回', res)
-        self.setData({
-          billName: '',
-          newBillModal: false
+    if (event.detail === 'confirm') {
+      if (this.data.billName === '') {
+        Notify({
+          text: '又忘记起名了?',
+          duration: 1500,
+          selector: '#notify-selector',
+          backgroundColor: '#dc3545'
         })
+        self.setData({
+          newBillModal: true
+        })
+        self.selectComponent("#new-bill-modal").stopLoading()
+        return
+      } else {
         wx.cloud.callFunction({
-          name: 'getBill',
+          name: 'createBill',
           data: {
-            groupId: self.data.groupInfo._id
+            billName: this.data.billName,
+            groupId: this.data.groupInfo._id
           },
           success(res) {
-            console.log('bill返回', res)
+            console.log('成功返回', res)
             self.setData({
-              billList: res.result
+              billName: '',
+              newBillModal: false
             })
+            wx.cloud.callFunction({
+              name: 'getBill',
+              data: {
+                groupId: self.data.groupInfo._id
+              },
+              success(res) {
+                console.log('bill返回', res)
+                self.setData({
+                  billList: res.result
+                })
+              }
+            })
+          },
+          fail(error) {
+            console.log('错误', error)
           }
         })
-      },
-      fail(error) {
-        console.log('错误', error)
       }
-    })
+    } else {
+      this.setData({
+        newBillModal: false
+      })
+    }
+
   },
 
   onBillNameChange(event) {

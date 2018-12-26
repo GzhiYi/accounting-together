@@ -22,10 +22,8 @@ page {
   margin-right: 15rpx;
 }
 .one-avatar {
-  width: 100rpx;
-  height: 100rpx;
-  position: relative;
-  margin: 10rpx 10rpx;
+  position:relative;
+  margin:20rpx 10rpx 0
 }
 .check-list {
   display:flex;
@@ -34,8 +32,8 @@ page {
   margin-left:20rpx;
 }
 .user-avatar-list {
-  width: 80rpx;
-  height: 80rpx;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
 }
 .user-checked {
@@ -84,11 +82,6 @@ page {
   display:flex;
   flex-wrap:wrap;
   align-items: center;
-}
-.user-avatar-list {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
 }
 .user-name {
   font-size:23rpx;

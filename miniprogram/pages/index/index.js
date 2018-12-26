@@ -83,7 +83,7 @@ Page({
     } else {
       this.setData({
         newGroupModal: false
-      });
+      })
     }
     
   },

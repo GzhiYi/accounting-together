@@ -36,7 +36,7 @@
           <view class='check-list-contain'>
             <view class='one-avatar' wx:for="{{item.containUser}}" wx:key="{{index}}" bindtap='showUserName' data-user="{{item}}">
               <image src='{{item.avatarUrl}}' class='user-avatar-list' />
-              <view class='user-name'>{{item.nickName}}</view>
+              <!-- <view class='user-name'>{{item.nickName}}</view> -->
             </view>
           </view>
         </view>

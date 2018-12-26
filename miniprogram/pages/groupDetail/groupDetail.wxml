@@ -74,9 +74,9 @@
     async-close
     show="{{ newBillModal }}"
     show-cancel-button
-    bind:close="onBillModalClose"
+    bind:close="callNewBill"
     title="群组内新建一个账单"
-    bind:confirm="callNewBill"
+    id="new-bill-modal"
   >
     <view class='bill-dialog-body'>
       <van-field
