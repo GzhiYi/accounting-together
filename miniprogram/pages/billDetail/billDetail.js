@@ -217,12 +217,40 @@ Page({
       console.log("错误", error)
     });
   },
+  editProject (event) {
+    const self = this
+    const { currentGroupUserList } = this.data
+    const clickProject = event.currentTarget.dataset.item
+    // 首先将所有勾选改为false
+    currentGroupUserList.forEach((user, index) => {
+      this.data.currentGroupUserList[index].checked = false
+    })
+    this.setData({
+      currentGroupUserList: this.data.currentGroupUserList
+    })
+    // 判断哪些是勾选的
+    console.log('clickProject', clickProject)
+    this.data.currentGroupUserList.forEach((user, index) => {
+      clickProject.containUser.forEach(item => {
+        if (user.openId === item.openId) {
+          this.data.currentGroupUserList[index].checked = true
+        }
+      })
+    })
+    console.log('打印结果', this.data.currentGroupUserList)
+    self.setData({
+      showAddProjectSheet: true,
+      projectTitle: clickProject.title,
+      projectPrice: clickProject.price,
+      currentGroupUserList: this.data.currentGroupUserList
+    })
+  },
   deleteProject (event) {
     const projectInfo = event.currentTarget.dataset.item
     const self =this
     console.log("呼啦啦啦", event)
     Dialog.confirm({
-      message: `确定要删除改项吗？`,
+      message: `确定要删除【${event.currentTarget.dataset.item.title}】？`,
       selector: '#confirm-delete-bill'
     }).then(() => {
       wx.cloud.callFunction({
@@ -301,8 +329,15 @@ Page({
     }
   },
   closeAddProjectSheet () {
+    this.data.currentGroupUserList.forEach((user, index) => {
+      this.data.currentGroupUserList[index].checked = true
+    })
+
     this.setData({
-      showAddProjectSheet: false
+      showAddProjectSheet: false,
+      projectPrice: '',
+      projectTitle: '',
+      currentGroupUserList: this.data.currentGroupUserList
     })
   },
   comfirmAddProject () {

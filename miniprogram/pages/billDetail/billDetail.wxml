@@ -42,7 +42,8 @@
         </view>
       </view>
       <view class='handle-project' wx:if="{{userInfoFromCloud.openId === item.createBy.openId}}">
-        <van-icon name="delete" style='color: #dc3545;font-size:28rpx;' bindtap='deleteProject' data-item='{{item}}'/>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/edit.png?sign=732bca2e765665cbdfdb84cb6ead92ed&t=1545793748" style='color: #dc3545;font-size:46rpx;margin-right:21rpx;' bindtap='editProject' data-item='{{item}}'/>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/empty-red.png?sign=09d2cfdc5b10893fa08bbe267096181d&t=1545793941" style='color: #dc3545;font-size:46rpx;' bindtap='deleteProject' data-item='{{item}}'/>
       </view>
     </van-collapse-item>
   </van-collapse>
@@ -120,7 +121,7 @@
             name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/checkmark-circle-2.png?sign=90bae0ca23a06bede5809c4f143177c3&t=1545275048"
             class="user-checked"
           />
-          <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+          <image src='{{item.avatarUrl}}' class='user-avatar-list-sheet' />
         </view>
       </view>
     </van-cell-group>
