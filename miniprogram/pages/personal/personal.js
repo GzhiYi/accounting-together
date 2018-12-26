@@ -72,6 +72,15 @@ Page({
   },
   leaveMessage () {
     const { stars, message } = this.data
+    if (message === '') {
+      Notify({
+        text: `不写点什么吗?  ＞︿＜`,
+        duration: 1000,
+        selector: '#feedback-tips',
+        backgroundColor: '#dc3545'
+      })
+      return
+    }
     this.setData({
       showFeedback: false
     })
@@ -89,9 +98,14 @@ Page({
             duration: 1000,
             selector: '#feedback-tips',
             backgroundColor: '#28a745'
-          });
+          })
         }
       }
+    })
+  },
+  closeLeaveMessage () {
+    this.setData({
+      showFeedback: false
     })
   },
   showGithub () {
@@ -101,9 +115,17 @@ Page({
     })
   },
   showAbout () {
-    wx.showToast({
-      title: '喜欢吗，还是空白惹',
-      icon: 'none'
-    })
+    const { storeUser } = this.data.fetchUserInfo
+    if (storeUser._id === 'XCBZVJT75u22uiN8') {
+      wx.showToast({
+        title: '你是最幸运的一个，😘~LHY',
+        icon: 'none'
+      })
+    } else {
+      wx.showToast({
+        title: '喜欢吗，还是空白惹!',
+        icon: 'none'
+      })
+    }
   }
 })
