@@ -1,7 +1,65 @@
-/**app.wxss**/
-.container {
+.public-list {
+  width:90%;
+  background-color:#fff;
+  margin:0 auto 20rpx;
+  border-radius:20rpx;
+}
+.public-header {
+  padding:30rpx 20rpx;
+  font-size:35rpx;
+  border-bottom:.5rpx solid #F2F2F2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-} 
+}
+.public-icon {
+  margin-right: 18rpx;
+}
+.public-item {
+  border-bottom: .5rpx solid #F2F2F2;
+  padding:20rpx 20rpx;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+}
+.public-item-right {
+  display:flex;
+  align-items:center;
+}
+.public-item-name {
+  font-size: 30rpx;
+  color: #313131;
+  max-width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.load-info {
+  font-size: 24rpx;
+  color: #313131;
+  padding: 20rpx 20rpx;
+}
+/* 配置按钮样式 */
+.btn {
+  border: .5rpx solid #eee;
+  outline: none;
+  background: none;
+  color:#444;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  line-height:3;
+}
+.btn-default {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.btn::after{ border: none; }

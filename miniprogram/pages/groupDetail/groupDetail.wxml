@@ -1,0 +1,92 @@
+<view class='group-detail-body'>
+  <!--pages/groupDetail/groupDetail.wxml-->
+  <view class='group-detail'>
+    <view class='group-basic'>
+      <text class='name'>{{groupInfo.name}}</text>
+      <view class='group-basic-right'>
+        <van-tag mark type="primary">{{userList.length}}人</van-tag>
+        <view class='group-createtime'>{{groupCreateTime}}</view>
+      </view>
+    </view>
+    <view class='check-list'>
+      <view
+        class='one-avatar'
+        wx:for="{{userList}}"
+        wx:key="{{index}}"
+        bindtap='{{groupInfo.createBy.openId === item.openId ? "showAvatarTips" : "showUserName"}}'
+        data-user="{{item}}"
+      >
+        <van-icon
+          wx:if="{{groupInfo.createBy.openId === item.openId}}"
+          name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/light.png?sign=ae740745ffd1e70912a8467c53e60a76&t=1545455766"
+          class="user-checked"
+        />
+        <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+        <view class='user-name'>{{item.nickName}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='public-list'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/list3.png?sign=6b4ffdf74a64b665fc7909246d60e355&t=1545558535" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      账单列表
+    </view>
+    <view
+      wx:if="{{billList.length > 0}}"
+      class='public-item {{index === 0 ? "top" : ""}} {{index === billList.length - 1 ? "bottom" : ""}}'
+      wx:for="{{billList}}"
+      wx:key="index"
+      bindtap='goToBillDetail'
+      data-bill="{{item}}"
+    >
+      <view class='public-item-name'>{{item.name}}<van-tag wx:if="{{item.ended}}" plain type="default" style="margin-left: 20rpx;">已结算</van-tag></view>
+      <view class='public-item-right'>
+        <text class='paid-total'>总付：{{item.paidTotal}}元</text>
+        <van-icon name="arrow" style='color: #C6C6C6;'/>
+      </view>
+      <!-- <view>{{item.createTime}}</view> -->
+    </view>
+    <view wx:if="{{billList.length === 0}}" class='public-item' style='font-size:27rpx;'>
+      快去新建账单吧~
+    </view>
+  </view>
+
+<!-- 更多操作 -->
+  <view class='public-list'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      更多操作
+    </view>
+    <view class='setting'>
+      <button class='btn btn-default' bindtap='newBill'>新建账单</button>
+      <button class='btn btn-primary' open-type='share'>邀请加入群组</button>
+      <button class='btn btn-danger' bindtap='deleteGroup' wx:if="{{groupInfo.createBy.openId === userInfoFromCloud.openId}}">删除群组</button>
+    </view>
+  </view>
+
+  <!-- 组内新增账单 -->
+  <van-dialog
+    use-slot
+    async-close
+    show="{{ newBillModal }}"
+    show-cancel-button
+    bind:close="callNewBill"
+    title="群组内新建一个账单"
+    id="new-bill-modal"
+  >
+    <view class='bill-dialog-body'>
+      <van-field
+        value="{{ billName }}"
+        label="账单名"
+        placeholder="请输入账单名"
+        bind:change="onBillNameChange"
+      />
+    </view>
+  </van-dialog>
+</view>
+<van-dialog id="confirm-delete-group" />
+<van-notify id="notify-selector" />

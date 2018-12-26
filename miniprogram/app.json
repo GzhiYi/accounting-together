@@ -1,21 +1,20 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
+    "pages/personal/personal",
     "pages/group/group",
     "pages/history/history",
-    "pages/personal/personal"
+    "pages/groupDetail/groupDetail",
+    "pages/billDetail/billDetail",
+    "pages/login/login",
+    "pages/share/share",
+    "pages/result/result"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#F2F2F2",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "一起算账",
     "navigationBarTextStyle": "black"
   },
   "cloud": true,
@@ -23,21 +22,41 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "新建"
+        "text": "新建",
+        "iconPath": "./images/plus-dark.png",
+        "selectedIconPath": "./images/plus-light.png"
       },
       {
         "pagePath": "pages/group/group",
-        "text": "组"
+        "text": "群组",
+        "iconPath": "./images/group-dark.png",
+        "selectedIconPath": "./images/group-light.png"
       }, 
       {
-        "pagePath": "pages/history/history",
-        "text": "历史"
-      },
-      {
         "pagePath": "pages/personal/personal",
-        "text": "个人中心"
+        "text": "个人",
+        "iconPath": "./images/user-dark.png",
+        "selectedIconPath": "./images/user-light.png"
       }
     ],
-    "selectedColor": "orange"
+    "selectedColor": "#3585F9"
+  },
+  "usingComponents": {
+    "van-button": "./pages/dist/button/index",
+    "van-dialog": "./pages/dist/dialog/index",
+    "van-field": "./pages/dist/field/index",
+    "van-tag": "./pages/dist/tag/index",
+    "van-icon": "./pages/dist/icon/index",
+    "van-notify": "./pages/dist/notify/index",
+    "van-submit-bar": "./pages/dist/submit-bar/index",
+    "van-action-sheet": "./pages/dist/action-sheet/index",
+    "van-cell-group": "./pages/dist/cell-group/index",
+    "van-cell": "./pages/dist/cell/index",
+    "van-tree-select": "./pages/dist/tree-select/index",
+    "van-datetime-picker": "./pages/dist/datetime-picker/index",
+    "van-popup": "./pages/dist/popup/index",
+    "van-rate": "./pages/dist/rate/index",
+    "van-collapse": "./pages/dist/collapse/index",
+    "van-collapse-item": "./pages/dist/collapse-item/index"
   }
 }

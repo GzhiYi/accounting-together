@@ -1,0 +1,106 @@
+/* pages/billDetail/billDetail.wxss */
+.project-item-right {
+  text-align:right;
+  font-size:28rpx;
+}
+page {
+  background-color: #F2F2F2;
+  width: 100%;
+  height: 100%;
+  padding: 40rpx 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.head {
+  display:flex;
+  align-items:center;
+}
+.user-avatar {
+  width:70rpx;
+  height:70rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+.one-avatar {
+  position:relative;
+  margin:20rpx 10rpx 0
+}
+.check-list {
+  display:flex;
+  flex-wrap:wrap;
+  align-items: center;
+  margin-left:20rpx;
+}
+.user-avatar-list {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.user-avatar-list-sheet {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.user-checked {
+  position: absolute;
+  right:-7rpx;
+  top:-10rpx;
+}
+.item-and-name .name {
+  font-size:28rpx;
+  color:#555;
+}
+.add-project {
+  position: relative;
+  top:17rpx;
+  right:4rpx;
+}
+.sheet-body {
+  padding: 40rpx;
+}
+.setting {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20rpx;
+}
+.coll-outer {
+  display:flex;
+  justify-content:space-between;
+}
+.van-cell {
+  /* 这里居中折叠板的图标 */
+  align-items:center;
+}
+.van-collapse {
+  width: 100%;
+}
+.public-item-collapse {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.contain-avatars {
+  display:flex;
+  align-items:center;
+}
+.check-list-contain {
+  display:flex;
+  flex-wrap:wrap;
+  align-items: center;
+}
+.user-name {
+  font-size:23rpx;
+  width: 80rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align:center;
+}
+.handle-project {
+  text-align:right;
+}
+
+.space {
+  height: 230rpx;
+  width: 100%;
+}

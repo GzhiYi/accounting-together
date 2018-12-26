@@ -1,0 +1,99 @@
+/* pages/group/group.wxss */
+page {
+  height: 100%;
+}
+.group-detail-body {
+  background-color: #F2F2F2;
+  width: 100%;
+  height:100%;
+  padding: 40rpx 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.group-detail {
+  width:90%;
+  background-color:#fff;
+  margin: 0 auto 20rpx;
+  border-radius:20rpx;
+}
+.group-basic {
+  padding:20rpx 20rpx 15rpx;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:.5rpx solid #F2F2F2;
+}
+.group-basic-right {
+  text-align:right;
+}
+.group-basic .man-count {
+  font-size: 30rpx;
+  color: #333;
+}
+.group-basic .name {
+  font-size:50rpx;
+  width:500rpx;
+}
+.user-avatar {
+  width:70rpx;
+  height:70rpx;
+  border-radius: 50%;
+}
+.user-item {
+  border-bottom:.5rpx solid #F2F2F2;
+  padding:20rpx;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.group-createtime {
+  font-size:24rpx;
+  color:#444;
+  text-align:right;
+  width:100%;
+  margin-top:12rpx;
+}
+.paid-total {
+  font-size: 26rpx;
+  color: #313131;
+  margin-right: 15rpx;
+}
+.setting {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20rpx;
+}
+.delete-dialog-body {
+  text-align: center;
+  padding: 40rpx;
+}
+.one-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+  margin:10rpx 15rpx 25rpx;
+}
+.check-list {
+  display:flex;
+  flex-wrap:wrap;
+  align-items: center;
+  margin-left:26rpx;
+  padding:10rpx 0 29rpx;
+}
+.user-avatar-list {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.user-checked {
+  position: absolute;
+  right:13rpx;
+  top:-10rpx;
+}
+.user-name {
+  font-size:23rpx;
+  width: 80rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align:center;
+}

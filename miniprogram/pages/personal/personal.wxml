@@ -1,2 +1,79 @@
-<!--pages/personal/personal.wxml-->
-<text>pages/personal/personal.wxml</text>
+<view class='personal'>
+  <view class='public-list'>
+    <view class='public-header mp-info'>
+      <image src="{{userInfo.avatarUrl}}" class='icon'></image>
+      <text class='mp-name'>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class='public-list'>
+    <view class='public-item' >
+      <view class='public-item-name'>累计账单数</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{fetchUserInfo.billNum}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>累计群组数</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{fetchUserInfo.groupNum}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>加入时间</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{fetchUserInfo.storeUser.createTime}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+  </view>
+
+  <view class='public-list'>
+    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
+      <view class='public-item-name'>意见反馈</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx'/>
+      </view>
+    </view>
+
+    <view class='public-item' bindtap='showGithub'>
+      <view class='public-item-name'>源码地址</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+      </view>
+    </view>
+
+    <view class='public-item' bindtap='showAbout'>
+      <view class='public-item-name'>关于</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='end'>Created By GzhiYi</view>
+
+<van-popup show="{{ showFeedback }}" bind:close="feedbackModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 80%;">
+  <view class='feedback-body'>
+    <van-rate value="{{ stars }}" bind:change="onStarChange" />
+    <view class='input-feedback'>
+      <van-field
+        value="{{ message }}"
+        type="textarea"
+        bind:change="onMessageChange"
+        placeholder="请输入留言"
+        autosize
+        border="{{ false }}"
+      />
+    </view>
+    <button class='btn btn-primary' bindtap='leaveMessage'>{{message === '' ? '确认' : '谢谢你的留言😘'}}</button>
+    <button class='btn btn-default' bindtap='closeLeaveMessage'>算了</button>
+  </view>
+</van-popup>
+<van-notify id="feedback-tips" />

@@ -1,0 +1,145 @@
+<view class='public-list'>
+  <view class='public-header' style='justify-content:space-between;'>
+    <view class='public-icon'>
+      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/activity.png?sign=823072bd18577c0223abffd826ce8d8e&t=1545791280" size='20px' style='color: #C6C6C6;'/>
+      {{currentBill.name}}
+    </view>
+    <view class='add-project' bindtap='addProject' wx:if="{{!currentBill.ended}}">
+      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/add.png?sign=4bf1c4bb1e742c6d46eef6b26fb2775e&t=1545791409" />
+    </view>
+  </view>
+  <van-collapse
+    value="{{ activeCollapse }}"
+    bind:change="onCollapseChange"
+    wx:if="{{projectList.length > 0}}"
+    class='public-item-collapse {{index === 0 ? "top" : ""}} {{index === projectList.length - 1 ? "bottom" : ""}}'
+    wx:for="{{projectList}}"
+    wx:key="index"
+  >
+    <van-collapse-item name="{{index}}">
+      <view slot="title" class='coll-outer'>
+        <view class="head">
+          <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
+          <view class='item-and-name'>
+            <view class='public-item-name'>{{item.title}}</view>
+            <view class='name'>{{item.createBy.nickName}}</view>
+          </view>
+        </view>
+        <view class='project-item-right'>
+          <view class='paid-total'><text style='color: #28a745;font-weight: bold;'>{{item.price}}</text> 元</view>
+          <view class='paid-total'>{{item.paidDate}}</view>
+        </view>
+      </view>
+      <view class='contain-avatars'>
+        <van-tag mark type="success" style="margin-right:20rpx;">包含</van-tag>
+        <view>
+          <view class='check-list-contain'>
+            <view class='one-avatar' wx:for="{{item.containUser}}" wx:key="{{index}}" bindtap='showUserName' data-user="{{item}}">
+              <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+              <!-- <view class='user-name'>{{item.nickName}}</view> -->
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='handle-project' wx:if="{{userInfoFromCloud.openId === item.createBy.openId || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/edit.png?sign=732bca2e765665cbdfdb84cb6ead92ed&t=1545793748" style='color: #dc3545;font-size:46rpx;margin-right:21rpx;' bindtap='editProject' data-item='{{item}}'/>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/empty-red.png?sign=09d2cfdc5b10893fa08bbe267096181d&t=1545793941" style='color: #dc3545;font-size:46rpx;' bindtap='deleteProject' data-item='{{item}}'/>
+      </view>
+    </van-collapse-item>
+  </van-collapse>
+</view>
+
+<!-- 更多操作 -->
+<view class='public-list setting-area' wx:if="{{currentBill.ended || userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">
+  <view class='public-header'>
+    <view class='public-icon'>
+      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
+    </view>
+    更多操作
+  </view>
+  <view class='setting'>
+    <button class='btn btn-default' wx:if="{{currentBill.ended}}" bindtap='onSubmitBill' data-isend="N">取消结算</button>
+    <button class='btn btn-primary' wx:if="{{currentBill.ended}}" bindtap='goToResult'>查看结算结果</button>
+    <button class='btn btn-danger' bindtap='deleteBill' wx:if="{{userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">删除账单</button>
+  </view>
+</view>
+<view class='space'>
+
+</view>
+
+<van-submit-bar
+  wx:if="{{!currentBill.ended}}"
+  price="{{ currentBill.paidTotal * 100 }}"
+  button-text="结算账单"
+  bind:submit="onSubmitBill"
+  loading="{{loadingEnd}}"
+  custom-class="marginB"
+  data-isend="Y" 
+/>
+<van-submit-bar
+  wx:else
+  disabled
+  price="{{ currentBill.paidTotal * 100 }}"
+  tip="此账单已完成结算，只供查看"
+  button-text="结算账单"
+  custom-class="marginB"
+/>
+<van-notify id="bill-notify-selector" />
+<van-notify id="bill-delete-selector" />
+<van-dialog id="confirm-delete-bill" />
+<van-action-sheet show="{{ showAddProjectSheet }}" title="新建一个支出项" bind:close='closeAddProjectSheet'>
+  <view class='sheet-body'>
+    <van-field
+      value="{{ projectTitle }}"
+      clearable
+      label="付了啥"
+      placeholder="请输入支出项名"
+      bind:change="addProjectInput"
+      required
+      data-field="title"
+    />
+
+    <van-cell-group>
+      <van-field
+        value="{{ projectPrice }}"
+        type="digit"
+        label="价格"
+        placeholder="花了多少钱"
+        bind:change="addProjectInput"
+        required
+        data-field="price"
+      />
+      <van-cell
+        title="包含成员"
+        value=""
+        border="{{false}}"
+      />
+      <view class='check-list'>
+        <view class='one-avatar' wx:for="{{currentGroupUserList}}" wx:key="{{index}}" bindtap='clickAvatar' data-index="{{index}}">
+          <van-icon
+            wx:if="{{item.checked}}"
+            name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/checkmark-circle-2.png?sign=90bae0ca23a06bede5809c4f143177c3&t=1545275048"
+            class="user-checked"
+          />
+          <image src='{{item.avatarUrl}}' class='user-avatar-list-sheet' />
+        </view>
+      </view>
+    </van-cell-group>
+    <van-cell-group>
+      <van-cell
+        title="支出时间"
+        value=""
+        border="{{false}}"
+      />
+        <van-datetime-picker
+          type="date"
+          value="{{ paidDate }}"
+          max-date="{{ maxDate }}"
+          bind:change="onTimeChange"
+          show-toolbar="{{false}}"
+          item-height="{{30}}"
+        />
+    </van-cell-group>
+    <button class='btn btn-primary' bindtap="{{loadingConfirm ? '' : isEditProject ? 'confirmEditProject' : 'confirmAddProject'}}">{{loadingConfirm ? '正在提交...' : isEditProject ? '修改' : '确认'}}</button>
+  </view>
+</van-action-sheet>

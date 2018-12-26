@@ -1,11 +1,13 @@
 // pages/group/group.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    groupList: [],
+    loaded: false
   },
 
   /**
@@ -26,7 +28,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const self = this
+    if (!self.data.loaded) {
+      wx.showLoading({
+        title: '正在加载...'
+      })
+    }
+    wx.cloud.callFunction({
+      name: 'getGroup',
+      data: {},
+      success(res) {
+        console.log('成功调用组列表', res)
+        self.setData({
+          groupList: res.result,
+          loaded: true
+        })
+      },
+      complete () {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**
@@ -62,5 +83,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  goToGroupDetail (event) {
+    console.log(event)
+    app.globalData.currentGroupInfo = event.currentTarget.dataset.group
+    wx.navigateTo({
+      url: `/pages/groupDetail/groupDetail`
+    })
   }
 })

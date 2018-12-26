@@ -1,2 +1,24 @@
-<!--pages/group/group.wxml-->
-<text>pages/group/group.wxml</text>
+<view class="group-body">
+  <view class='public-list'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/group3.png?sign=1119403c4109bbb505d07aa6d42ffdff&t=1545558495" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      所在群组
+    </view>
+    <view
+      class='public-item {{index === 0 ? "top" : ""}} {{index === groupList.length - 1 ? "bottom" : ""}}'
+      wx:for="{{groupList}}"
+      wx:key="index"
+      bindtap='goToGroupDetail'
+      data-group="{{item}}"
+    >
+      <view class='public-item-name'>{{item.name}}</view>
+      <view style="display:flex;align-items:center;">
+        <image src='{{item.createBy.avatarUrl}}' class='creater'></image>
+        <van-icon name="arrow" style='color: #C6C6C6;display: flex;'/>
+      </view>
+      <!-- <view>{{item.createTime}}</view> -->
+    </view>
+  </view>
+</view>

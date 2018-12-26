@@ -1,1 +1,38 @@
-/* pages/personal/personal.wxss */
+page {
+  background-color: #F2F2F2;
+  width: 100%;
+  padding: 100rpx 0 40rpx;
+}
+.mp-info {
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  justify-content: center;
+  align-items: center;
+}
+.mp-info .icon {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  margin: 20rpx;
+  margin-top:-88rpx;
+}
+.sum {
+  color:#555;
+  font-size:26rpx;
+}
+.end {
+  font-size:26rpx;
+  color:#666;
+  text-align:center;
+}
+.feedback {
+  border-radius: 20rpx;
+}
+.feedback-body {
+  padding: 40rpx 40rpx 20rpx;
+  text-align: center;
+}
+.input-feedback {
+  min-height:300rpx;
+}

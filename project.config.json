@@ -28,12 +28,42 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "组",
+					"pathName": "pages/group/group",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "share",
+					"pathName": "pages/share/share",
+					"query": "groupId=XBnGVnffS3SWGdJK&inviter=GzhiYi&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/KanL6870JUe4WvJlKDGDYYicgZibo9XOrm7WPEKwOB9pqnUV0Cv9EOZfPAH3WulBWYl5NSJA8ICSqSts5v6Cy92A/132&groupName=7B304"
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "结果页面",
+					"pathName": "pages/result/result",
+					"query": "billId=XBcyaHkPDdDCJ2gB"
+				},
+				{
+					"id": -1,
+					"name": "billDetail页",
+					"pathName": "pages/billDetail/billDetail"
 				}
 			]
 		}

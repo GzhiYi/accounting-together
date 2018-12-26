@@ -1,0 +1,69 @@
+<view class='personal'>
+  <view class='public-list'>
+    <view class='public-header mp-info'>
+      <image src="{{userInfo.avatarUrl}}" class='icon'></image>
+      <text class='mp-name'>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class='public-list'>
+    <view class='public-item' >
+      <view class='public-item-name'>账单</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{billInfo.name}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>所在群组</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{billInfo.groupId.name}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+
+    <view class='public-item' >
+      <view class='public-item-name'>创建时间</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{billInfo.createTime}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+    <view class='public-item' >
+      <view class='public-item-name'>结算时间</view>
+      <view class='public-item-right'>
+        <text class='sum'>{{billInfo.endTime}}</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
+    <view class='public-item' style="border: none;">
+      <view class='public-item-name'>结果</view>  
+    </view>
+    <view class='bill-result'>
+      <view class='check-list' wx:for="{{billInfo.result}}" wx:key="{{index}}">
+        <view class='one-avatar'>
+          <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+          <view class='user-name'>{{item.nickName}}</view>
+        </view>
+        <view style='margin-top:10rpx;'>
+          <text class='result-word {{item.shouldPay > 0 ? "up" : "down"}}'>{{item.shouldPay}}</text><text style='font-size: 23rpx;'>元</text>
+        </view>
+      </view>
+      <view class='result-tips'>结算结果可能存在少许误差，为计算精度丢失</view>
+    </view>
+  </view>
+</view>
+<!-- 更多操作 -->
+  <view class='public-list'>
+    <view class='public-header'>
+      <view class='public-icon'>
+        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
+      </view>
+      更多操作
+    </view>
+    <view class='setting'>
+      <button class='btn btn-primary' open-type='share'>分享结果</button>
+      <button class='btn btn-default' bindtap='goHome'>回到首页</button>
+    </view>
+  </view>
+<van-notify id="feedback-tips" />
