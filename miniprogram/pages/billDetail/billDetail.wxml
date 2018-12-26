@@ -41,7 +41,7 @@
           </view>
         </view>
       </view>
-      <view class='handle-project' wx:if="{{userInfoFromCloud.openId === item.createBy.openId}}">
+      <view class='handle-project' wx:if="{{userInfoFromCloud.openId === item.createBy.openId || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">
         <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/edit.png?sign=732bca2e765665cbdfdb84cb6ead92ed&t=1545793748" style='color: #dc3545;font-size:46rpx;margin-right:21rpx;' bindtap='editProject' data-item='{{item}}'/>
         <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/empty-red.png?sign=09d2cfdc5b10893fa08bbe267096181d&t=1545793941" style='color: #dc3545;font-size:46rpx;' bindtap='deleteProject' data-item='{{item}}'/>
       </view>
@@ -50,7 +50,7 @@
 </view>
 
 <!-- 更多操作 -->
-<view class='public-list setting-area' wx:if="{{currentBill.ended || userInfoFromCloud.openId === currentBill.createBy}}">
+<view class='public-list setting-area' wx:if="{{currentBill.ended || userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">
   <view class='public-header'>
     <view class='public-icon'>
       <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
@@ -60,7 +60,7 @@
   <view class='setting'>
     <button class='btn btn-default' wx:if="{{currentBill.ended}}" bindtap='onSubmitBill' data-isend="N">取消结算</button>
     <button class='btn btn-primary' wx:if="{{currentBill.ended}}" bindtap='goToResult'>查看结算结果</button>
-    <button class='btn btn-danger' bindtap='deleteBill' wx:if="{{userInfoFromCloud.openId === currentBill.createBy}}">删除账单</button>
+    <button class='btn btn-danger' bindtap='deleteBill' wx:if="{{userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">删除账单</button>
   </view>
 </view>
 <view class='space'>

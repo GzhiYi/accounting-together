@@ -70,7 +70,7 @@ page {
   width: 100rpx;
   height: 100rpx;
   position: relative;
-  margin: 10rpx 15rpx;
+  margin:10rpx 15rpx 25rpx;
 }
 .check-list {
   display:flex;
