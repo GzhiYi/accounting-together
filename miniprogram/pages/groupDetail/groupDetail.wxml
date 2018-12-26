@@ -4,7 +4,7 @@
     <view class='group-basic'>
       <text class='name'>{{groupInfo.name}}</text>
       <view class='group-basic-right'>
-        <van-tag mark>{{userList.length}}人</van-tag>
+        <van-tag mark type="primary">{{userList.length}}人</van-tag>
         <view class='group-createtime'>{{groupCreateTime}}</view>
       </view>
     </view>

@@ -30,7 +30,7 @@ page {
   border-radius: 20rpx;
 }
 .feedback-body {
-  padding: 40rpx;
+  padding: 40rpx 40rpx 20rpx;
   text-align: center;
 }
 .input-feedback {

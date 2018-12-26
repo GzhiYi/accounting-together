@@ -73,6 +73,7 @@
       />
     </view>
     <button class='btn btn-primary' bindtap='leaveMessage'>{{message === '' ? '确认' : '谢谢你的留言😘'}}</button>
+    <button class='btn btn-default' bindtap='closeLeaveMessage'>算了</button>
   </view>
 </van-popup>
 <van-notify id="feedback-tips" />
