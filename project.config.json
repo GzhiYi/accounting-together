@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -59,6 +59,11 @@
 					"name": "结果页面",
 					"pathName": "pages/result/result",
 					"query": "billId=XBcyaHkPDdDCJ2gB"
+				},
+				{
+					"id": -1,
+					"name": "billDetail页",
+					"pathName": "pages/billDetail/billDetail"
 				}
 			]
 		}

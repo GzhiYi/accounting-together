@@ -31,7 +31,9 @@ Page({
 
     // 折叠面板
     activeCollapse: ['1'],
-    userInfoFromCloud: {}
+    userInfoFromCloud: {},
+    isEditProject: false,
+    targetProject: {}
   },
 
   /**
@@ -184,9 +186,6 @@ Page({
       })
     }
   },
-  onRecoverBill () {
-
-  },
   // 删除账单操作
   deleteBill () {
     const { currentBill } = this.data
@@ -242,7 +241,9 @@ Page({
       showAddProjectSheet: true,
       projectTitle: clickProject.title,
       projectPrice: clickProject.price,
-      currentGroupUserList: this.data.currentGroupUserList
+      currentGroupUserList: this.data.currentGroupUserList,
+      isEditProject: true,
+      targetProject: clickProject
     })
   },
   deleteProject (event) {
@@ -332,15 +333,15 @@ Page({
     this.data.currentGroupUserList.forEach((user, index) => {
       this.data.currentGroupUserList[index].checked = true
     })
-
     this.setData({
       showAddProjectSheet: false,
       projectPrice: '',
       projectTitle: '',
+      isEditProject: false,
       currentGroupUserList: this.data.currentGroupUserList
     })
   },
-  comfirmAddProject () {
+  confirmAddProject () {
     const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate } = this.data
     console.log('提交', projectTitle, projectPrice, currentGroupUserList, paidDate)
     const self = this
@@ -398,6 +399,46 @@ Page({
         self.setData({
           loadingConfirm: false
         })
+      }
+    })
+  },
+  confirmEditProject () {
+    const { targetProject, currentBill, projectPrice, projectTitle, currentGroupUserList, paidDate } = this.data
+    const self = this
+    console.log(targetProject, projectPrice, projectTitle, currentGroupUserList, paidDate)
+    const tempContainUser = []
+    currentGroupUserList.forEach(item => {
+      if (item.checked) {
+        tempContainUser.push(item.openId)
+      }
+    })
+    wx.cloud.callFunction({
+      name: 'editProject',
+      data: {
+        projectPrice,
+        projectTitle,
+        paidDate,
+        containUser: tempContainUser,
+        projectId: targetProject._id,
+        billId: currentBill._id,
+        lastProjectPrice: targetProject.price
+      },
+      success (res) {
+        Notify({
+          text: '修改成功',
+          duration: 1500,
+          selector: '#bill-notify-selector',
+          backgroundColor: '#28a745'
+        })
+        self.setData({
+          showAddProjectSheet: false,
+          activeCollapse: [],
+          projectPrice: '',
+          projectTitle: '',
+          isEditProject: false
+        })
+        self.getProject()
+        self.getBillLatest()
       }
     })
   },

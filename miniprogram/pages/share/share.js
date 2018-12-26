@@ -56,7 +56,7 @@ Page({
           text: `${joinRes.result.msg}`,
           duration: 1500,
           selector: '#join-tips',
-          backgroundColor: `${joinRes.result.code === 1 ? '#dc3545' : '#28a745'}`
+          backgroundColor: `${joinRes.result.code === 1 ? '#28a745' : '#dc3545'}`
         });
         setTimeout(() => {
           wx.switchTab({

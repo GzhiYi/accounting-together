@@ -127,7 +127,7 @@
     </van-cell-group>
     <van-cell-group>
       <van-cell
-        title="时间"
+        title="支出时间"
         value=""
         border="{{false}}"
       />
@@ -137,8 +137,9 @@
           max-date="{{ maxDate }}"
           bind:change="onTimeChange"
           show-toolbar="{{false}}"
+          item-height="{{30}}"
         />
     </van-cell-group>
-    <button class='btn btn-primary' bindtap="{{loadingConfirm ? '' : 'comfirmAddProject'}}">{{loadingConfirm ? '正在提交...' : '确认'}}</button>
+    <button class='btn btn-primary' bindtap="{{loadingConfirm ? '' : isEditProject ? 'confirmEditProject' : 'confirmAddProject'}}">{{loadingConfirm ? '正在提交...' : isEditProject ? '修改' : '确认'}}</button>
   </view>
 </van-action-sheet>
