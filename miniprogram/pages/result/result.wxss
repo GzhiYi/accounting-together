@@ -60,7 +60,7 @@ page {
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
-  padding: 40rpx;
+  padding: 10rpx 40rpx 40rpx;
 }
 
 .result-word {

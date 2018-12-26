@@ -19,7 +19,7 @@ function cal(groupUserList, projectList) {
     project.containUser.forEach(containUser => {
       groupUserList.forEach((groupUser, groupUserIndex) => {
         if (groupUser.openId === containUser.openId) {
-          result[groupUserIndex].shouldPay = result[groupUserIndex].shouldPay - Number(project.price) / project.containUser.length
+          result[groupUserIndex].shouldPay = result[groupUserIndex].shouldPay - roundFun(Number(project.price) / project.containUser.length, 2)
         }
       })
       // 判断发起人是否包含账单情况的处理
@@ -36,7 +36,7 @@ function cal(groupUserList, projectList) {
     if (!inContainUser) {
       result.forEach(item => {
         if (item.openId === project.createBy.openId) {
-          item.shouldPay += project.price / project.containUser.length
+          item.shouldPay += roundFun(project.price / project.containUser.length, 2)
         }
       })
     }
@@ -45,6 +45,9 @@ function cal(groupUserList, projectList) {
     item.shouldPay = Math.floor(item.shouldPay * 100) / 100
   })
   return result
+}
+function roundFun(value, n) {
+  return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
 }
 exports.main = async (event, context) => {
   console.log('打印入参', event)
