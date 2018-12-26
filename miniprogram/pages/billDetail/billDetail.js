@@ -329,6 +329,12 @@ Page({
     self.setData({
       loadingConfirm: true
     })
+    const tempContainUser = []
+    currentGroupUserList.forEach(item => {
+      if (item.checked) {
+        tempContainUser.push(item.openId)
+      }
+    })
     wx.cloud.callFunction({
       name: 'createProject',
       data: {
@@ -337,11 +343,7 @@ Page({
         paidDate,
         groupId: currentGroupInfo._id,
         billId: currentBill._id,
-        containUser: currentGroupUserList.map(item => {
-          if (item.checked) {
-            return item.openId
-          }
-        })
+        containUser: tempContainUser
       },
       success (res) {
         console.log('创建project返回', res)

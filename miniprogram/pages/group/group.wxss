@@ -10,3 +10,8 @@ page {
   overflow-x: hidden;
   overflow-y: auto;
 }
+.creater {
+  width:40rpx;
+  height:40rpx;
+  border-radius:50%;
+}

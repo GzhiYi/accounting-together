@@ -14,7 +14,10 @@
       data-group="{{item}}"
     >
       <view class='public-item-name'>{{item.name}}</view>
-      <van-icon name="arrow" style='color: #C6C6C6;'/>
+      <view>
+        <image src='{{item.createBy.avatarUrl}}' class='creater'></image>
+        <van-icon name="arrow" style='color: #C6C6C6;'/>
+      </view>
       <!-- <view>{{item.createTime}}</view> -->
     </view>
   </view>
