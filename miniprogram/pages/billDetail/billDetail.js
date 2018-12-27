@@ -42,9 +42,7 @@ Page({
   onLoad: function (options) {
     console.log('app in billDetail', app)
     const self = this
-    wx.showLoading({
-      title: '正在加载...',
-    })
+    wx.showNavigationBarLoading()
     let currentGroupUserList = app.globalData.currentGroupUserList
     // 让默认情况下所有的头像勾选
     currentGroupUserList.forEach(item => {
@@ -107,7 +105,7 @@ Page({
         })
       },
       complete () {
-        wx.hideLoading()
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -338,6 +336,7 @@ Page({
       projectPrice: '',
       projectTitle: '',
       isEditProject: false,
+      paidDate: new Date().getTime(),
       currentGroupUserList: this.data.currentGroupUserList
     })
   },
@@ -384,13 +383,11 @@ Page({
       success (res) {
         console.log('创建project返回', res)
         self.setData({
-          showAddProjectSheet: false,
-          activeCollapse: [],
-          projectPrice: '',
-          projectTitle: ''
+          activeCollapse: []
         })
         self.getProject()
         self.getBillLatest()
+        self.closeAddProjectSheet()
       },
       fail (error) {
         console.log("出现什么错误", error)

@@ -15,7 +15,8 @@ Page({
     billName: '',
     billList: null,
     groupCreateTime: null,
-    userInfoFromCloud: {}
+    userInfoFromCloud: {},
+    loadingLeave: false
   },
 
   /**
@@ -156,9 +157,7 @@ Page({
     console.log('具体参数', getApp())
     const { currentGroupInfo } = getApp().globalData
     const self = this
-    wx.showLoading({
-      title: '正在加载...',
-    })
+    wx.showNavigationBarLoading()
     if (currentGroupInfo) {
       self.setData({
         groupInfo: currentGroupInfo,
@@ -189,7 +188,7 @@ Page({
           })
         },
         complete () {
-          wx.hideLoading()
+          wx.hideNavigationBarLoading()
         }
       })
       this.setData({
@@ -208,6 +207,40 @@ Page({
     wx.showToast({
       title: event.currentTarget.dataset.user.nickName,
       icon: 'none'
+    })
+  },
+  leaveGroup () {
+    const { groupInfo } = this.data
+    const self = this
+    self.setData({
+      loadingLeave: true
+    })
+    wx.cloud.callFunction({
+      name: 'leaveGroup',
+      data: {
+        relateUserGroupId: groupInfo.relateUserGroupId
+      },
+      success (res) {
+        Notify({
+          text: '悄悄的我走了，正如我悄悄的来',
+          duration: 1500,
+          selector: '#notify-selector',
+          backgroundColor: '#28a745'
+        })
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1500)
+      },
+      complete() {
+        self.setData({
+          loadingLeave: false
+        })
+      }
+    })
+  },
+  showAvatarMenu (event) {
+    wx.showToast({
+      title: '长按'
     })
   },
   onShareAppMessage: function () {
