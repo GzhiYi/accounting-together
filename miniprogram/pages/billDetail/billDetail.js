@@ -89,16 +89,7 @@ Page({
         let tempList = res.result
         tempList.forEach(item => {
           // 处理购买日期格式转换
-          item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d}')
-
-          // 处理包含用户的转换
-          item.containUser.forEach((oneContainUser, index) => {
-            currentGroupUserList.forEach(user => {
-              if (user.openId === oneContainUser) {
-                item.containUser[index] = user
-              }
-            })
-          }) 
+          item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{m}')
         })
         self.setData({
           projectList: tempList
