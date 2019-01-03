@@ -1,6 +1,7 @@
 // pages/personal/personal.js
 import Notify from '../dist/notify/notify'
 import { parseTime } from '../../utils/parseTime.js'
+import Dialog from '../dist/dialog/dialog'
 const app = getApp()
 Page({
 
@@ -40,21 +41,53 @@ Page({
         userInfo: app.globalData.userInfo
       })
     }
-
     wx.cloud.callFunction({
-      name: 'getResult',
-      data: {
-        billId: app.globalData.billId
-      },
-      success (res) {
-        console.log('获取返回', res)
-        res.result.billInfo.createTime = parseTime(res.result.billInfo.createTime, '{y}-{m}-{d} {h}:{m}:{s}')
-        res.result.billInfo.endTime = parseTime(res.result.billInfo.endTime, '{y}-{m}-{d} {h}:{m}:{s}')
+      name: 'getUserInfo',
+      data: {},
+      success (userInfoRes) {
+        userInfoRes.result.storeUser.createTime = parseTime(userInfoRes.result.storeUser.createTime, '{y}-{m}-{d} {h}:{m}')
         self.setData({
-          billInfo: res.result.billInfo
+          fetchUserInfo: userInfoRes.result
+        })
+
+        wx.cloud.callFunction({
+          name: 'getResult',
+          data: {
+            billId: app.globalData.billId
+          },
+          success(res) {
+            console.log('获取返回', res)
+            let visitorInBill = false
+            res.result.billInfo.result.forEach(user => {
+              if (self.data.fetchUserInfo.storeUser.openId === user.openId) {
+                visitorInBill = true
+              }
+            })
+            if (visitorInBill) {
+              res.result.billInfo.createTime = parseTime(res.result.billInfo.createTime, '{y}-{m}-{d} {h}:{m}:{s}')
+              res.result.billInfo.endTime = parseTime(res.result.billInfo.endTime, '{y}-{m}-{d} {h}:{m}:{s}')
+              self.setData({
+                billInfo: res.result.billInfo
+              })
+            } else {
+              Dialog.confirm({
+                message: `Sorry鸭，您无权查看这个账单结果哟~`,
+                selector: '#permission'
+              }).then(() => {
+                wx.switchTab({
+                  url: '/pages/group/group',
+                })
+              }).catch(error => {
+                wx.switchTab({
+                  url: '/pages/group/group',
+                })
+              })
+            }
+          }
         })
       }
     })
+
   },
   goHome () {
     wx.switchTab({
