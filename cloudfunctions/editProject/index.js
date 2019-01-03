@@ -14,7 +14,6 @@ exports.main = async (event, context) => {
       containUser: event.containUser
     }
   })
-  console.log(editRes, '修改返回')
   const gotBill = await db.collection('bill').where({
     _id: event.billId
   })
@@ -24,5 +23,4 @@ exports.main = async (event, context) => {
       paidTotal: parseFloat(Number((gotBill.data[0].paidTotal) - Number(event.lastProjectPrice) + Number(event.projectPrice)).toPrecision(12))
     }
   })
-  console.log('ggggot', gotBill)
 }

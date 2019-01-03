@@ -9,7 +9,6 @@ App({
         traceUser: true,
       })
     }
-    console.log("在app.js", options)
     this.globalData.shareParam = options.query
     // 查看是否授权
     wx.getSetting({
@@ -25,7 +24,6 @@ App({
             }
           })
         } else {
-          console.log('测试', `/pages/login/login?back=${options.path.split('/')[1]}`)
           wx.redirectTo({
             url: `/pages/login/login?back=${options.path.split('/')[1]}`,
           })
@@ -36,7 +34,6 @@ App({
       name: 'getUserInfo',
       data: {},
       success (res) {
-        console.log('拿到的信息', res)
         self.globalData.userInfoFromCloud = res.result.storeUser
       }
     })

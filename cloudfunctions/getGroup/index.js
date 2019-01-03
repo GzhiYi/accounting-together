@@ -20,14 +20,11 @@ exports.main = async (event, context) => {
         deleted: false
       })
       .get()
-    console.log('打印onegroup', oneGroup)
     if (oneGroup.data.length > 0) {
-      console.log("进入判断的onegroup", oneGroup)
       const userInfo = await db.collection('user').where({
         openId: oneGroup.data[0].createBy
       })
         .get()
-      console.log('判断的用户信息', userInfo)
       oneGroup.data[0].createBy = userInfo.data[0]
       oneGroup.data[0].relateUserGroupId = item._id
       returnResult.push(oneGroup.data[0])

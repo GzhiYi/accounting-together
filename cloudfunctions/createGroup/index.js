@@ -5,7 +5,6 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = (event, context) => {
-  console.log('打印event', event)
   const userInfo = event.userInfo
   db.collection('group').add({
     data: {
@@ -17,7 +16,6 @@ exports.main = (event, context) => {
     }
   })
   .then(res => {
-    console.log("插入group回调", res)
     db.collection('user-group').add({
       data: {
         groupId: res._id,

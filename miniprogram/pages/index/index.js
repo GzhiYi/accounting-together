@@ -18,7 +18,7 @@ Page({
         b: 2,
       },
       success(res) {
-        console.log(res.result) // 3
+        // console.log(res.result) // 3
       },
       fail: console.error
     })
@@ -36,7 +36,6 @@ Page({
   },
 
   callNewGroup (event) {
-    console.log(event)
     if (event.detail === 'confirm') {
       // 异步关闭弹窗
       const self = this
@@ -59,7 +58,6 @@ Page({
           groupName: this.data.groupName
         },
         success(res) {
-          console.log('成功返回', res)
           self.setData({
             groupName: '',
             newGroupModal: false
@@ -77,7 +75,7 @@ Page({
           , 1500})
         },
         fail(error) {
-          console.log('错误', error)
+          // console.log('错误', error)
         }
       })
     } else {

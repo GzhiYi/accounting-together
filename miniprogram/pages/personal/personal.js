@@ -27,7 +27,6 @@ Page({
       name: 'getUserInfo',
       data: {},
       success (res) {
-        console.log('拿到的信息', res)
         res.result.storeUser.createTime = parseTime(res.result.storeUser.createTime, '{y}-{m}-{d} {h}:{m}')
         self.setData({
           fetchUserInfo: res.result
@@ -36,7 +35,6 @@ Page({
     })
     // 如果用户未进行授权就进入这个页面就跳转到登录
     app.catchUserInfo = res => {
-      console.log('回调上', res)
       if (!app.globalData.userInfo && !res) {
         wx.navigateTo({
           url: '/pages/login/login?back=personal',
@@ -47,7 +45,6 @@ Page({
         })
       }
     }
-    console.log('全局上', app.globalData.userInfo)
     if (app.globalData.userInfo) {
       self.setData({
         userInfo: app.globalData.userInfo
@@ -60,7 +57,6 @@ Page({
     })
   },
   onStarChange (event) {
-    console.log(event)
     this.setData({
       stars: event.detail
     });
@@ -91,7 +87,6 @@ Page({
         message
       },
       success (res) {
-        console.log("反馈返回", res)
         if (res.result.code == 1) {
           Notify({
             text: `${res.result.msg}`,

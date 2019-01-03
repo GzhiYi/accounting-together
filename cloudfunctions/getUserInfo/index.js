@@ -11,7 +11,6 @@ exports.main = async (event, context) => {
     userId: cloud.getWXContext().OPENID
   })
   .get()
-  console.log('groupNum', groupNum)
 
 
   const billNum = await db.collection('project')
@@ -24,7 +23,6 @@ exports.main = async (event, context) => {
       }
     })
   })
-  console.log('billNum', billNum)
   const storeUser = await db.collection('user').where({
     openId: cloud.getWXContext().OPENID
   })

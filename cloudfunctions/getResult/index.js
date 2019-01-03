@@ -10,12 +10,10 @@ exports.main = async (event, context) => {
     _id: event.billId
   })
   .get()
-  console.log('打印billInfo', billInfo)
   const groupInfo = await db.collection('group').where({
     _id: billInfo.data[0].groupId
   })
   .get()
-  console.log('打印groupInfo', groupInfo)
   billInfo.data[0].groupId = groupInfo.data[0]
   return {
     billInfo: billInfo.data[0]

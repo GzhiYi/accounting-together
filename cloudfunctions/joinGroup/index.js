@@ -11,7 +11,6 @@ exports.main = async (event, context) => {
     userId: wxContext.OPENID
   })
   .get()
-  console.log("查询包含组", containGroup)
   let alreadyInGroup = false
   containGroup.data.forEach(item => {
     if (item.groupId === event.groupId) {

@@ -25,7 +25,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('app in groupDetail', app)
     this.setData({
       userInfoFromCloud: app.globalData.userInfoFromCloud
     })
@@ -66,7 +65,6 @@ Page({
             groupId: this.data.groupInfo._id
           },
           success(res) {
-            console.log('成功返回', res)
             self.setData({
               billName: '',
               newBillModal: false
@@ -77,7 +75,6 @@ Page({
                 groupId: self.data.groupInfo._id
               },
               success(res) {
-                console.log('bill返回', res)
                 self.setData({
                   billList: res.result
                 })
@@ -85,7 +82,7 @@ Page({
             })
           },
           fail(error) {
-            console.log('错误', error)
+            // console.log('错误', error)
           }
         })
       }
@@ -134,12 +131,11 @@ Page({
       })
     })
     .catch(error => {
-      console.log("错误", error)
+      // console.log("错误", error)
     });
   },
   // 跳转到bill详情页面
   goToBillDetail (event) {
-    console.log(event)
     app.globalData.currentBill = event.currentTarget.dataset.bill
     wx.navigateTo({
       url: '/pages/billDetail/billDetail',
@@ -156,7 +152,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('具体参数', getApp())
     const self = this
     self.getLatestData()
   },
@@ -175,7 +170,6 @@ Page({
           groupId: currentGroupInfo._id
         },
         success(res) {
-          console.log('返回', res)
           self.setData({
             userList: res.result.reverse()
           })
@@ -188,7 +182,6 @@ Page({
           groupId: currentGroupInfo._id
         },
         success(res) {
-          console.log('bill返回', res)
           self.setData({
             billList: res.result
           })
@@ -293,7 +286,6 @@ Page({
   onShareAppMessage: function () {
     const { groupInfo } = this.data
     const userInfo = app.globalData.userInfo
-    console.log('打印分享链接', `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`)
     return {
       title: `快来加入群组【${groupInfo.name}】啦，AA收款qiao方便~`,
       path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`

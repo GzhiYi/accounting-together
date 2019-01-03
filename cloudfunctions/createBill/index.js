@@ -6,7 +6,6 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = (event, context) => {
   const userInfo = event.userInfo
-  console.log("查看入参", event)
   db.collection('bill').add({
     data: {
       name: event.billName,
@@ -19,7 +18,6 @@ exports.main = (event, context) => {
     }
   })
   .then(res => {
-    console.log("插入group回调", res)
     db.collection('bill-group').add({
       data: {
         billId: res._id,

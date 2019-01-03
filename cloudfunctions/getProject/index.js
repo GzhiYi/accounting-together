@@ -22,7 +22,6 @@ exports.main = async (event, context) => {
       .get()
     
     if (oneProject.data.length > 0) {
-      console.log('打印oneproject', oneProject.data[0].containUser)
       const userInfo = await db.collection('user').where({
         openId: oneProject.data[0].createBy
       })

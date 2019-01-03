@@ -33,7 +33,6 @@ Page({
       name: 'getGroup',
       data: {},
       success(res) {
-        console.log('成功调用组列表', res)
         self.setData({
           groupList: res.result
         })
@@ -80,7 +79,6 @@ Page({
   },
 
   goToGroupDetail (event) {
-    console.log(event)
     app.globalData.currentGroupInfo = event.currentTarget.dataset.group
     wx.navigateTo({
       url: `/pages/groupDetail/groupDetail`
