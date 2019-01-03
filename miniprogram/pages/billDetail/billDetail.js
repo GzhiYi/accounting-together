@@ -247,7 +247,7 @@ Page({
     const self =this
     console.log("呼啦啦啦", event)
     Dialog.confirm({
-      message: `确定要删除【${event.currentTarget.dataset.item.title}】？`,
+      message: `确定要删除支出项【${event.currentTarget.dataset.item.title}】？`,
       selector: '#confirm-delete-bill'
     }).then(() => {
       wx.cloud.callFunction({
