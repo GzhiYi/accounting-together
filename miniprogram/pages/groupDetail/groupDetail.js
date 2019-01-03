@@ -16,7 +16,9 @@ Page({
     billList: null,
     groupCreateTime: null,
     userInfoFromCloud: {},
-    loadingLeave: false
+    loadingLeave: false,
+    showAvatarMenu: false,
+    menuUser: {}
   },
 
   /**
@@ -155,6 +157,10 @@ Page({
    */
   onShow: function () {
     console.log('具体参数', getApp())
+    const self = this
+    self.getLatestData()
+  },
+  getLatestData () {
     const { currentGroupInfo } = getApp().globalData
     const self = this
     wx.showNavigationBarLoading()
@@ -187,7 +193,7 @@ Page({
             billList: res.result
           })
         },
-        complete () {
+        complete() {
           wx.hideNavigationBarLoading()
         }
       })
@@ -203,44 +209,85 @@ Page({
     })
   },
   showUserName (event) {
-    console.log(event)
-    wx.showToast({
-      title: event.currentTarget.dataset.user.nickName,
-      icon: 'none'
+    this.setData({
+      showAvatarMenu: true,
+      menuUser: event.currentTarget.dataset.user
     })
   },
   leaveGroup () {
-    const { groupInfo } = this.data
-    const self = this
-    self.setData({
-      loadingLeave: true
-    })
-    wx.cloud.callFunction({
-      name: 'leaveGroup',
-      data: {
-        relateUserGroupId: groupInfo.relateUserGroupId
-      },
-      success (res) {
-        Notify({
-          text: '悄悄的我走了，正如我悄悄的来',
-          duration: 1500,
-          selector: '#notify-selector',
-          backgroundColor: '#28a745'
-        })
-        setTimeout(() => {
-          wx.navigateBack()
-        }, 1500)
-      },
-      complete() {
-        self.setData({
-          loadingLeave: false
-        })
-      }
+    Dialog.confirm({
+      message: `确定要离开群组吗？`,
+      selector: '#confirm-leave-group'
+    }).then(() => {
+      const { groupInfo } = this.data
+      const self = this
+      self.setData({
+        loadingLeave: true
+      })
+      wx.cloud.callFunction({
+        name: 'leaveGroup',
+        data: {
+          relateUserGroupId: groupInfo.relateUserGroupId
+        },
+        success(res) {
+          Notify({
+            text: '悄悄的我走了，正如我悄悄的来',
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#28a745'
+          })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1500)
+        },
+        complete() {
+          self.setData({
+            loadingLeave: false
+          })
+        }
+      })
     })
   },
-  showAvatarMenu (event) {
-    wx.showToast({
-      title: '长按'
+  dropGrouUser () {
+    const self = this
+    this.setData({
+      showAvatarMenu: false
+    })
+    Dialog.confirm({
+      message: `确定将其移出群组吗？`,
+      selector: '#confirm-drop-group'
+    }).then(() => {
+      const { groupInfo, menuUser } = this.data
+      const self = this
+      self.setData({
+        loadingLeave: true
+      })
+      wx.cloud.callFunction({
+        name: 'leaveGroup',
+        data: {
+          menuUser,
+          groupInfo
+        },
+        success(res) {
+          Notify({
+            text: `成功移除${menuUser.nickName}`,
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#28a745'
+          })
+          self.getLatestData()
+        },
+        complete() {
+          self.setData({
+            loadingLeave: false
+          })
+        }
+      })
+    })
+  },
+  closeDropGrouUser () {
+    this.setData({
+      showAvatarMenu: false
     })
   },
   onShareAppMessage: function () {

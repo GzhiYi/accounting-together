@@ -97,3 +97,13 @@ page {
   overflow: hidden;
   text-align:center;
 }
+.feedback {
+  border-radius: 20rpx;
+}
+.menu-body {
+  padding: 40rpx 40rpx 20rpx;
+  text-align: center;
+}
+.input-feedback {
+  min-height:300rpx;
+}
