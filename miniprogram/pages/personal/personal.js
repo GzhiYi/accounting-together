@@ -110,7 +110,7 @@ Page({
   },
   showGithub () {
     wx.showToast({
-      title: 'Github搜索"accounting-together"',
+      title: '请到Github搜索"accounting-together"',
       icon: 'none'
     })
   },

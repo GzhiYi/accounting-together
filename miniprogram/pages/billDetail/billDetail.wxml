@@ -1,4 +1,4 @@
-<view class='public-list'>
+<view class='public-list' style='padding-bottom: 14rpx'>
   <view class='public-header' style='justify-content:space-between;'>
     <view class='public-icon'>
       <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/activity.png?sign=823072bd18577c0223abffd826ce8d8e&t=1545791280" size='20px' style='color: #C6C6C6;'/>
@@ -41,12 +41,13 @@
           </view>
         </view>
       </view>
-      <view class='handle-project' wx:if="{{userInfoFromCloud.openId === item.createBy.openId || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">
+      <view class='handle-project' wx:if="{{(userInfoFromCloud.openId === item.createBy.openId || currentGroupInfo.createBy.openId === userInfoFromCloud.openId) && !currentBill.ended}}">
         <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/edit.png?sign=732bca2e765665cbdfdb84cb6ead92ed&t=1545793748" style='color: #dc3545;font-size:46rpx;margin-right:21rpx;' bindtap='editProject' data-item='{{item}}'/>
         <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/empty-red.png?sign=09d2cfdc5b10893fa08bbe267096181d&t=1545793941" style='color: #dc3545;font-size:46rpx;' bindtap='deleteProject' data-item='{{item}}'/>
       </view>
     </van-collapse-item>
   </van-collapse>
+  <view class='tips'>本笔账单你已支出{{myPaid}}元！</view>
 </view>
 
 <!-- 更多操作 -->

@@ -33,7 +33,8 @@ Page({
     activeCollapse: ['1'],
     userInfoFromCloud: {},
     isEditProject: false,
-    targetProject: {}
+    targetProject: {},
+    myPaid: 0
   },
 
   /**
@@ -87,12 +88,17 @@ Page({
       success (res) {
         console.log("账单详情返回", res)
         let tempList = res.result
+        let myPaid = 0
         tempList.forEach(item => {
           // 处理购买日期格式转换
           item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{m}')
+          if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
+            myPaid += item.price
+          }
         })
         self.setData({
-          projectList: tempList
+          projectList: tempList,
+          myPaid
         })
       },
       complete () {
@@ -128,7 +134,8 @@ Page({
           })
           self.setData({
             currentBill: {
-              ended: true
+              ended: true,
+              paidTotal: self.data.currentBill.paidTotal
             }
           })
           setTimeout(() => {
@@ -338,6 +345,14 @@ Page({
     if (projectTitle=== '') {
       Notify({
         text: '请输入支出项标题',
+        duration: 1500,
+        selector: '#bill-notify-selector',
+        backgroundColor: '#dc3545'
+      })
+      return
+    } else if (projectTitle.length > 10) {
+      Notify({
+        text: '支出项标题不能超过10个字哦~',
         duration: 1500,
         selector: '#bill-notify-selector',
         backgroundColor: '#dc3545'
