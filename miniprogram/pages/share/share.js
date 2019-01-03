@@ -15,13 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options, 'share')
     if (options.hasOwnProperty('groupId')) {
       this.setData({
         inviteInfo: options
       })
     } else if (app.globalData.shareParam) {
-      console.log("shareParam", app.globalData.shareParam)
       this.setData({
         inviteInfo: app.globalData.shareParam
       })
@@ -50,7 +48,6 @@ Page({
         groupId: inviteInfo.groupId
       },
       success (joinRes) {
-        console.log('加入返回', joinRes)
         // 加入提示
         Notify({
           text: `${joinRes.result.msg}`,

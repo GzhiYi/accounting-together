@@ -67,3 +67,4 @@
     </view>
   </view>
 <van-notify id="feedback-tips" />
+<van-dialog id="permission" />

@@ -104,3 +104,10 @@ page {
   height: 230rpx;
   width: 100%;
 }
+.tips {
+  font-size: 25rpx;
+  text-align: center;
+  width: 100%;
+  margin: 10rpx 0 0;
+  color: #555;
+}

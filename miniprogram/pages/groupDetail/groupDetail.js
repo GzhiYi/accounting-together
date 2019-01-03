@@ -15,14 +15,16 @@ Page({
     billName: '',
     billList: null,
     groupCreateTime: null,
-    userInfoFromCloud: {}
+    userInfoFromCloud: {},
+    loadingLeave: false,
+    showAvatarMenu: false,
+    menuUser: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('app in groupDetail', app)
     this.setData({
       userInfoFromCloud: app.globalData.userInfoFromCloud
     })
@@ -63,7 +65,6 @@ Page({
             groupId: this.data.groupInfo._id
           },
           success(res) {
-            console.log('成功返回', res)
             self.setData({
               billName: '',
               newBillModal: false
@@ -74,7 +75,6 @@ Page({
                 groupId: self.data.groupInfo._id
               },
               success(res) {
-                console.log('bill返回', res)
                 self.setData({
                   billList: res.result
                 })
@@ -82,7 +82,7 @@ Page({
             })
           },
           fail(error) {
-            console.log('错误', error)
+            // console.log('错误', error)
           }
         })
       }
@@ -131,12 +131,11 @@ Page({
       })
     })
     .catch(error => {
-      console.log("错误", error)
+      // console.log("错误", error)
     });
   },
   // 跳转到bill详情页面
   goToBillDetail (event) {
-    console.log(event)
     app.globalData.currentBill = event.currentTarget.dataset.bill
     wx.navigateTo({
       url: '/pages/billDetail/billDetail',
@@ -153,12 +152,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('具体参数', getApp())
+    const self = this
+    self.getLatestData()
+  },
+  getLatestData () {
     const { currentGroupInfo } = getApp().globalData
     const self = this
-    wx.showLoading({
-      title: '正在加载...',
-    })
+    wx.showNavigationBarLoading()
     if (currentGroupInfo) {
       self.setData({
         groupInfo: currentGroupInfo,
@@ -170,7 +170,6 @@ Page({
           groupId: currentGroupInfo._id
         },
         success(res) {
-          console.log('返回', res)
           self.setData({
             userList: res.result.reverse()
           })
@@ -183,13 +182,12 @@ Page({
           groupId: currentGroupInfo._id
         },
         success(res) {
-          console.log('bill返回', res)
           self.setData({
             billList: res.result
           })
         },
-        complete () {
-          wx.hideLoading()
+        complete() {
+          wx.hideNavigationBarLoading()
         }
       })
       this.setData({
@@ -204,16 +202,90 @@ Page({
     })
   },
   showUserName (event) {
-    console.log(event)
-    wx.showToast({
-      title: event.currentTarget.dataset.user.nickName,
-      icon: 'none'
+    this.setData({
+      showAvatarMenu: true,
+      menuUser: event.currentTarget.dataset.user
+    })
+  },
+  leaveGroup () {
+    Dialog.confirm({
+      message: `确定要离开群组吗？`,
+      selector: '#confirm-leave-group'
+    }).then(() => {
+      const { groupInfo } = this.data
+      const self = this
+      self.setData({
+        loadingLeave: true
+      })
+      wx.cloud.callFunction({
+        name: 'leaveGroup',
+        data: {
+          relateUserGroupId: groupInfo.relateUserGroupId
+        },
+        success(res) {
+          Notify({
+            text: '悄悄的我走了，正如我悄悄的来',
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#28a745'
+          })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1500)
+        },
+        complete() {
+          self.setData({
+            loadingLeave: false
+          })
+        }
+      })
+    })
+  },
+  dropGrouUser () {
+    const self = this
+    this.setData({
+      showAvatarMenu: false
+    })
+    Dialog.confirm({
+      message: `确定将其移出群组吗？`,
+      selector: '#confirm-drop-group'
+    }).then(() => {
+      const { groupInfo, menuUser } = this.data
+      const self = this
+      self.setData({
+        loadingLeave: true
+      })
+      wx.cloud.callFunction({
+        name: 'leaveGroup',
+        data: {
+          menuUser,
+          groupInfo
+        },
+        success(res) {
+          Notify({
+            text: `成功移除${menuUser.nickName}`,
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#28a745'
+          })
+          self.getLatestData()
+        },
+        complete() {
+          self.setData({
+            loadingLeave: false
+          })
+        }
+      })
+    })
+  },
+  closeDropGrouUser () {
+    this.setData({
+      showAvatarMenu: false
     })
   },
   onShareAppMessage: function () {
     const { groupInfo } = this.data
     const userInfo = app.globalData.userInfo
-    console.log('打印分享链接', `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`)
     return {
       title: `快来加入群组【${groupInfo.name}】啦，AA收款qiao方便~`,
       path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`

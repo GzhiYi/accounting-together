@@ -10,7 +10,6 @@ Page({
     backPath: ''
   },
   onLoad: function (options) {
-    console.log(options)
     if (options.hasOwnProperty("back")) {
       this.setData({
         backPath: options.back
@@ -21,7 +20,6 @@ Page({
 
   },
   onGotUserInfo (event) {
-    console.log(event)
     const { backPath } = this.data
     // 确认获取到用户信息
     if (event.detail.errMsg === 'getUserInfo:ok') {
@@ -36,7 +34,6 @@ Page({
           sex: userInfo.gender
         },
         success(res) {
-          console.log('增加返回')
         }
       })
       const tabList = ['index', 'group', 'history', 'personal']

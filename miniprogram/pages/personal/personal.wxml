@@ -57,7 +57,7 @@
     </view>
   </view>
 </view>
-<view class='end'>Created By GzhiYi</view>
+<!-- <view class='end'>Created By GzhiYi</view> -->
 
 <van-popup show="{{ showFeedback }}" bind:close="feedbackModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 80%;">
   <view class='feedback-body'>

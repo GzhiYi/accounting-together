@@ -6,7 +6,6 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = (event, context) => {
   const userInfo = event.userInfo
-  console.log("查看入参", event)
   db.collection('project').add({
     data: {
       title: event.projectTitle,
@@ -20,14 +19,12 @@ exports.main = (event, context) => {
     }
   })
   .then(res => {
-    console.log("插入group回调", res)
     // 将bill表对应的paidTotal修改
     db.collection('bill').where({
       _id: event.billId
     })
     .get()
     .then(res => {
-      console.log('打印以前的总付款', res.data[0].paidTotal)
       db.collection('bill').doc(event.billId).update({
         data: {
           paidTotal: parseFloat(Number((res.data[0].paidTotal) + Number(event.projectPrice)).toPrecision(12))

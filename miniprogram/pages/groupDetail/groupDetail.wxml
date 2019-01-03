@@ -13,7 +13,7 @@
         class='one-avatar'
         wx:for="{{userList}}"
         wx:key="{{index}}"
-        bindtap='{{groupInfo.createBy.openId === item.openId ? "showAvatarTips" : "showUserName"}}'
+        bindtap='showUserName'
         data-user="{{item}}"
       >
         <van-icon
@@ -65,6 +65,7 @@
       <button class='btn btn-default' bindtap='newBill'>新建账单</button>
       <button class='btn btn-primary' open-type='share'>邀请加入群组</button>
       <button class='btn btn-danger' bindtap='deleteGroup' wx:if="{{groupInfo.createBy.openId === userInfoFromCloud.openId}}">删除群组</button>
+      <button class='btn btn-danger' bindtap='{{loadingLeave ? "" : "leaveGroup"}}' wx:if="{{groupInfo.createBy.openId !== userInfoFromCloud.openId}}">{{loadingLeave ? '正在离开...' : '离开群组'}}</button>
     </view>
   </view>
 
@@ -89,4 +90,18 @@
   </van-dialog>
 </view>
 <van-dialog id="confirm-delete-group" />
+<van-dialog id="confirm-drop-group" />
+<van-dialog id="confirm-leave-group" />
 <van-notify id="notify-selector" />
+<!-- 头像弹出层 -->
+<van-popup show="{{ showAvatarMenu }}" bind:close="avatarMenuModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 70%;">
+  <view class='menu-body'>
+    <view class='user-info'>
+      <image style='width: 100rpx;height: 100rpx;border-radius: 50%;' src='{{menuUser.avatarUrl}}'></image>
+      <view><van-tag color="#7232dd" plain>{{groupInfo.createBy.openId === menuUser.openId ? '群主' : '成员'}}</van-tag></view>
+      <view style='font-size:30rpx;margin-bottom:20rpx;margin-top:11rpx;'>{{menuUser.nickName}}</view>
+    </view>
+    <button class='btn btn-danger' bindtap='dropGrouUser' wx:if="{{groupInfo.createBy.openId === userInfoFromCloud.openId && menuUser.openId !== groupInfo.createBy.openId}}">移出群组</button>
+    <button class='btn btn-default' bindtap='closeDropGrouUser'>取消</button>
+  </view>
+</van-popup>

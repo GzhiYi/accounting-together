@@ -20,13 +20,22 @@ exports.main = async (event, context) => {
         deleted: false
       })
       .get()
-    console.log('打印oneproject', oneProject)
+    
     if (oneProject.data.length > 0) {
       const userInfo = await db.collection('user').where({
         openId: oneProject.data[0].createBy
       })
+      .get()
+      let resultContainUser = []
+      for (let con_openId of oneProject.data[0].containUser) {
+        const oneContainUserInfo = await db.collection('user').where({
+          openId: con_openId
+        })
         .get()
+        resultContainUser.push(oneContainUserInfo.data[0])
+      }
       oneProject.data[0].createBy = userInfo.data[0]
+      oneProject.data[0].containUser = resultContainUser
       returnResult.push(oneProject.data[0])
     }
   }

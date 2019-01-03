@@ -33,18 +33,16 @@ Page({
     activeCollapse: ['1'],
     userInfoFromCloud: {},
     isEditProject: false,
-    targetProject: {}
+    targetProject: {},
+    myPaid: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('app in billDetail', app)
     const self = this
-    wx.showLoading({
-      title: '正在加载...',
-    })
+    wx.showNavigationBarLoading()
     let currentGroupUserList = app.globalData.currentGroupUserList
     // 让默认情况下所有的头像勾选
     currentGroupUserList.forEach(item => {
@@ -67,7 +65,6 @@ Page({
         billId: app.globalData.currentBill._id
       },
       success(res) {
-        console.log('最新bill数据', res)
         self.setData({
           currentBill: res.result
         })
@@ -87,33 +84,27 @@ Page({
         billId: app.globalData.currentBill._id
       },
       success (res) {
-        console.log("账单详情返回", res)
         let tempList = res.result
+        let myPaid = 0
         tempList.forEach(item => {
           // 处理购买日期格式转换
-          item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d}')
-
-          // 处理包含用户的转换
-          item.containUser.forEach((oneContainUser, index) => {
-            currentGroupUserList.forEach(user => {
-              if (user.openId === oneContainUser) {
-                item.containUser[index] = user
-              }
-            })
-          }) 
+          item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{m}')
+          if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
+            myPaid += item.price
+          }
         })
         self.setData({
-          projectList: tempList
+          projectList: tempList,
+          myPaid
         })
       },
       complete () {
-        wx.hideLoading()
+        wx.hideNavigationBarLoading()
       }
     })
   },
   // 结算账单
   onSubmitBill (event) {
-    console.log(event)
     const { currentBill, currentGroupUserList, projectList } = this.data
     const self = this
     self.setData({
@@ -129,7 +120,6 @@ Page({
           end: true
         },
         success (res) {
-          console.log('更新状态成功')
           // 删除提示
           Notify({
             text: '账单已结算',
@@ -139,7 +129,8 @@ Page({
           })
           self.setData({
             currentBill: {
-              ended: true
+              ended: true,
+              paidTotal: self.data.currentBill.paidTotal
             }
           })
           setTimeout(() => {
@@ -167,7 +158,6 @@ Page({
           end: false
         },
         success(res) {
-          console.log('更新状态成功', res)
           // 删除提示
           Notify({
             text: '取消结算成功',
@@ -213,7 +203,7 @@ Page({
       })
     })
     .catch(error => {
-      console.log("错误", error)
+      // console.log("错误", error)
     });
   },
   editProject (event) {
@@ -228,7 +218,6 @@ Page({
       currentGroupUserList: this.data.currentGroupUserList
     })
     // 判断哪些是勾选的
-    console.log('clickProject', clickProject)
     this.data.currentGroupUserList.forEach((user, index) => {
       clickProject.containUser.forEach(item => {
         if (user.openId === item.openId) {
@@ -236,7 +225,6 @@ Page({
         }
       })
     })
-    console.log('打印结果', this.data.currentGroupUserList)
     self.setData({
       showAddProjectSheet: true,
       projectTitle: clickProject.title,
@@ -248,10 +236,9 @@ Page({
   },
   deleteProject (event) {
     const projectInfo = event.currentTarget.dataset.item
-    const self =this
-    console.log("呼啦啦啦", event)
+    const self = this
     Dialog.confirm({
-      message: `确定要删除【${event.currentTarget.dataset.item.title}】？`,
+      message: `确定要删除支出项【${event.currentTarget.dataset.item.title}】？`,
       selector: '#confirm-delete-bill'
     }).then(() => {
       wx.cloud.callFunction({
@@ -267,7 +254,6 @@ Page({
           self.setData({
             activeCollapse: []
           })
-          console.log('删除返回', res)
         }
       })
     })
@@ -278,14 +264,12 @@ Page({
     })
   },
   showUserName(event) {
-    console.log(event)
     wx.showToast({
       title: event.currentTarget.dataset.user.nickName,
       icon: 'none'
     })
   },
   clickAvatar (event) {
-    console.log(event)
     // 先算算勾选的人数
     const { currentGroupUserList } = this.data
     const index = event.currentTarget.dataset.index
@@ -312,7 +296,6 @@ Page({
     }
   },
   onTimeChange(event) {
-    console.log('时间', event)
     this.setData({
       paidDate: event.detail.data.innerValue
     });
@@ -338,16 +321,24 @@ Page({
       projectPrice: '',
       projectTitle: '',
       isEditProject: false,
+      paidDate: new Date().getTime(),
       currentGroupUserList: this.data.currentGroupUserList
     })
   },
   confirmAddProject () {
     const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate } = this.data
-    console.log('提交', projectTitle, projectPrice, currentGroupUserList, paidDate)
     const self = this
     if (projectTitle=== '') {
       Notify({
         text: '请输入支出项标题',
+        duration: 1500,
+        selector: '#bill-notify-selector',
+        backgroundColor: '#dc3545'
+      })
+      return
+    } else if (projectTitle.length > 10) {
+      Notify({
+        text: '支出项标题不能超过10个字哦~',
         duration: 1500,
         selector: '#bill-notify-selector',
         backgroundColor: '#dc3545'
@@ -382,18 +373,15 @@ Page({
         containUser: tempContainUser
       },
       success (res) {
-        console.log('创建project返回', res)
         self.setData({
-          showAddProjectSheet: false,
-          activeCollapse: [],
-          projectPrice: '',
-          projectTitle: ''
+          activeCollapse: []
         })
         self.getProject()
         self.getBillLatest()
+        self.closeAddProjectSheet()
       },
       fail (error) {
-        console.log("出现什么错误", error)
+        // console.log("出现什么错误", error)
       },
       complete () {
         self.setData({
@@ -405,7 +393,6 @@ Page({
   confirmEditProject () {
     const { targetProject, currentBill, projectPrice, projectTitle, currentGroupUserList, paidDate } = this.data
     const self = this
-    console.log(targetProject, projectPrice, projectTitle, currentGroupUserList, paidDate)
     const tempContainUser = []
     currentGroupUserList.forEach(item => {
       if (item.checked) {
