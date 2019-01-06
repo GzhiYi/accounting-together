@@ -17,7 +17,7 @@ Page({
     projectList: [],
     loadingEnd: false,
     showAddProjectSheet: false,
-    currentGroupUserList: [],
+    currentGroupUserList: [], // 当前群所有成员列表
 
     // 所选时间
     minHour: 10,
@@ -94,13 +94,12 @@ Page({
           // 处理购买日期格式转换
           item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{m}')
           if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
-            console.log(item.price)
-            myPaid += self.roundFun(item.price, 2)
+            myPaid += Number(item.price)
           }
         })
         self.setData({
           projectList: tempList,
-          myPaid,
+          myPaid: self.roundFun(myPaid, 2),
           showMyPaid: true
         })
       },
@@ -116,19 +115,39 @@ Page({
     self.setData({
       loadingEnd: true
     })
+    /**
+     * 这里需要注意，currentGroupUserList为当前群组中的成员列表，在结算的时候应当包含已经离群的成员，有两种情况：
+     * 1. 支出项的创建人不在群组内。
+     * 2. 支出项的包含人不在群组内。
+     * 
+     * 如果通过遍历的话比较繁琐，所以应该只计算账单包含和创建成员的即可
+    */
+    let endBillUserList = []
+    projectList.forEach(project => {
+      endBillUserList.push(project.createBy)
+      endBillUserList = [...endBillUserList, ...project.containUser]
+    })
+    let result = {}
+    let newArr = []
+    endBillUserList.map((item, index) => {
+      result[endBillUserList[index].openId] = endBillUserList[index];
+    })
+    Object.keys(result).forEach(key => {
+      newArr.push(result[key])
+    })
     if (event.currentTarget.dataset.isend === 'Y') {
       wx.cloud.callFunction({
         name: 'endBill',
         data: {
           projectList,
           currentBill,
-          groupUserList: currentGroupUserList,
+          groupUserList: newArr,
           end: true
         },
         success (res) {
           // 删除提示
           Notify({
-            text: '账单已结算',
+            text: '账单已结算，正在跳转至结算结果页面...',
             duration: 1500,
             selector: '#bill-notify-selector',
             backgroundColor: '#28a745'
@@ -137,7 +156,8 @@ Page({
             currentBill: {
               ended: true,
               paidTotal: self.data.currentBill.paidTotal
-            }
+            },
+            activeCollapse: []
           })
           setTimeout(() => {
             self.getBillLatest()
@@ -173,6 +193,9 @@ Page({
           })
           self.getBillLatest()
           self.getProject()
+          self.setData({
+            activeCollapse: []
+          })
         },
         complete() {
           self.setData({
