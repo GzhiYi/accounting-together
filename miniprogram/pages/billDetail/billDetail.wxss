@@ -51,9 +51,10 @@ page {
   color:#555;
 }
 .add-project {
-  position: relative;
-  top:17rpx;
+  position:relative;
+  top:4rpx;
   right:4rpx;
+  margin-bottom:-17rpx;
 }
 .sheet-body {
   padding: 40rpx;

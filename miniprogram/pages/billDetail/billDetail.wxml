@@ -5,7 +5,7 @@
       {{currentBill.name}}
     </view>
     <view class='add-project' bindtap='addProject' wx:if="{{!currentBill.ended}}">
-      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/add.png?sign=4bf1c4bb1e742c6d46eef6b26fb2775e&t=1545791409" />
+      <van-icon style='font-size: 50rpx;' name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/add.png?sign=4bf1c4bb1e742c6d46eef6b26fb2775e&t=1545791409" />
     </view>
   </view>
   <van-collapse
@@ -47,7 +47,7 @@
       </view>
     </van-collapse-item>
   </van-collapse>
-  <view class='tips'>本笔账单你已支出{{myPaid}}元！</view>
+  <view class='tips' hidden='{{!showMyPaid}}'>本账单你已支出{{myPaid}}元（结算前）</view>
 </view>
 
 <!-- 更多操作 -->

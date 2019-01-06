@@ -34,7 +34,8 @@ Page({
     userInfoFromCloud: {},
     isEditProject: false,
     targetProject: {},
-    myPaid: 0
+    myPaid: 0,
+    showMyPaid: false
   },
 
   /**
@@ -55,6 +56,9 @@ Page({
       userInfoFromCloud: app.globalData.userInfoFromCloud
     })
     self.getProject()
+  },
+  roundFun(value, n) {
+    return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
   },
   getBillLatest () {
     // 获取最新bill数据，主要是更新总价格
@@ -90,12 +94,14 @@ Page({
           // 处理购买日期格式转换
           item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{m}')
           if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
-            myPaid += item.price
+            console.log(item.price)
+            myPaid += self.roundFun(item.price, 2)
           }
         })
         self.setData({
           projectList: tempList,
-          myPaid
+          myPaid,
+          showMyPaid: true
         })
       },
       complete () {
