@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -63,7 +63,14 @@
 				{
 					"id": -1,
 					"name": "billDetail页",
-					"pathName": "pages/billDetail/billDetail"
+					"pathName": "pages/billDetail/billDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "结果页面",
+					"pathName": "pages/personal/personal",
+					"query": ""
 				}
 			]
 		}

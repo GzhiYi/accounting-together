@@ -36,3 +36,14 @@ page {
 .input-feedback {
   min-height:300rpx;
 }
+.feedback-item {
+  display: flex;
+}
+.feedback-name {
+  font-size:20rpx;
+  color: #409EFF;
+  margin: 0 20rpx 10rpx 0;
+}
+.feedback-item-body {
+  font-size:25rpx;
+}

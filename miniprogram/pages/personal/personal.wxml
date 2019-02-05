@@ -55,6 +55,14 @@
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
+
+    <view class='public-item' bindtap='feedbackListModal' data-modal="showModal" wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}">
+      <view class='public-item-name'>反馈内容</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+      </view>
+    </view>
   </view>
 </view>
 <!-- <view class='end'>Created By GzhiYi</view> -->
@@ -74,6 +82,17 @@
     </view>
     <button class='btn btn-primary' bindtap='leaveMessage'>{{message === '' ? '确认' : '谢谢你的留言😘'}}</button>
     <button class='btn btn-default' bindtap='closeLeaveMessage'>算了</button>
+  </view>
+</van-popup>
+
+<van-popup show="{{ showFeedbackList }}" bind:close="feedbackListModal" data-modal="hideListModal" custom-style="border-radius: 20rpx;width: 80%;">
+  <view class='feedback-body'>
+    <view class='input-feedback'>
+      <view wx:for="{{feedbackList}}" wx:key="{{index}}" class='feedback-item'>
+        <view class='feedback-name'>{{item.createBy.nickName}}</view>
+        <view class='feedback-item-body'>{{item.message}}</view>
+      </view>
+    </view>
   </view>
 </van-popup>
 <van-notify id="feedback-tips" />
