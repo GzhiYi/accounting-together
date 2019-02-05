@@ -19,7 +19,10 @@ exports.main = async (event, context) => {
     })
     .get()
     if (oneUser.data.length > 0) {
-      returnResult.push(oneUser.data[0])
+      let oneUserData = oneUser.data[0]
+      oneUserData.userGroupId = item._id
+      oneUserData.note = item.note
+      returnResult.push(oneUserData)
     }
   }))
   return returnResult.sort((a, b) => a.createTime < b.createTime ? 1 : -1)

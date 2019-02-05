@@ -22,7 +22,7 @@
           class="user-checked"
         />
         <image src='{{item.avatarUrl}}' class='user-avatar-list' />
-        <view class='user-name'>{{item.nickName}}</view>
+        <view class='user-name'>{{item.note || item.nickName}}</view>
       </view>
     </view>
   </view>
@@ -94,12 +94,23 @@
 <van-dialog id="confirm-leave-group" />
 <van-notify id="notify-selector" />
 <!-- 头像弹出层 -->
-<van-popup show="{{ showAvatarMenu }}" bind:close="avatarMenuModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 70%;">
+<van-popup show="{{ showAvatarMenu }}" close-on-click-overlay="{{ true }}" bind:close="closeDropGrouUser" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 70%;">
   <view class='menu-body'>
     <view class='user-info'>
       <image style='width: 100rpx;height: 100rpx;border-radius: 50%;' src='{{menuUser.avatarUrl}}'></image>
       <view><van-tag color="#7232dd" plain>{{groupInfo.createBy.openId === menuUser.openId ? '群主' : '成员'}}</van-tag></view>
-      <view style='font-size:30rpx;margin-bottom:20rpx;margin-top:11rpx;'>{{menuUser.nickName}}</view>
+      <view wx:if="{{userInfoFromCloud.openId === menuUser.openId}}" style='font-size:30rpx;margin-bottom:20rpx;margin-top:11rpx;'>
+        <van-field
+            placeholder="{{ menuUser.note || menuUser.nickName }}"
+            center
+            border="{{ false }}"
+            use-button-slot
+            bind:change="onNoteChange"
+          >
+          <van-button slot="button" size="small" type="primary" bindtap='updateNote' loading="{{loadingUpdateNote}}">更新备注</van-button>
+        </van-field>
+      </view>
+      <view wx:if="{{userInfoFromCloud.openId !== menuUser.openId}}" style='font-size:30rpx;margin-bottom:20rpx;margin-top:11rpx;'>{{ menuUser.note || menuUser.nickName }}</view>
     </view>
     <button class='btn btn-danger' bindtap='dropGrouUser' wx:if="{{groupInfo.createBy.openId === userInfoFromCloud.openId && menuUser.openId !== groupInfo.createBy.openId}}">移出群组</button>
     <button class='btn btn-default' bindtap='closeDropGrouUser'>取消</button>

@@ -8,6 +8,7 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const userInfo = event.userInfo
   if (event.hasOwnProperty('extend')) {
+    // 获取反馈列表
     if (event.extend === 'getFeedbackList' && userInfo.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok') {
       const feedbackList = await db.collection('feedback').get()
       for(let item of feedbackList.data) {
@@ -19,6 +20,14 @@ exports.main = async (event, context) => {
         item.createBy = user.data[0]
       }
       return feedbackList.data.reverse()
+    }
+    // 更新备注信息
+    if (event.extend === 'updateNote') {
+      await db.collection('user-group').doc(event.userGroupId).update({
+        data: {
+          note: event.newNote
+        }
+      })
     }
   } else {
     await db.collection('feedback').add({
