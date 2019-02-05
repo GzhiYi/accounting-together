@@ -140,5 +140,10 @@ Page({
         icon: 'none'
       })
     }
+  },
+  goToUpdateLog() {
+    wx.navigateTo({
+      url: '/pages/updateLog/updateLog',
+    })
   }
 })

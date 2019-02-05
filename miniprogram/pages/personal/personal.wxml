@@ -56,6 +56,14 @@
       </view>
     </view>
 
+    <view class='public-item' bindtap='goToUpdateLog'>
+      <view class='public-item-name'>更新内容</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+      </view>
+    </view>
+
     <view class='public-item' bindtap='feedbackListModal' data-modal="showModal" wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}">
       <view class='public-item-name'>反馈内容</view>
       <view class='public-item-right'>

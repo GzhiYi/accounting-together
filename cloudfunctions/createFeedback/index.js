@@ -29,6 +29,11 @@ exports.main = async (event, context) => {
         }
       })
     }
+    // 获取版本更新内容
+    if (event.extend === 'getUpdateLog') {
+      const version = await db.collection('update-log').get()
+      return version.data.reverse()
+    }
   } else {
     await db.collection('feedback').add({
       data: {
