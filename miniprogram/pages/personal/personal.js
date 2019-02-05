@@ -52,6 +52,17 @@ Page({
         userInfo: app.globalData.userInfo
       })
     }
+    wx.cloud.callFunction({
+      name: 'createFeedback',
+      data: {
+        extend: 'getFeedbackList'
+      },
+      success(res) {
+        self.setData({
+          feedbackList: res.result
+        })
+      }
+    })
   },
   feedbackModal (event) {
     this.setData({
@@ -59,22 +70,6 @@ Page({
     })
   },
   feedbackListModal (event) {
-    const self = this
-    if (event.currentTarget.dataset.modal === 'showModal') {
-      console.log('inrush')
-      wx.cloud.callFunction({
-        name: 'createFeedback',
-        data: {
-          extend: 'getFeedbackList'
-        },
-        success (res) {
-          console.log(res)
-          self.setData({
-            feedbackList: res.result
-          })
-        }
-      })
-    }
     this.setData({
       showFeedbackList: event.currentTarget.dataset.modal === 'showModal'
     })
