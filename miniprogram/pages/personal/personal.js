@@ -145,5 +145,10 @@ Page({
     wx.navigateTo({
       url: '/pages/updateLog/updateLog',
     })
+  },
+  goToHelp() {
+    wx.navigateTo({
+      url: '/pages/help/help',
+    })
   }
 })

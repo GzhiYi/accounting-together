@@ -1,0 +1,18 @@
+/* pages/help/help.wxss */
+.help-body {
+  padding:22rpx;
+}
+.item {
+  margin-bottom: 27rpx;
+}
+.title {
+  font-size:29rpx;
+  margin-bottom:10rpx;
+  padding-left:20rpx;
+  border-left:5rpx solid red;
+}
+.content {
+  font-size:27rpx;
+  color:#333;
+  margin-top:-34rpx;
+}

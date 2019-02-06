@@ -48,8 +48,8 @@
       </view>
     </view>
 
-    <view class='public-item' bindtap='showAbout'>
-      <view class='public-item-name'>关于</view>
+    <view class='public-item' bindtap='goToHelp'>
+      <view class='public-item-name'>使用帮助</view>
       <view class='public-item-right'>
         <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
@@ -58,6 +58,14 @@
 
     <view class='public-item' bindtap='goToUpdateLog'>
       <view class='public-item-name'>更新内容</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+      </view>
+    </view>
+
+    <view class='public-item' bindtap='showAbout'>
+      <view class='public-item-name'>关于</view>
       <view class='public-item-right'>
         <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>

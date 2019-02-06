@@ -10,7 +10,8 @@
     "pages/share/share",
     "pages/result/result",
     "pages/updateLog/updateLog",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "pages/help/help"
     
   ],
   "window": {
