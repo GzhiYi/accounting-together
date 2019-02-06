@@ -21,6 +21,16 @@ App({
               if (self.catchUserInfo) {
                 self.catchUserInfo(infoRes.userInfo)
               }
+              // 如果是旧用户就更新信息
+              wx.cloud.callFunction({
+                name: 'createUser',
+                data: {
+                  avatarUrl: infoRes.userInfo.avatarUrl,
+                  name: '',
+                  nickName: infoRes.userInfo.nickName,
+                  sex: infoRes.userInfo.gender
+                }
+              })
             }
           })
         } else {
