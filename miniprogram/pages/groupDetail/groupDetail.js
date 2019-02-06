@@ -18,13 +18,11 @@ Page({
     userInfoFromCloud: {},
     loadingLeave: false,
     showAvatarMenu: false,
-    menuUser: {}
+    menuUser: {},
+    loadingUpdateNote: false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    // 获取再app.js中拿到的用户信息
     this.setData({
       userInfoFromCloud: app.globalData.userInfoFromCloud
     })
@@ -282,6 +280,45 @@ Page({
     this.setData({
       showAvatarMenu: false
     })
+  },
+  onNoteChange (event) {
+    let menuUser = this.data.menuUser
+    menuUser.nickName = event.detail
+    this.setData({
+      menuUser
+    })
+  },
+  updateNote() {
+    const { menuUser } = this.data
+    const self = this
+    // 只好调用扩展的云函数
+    if (menuUser.nickName && menuUser.nickName !== '') {
+      self.setData({
+        loadingUpdateNote: true
+      })
+      wx.cloud.callFunction({
+        name: 'createFeedback',
+        data: {
+          extend: 'updateNote',
+          newNote: menuUser.nickName,
+          userGroupId: menuUser.userGroupId
+        },
+        success(res) {
+          Notify({
+            text: `备注已修改`,
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#28a745'
+          })
+          self.getLatestData()
+        },
+        complete() {
+          self.setData({
+            loadingUpdateNote: false
+          })
+        }
+      })
+    }
   },
   onShareAppMessage: function () {
     const { groupInfo } = this.data

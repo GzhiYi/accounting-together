@@ -52,6 +52,17 @@ Page({
         userInfo: app.globalData.userInfo
       })
     }
+    wx.cloud.callFunction({
+      name: 'createFeedback',
+      data: {
+        extend: 'getFeedbackList'
+      },
+      success(res) {
+        self.setData({
+          feedbackList: res.result
+        })
+      }
+    })
   },
   feedbackModal (event) {
     this.setData({
@@ -59,22 +70,6 @@ Page({
     })
   },
   feedbackListModal (event) {
-    const self = this
-    if (event.currentTarget.dataset.modal === 'showModal') {
-      console.log('inrush')
-      wx.cloud.callFunction({
-        name: 'createFeedback',
-        data: {
-          extend: 'getFeedbackList'
-        },
-        success (res) {
-          console.log(res)
-          self.setData({
-            feedbackList: res.result
-          })
-        }
-      })
-    }
     this.setData({
       showFeedbackList: event.currentTarget.dataset.modal === 'showModal'
     })
@@ -136,14 +131,26 @@ Page({
     const { storeUser } = this.data.fetchUserInfo
     if (storeUser._id === 'XCBZVJT75u22uiN8') {
       wx.showToast({
-        title: '你是最幸运的一个，😘~LHY',
-        icon: 'none'
+        title: '岁月静好，很想和妳就这样一起安然老去。不紧不慢，不慌不忙，不离不弃。❤',
+        icon: 'none',
+        duration: 5000
       })
     } else {
       wx.showToast({
-        title: '喜欢吗，还是空白惹!',
-        icon: 'none'
+        title: 'Github: GzhiYi, Mail: 745285458@qq.com',
+        icon: 'none',
+        duration: 5000
       })
     }
+  },
+  goToUpdateLog() {
+    wx.navigateTo({
+      url: '/pages/updateLog/updateLog',
+    })
+  },
+  goToHelp() {
+    wx.navigateTo({
+      url: '/pages/help/help',
+    })
   }
 })

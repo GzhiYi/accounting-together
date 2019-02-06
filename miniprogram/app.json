@@ -1,14 +1,18 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/personal/personal",
+    
     "pages/group/group",
     "pages/history/history",
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
     "pages/login/login",
     "pages/share/share",
-    "pages/result/result"
+    "pages/result/result",
+    "pages/updateLog/updateLog",
+    "pages/personal/personal",
+    "pages/help/help"
+    
   ],
   "window": {
     "backgroundColor": "#F2F2F2",
@@ -57,6 +61,7 @@
     "van-popup": "./pages/dist/popup/index",
     "van-rate": "./pages/dist/rate/index",
     "van-collapse": "./pages/dist/collapse/index",
-    "van-collapse-item": "./pages/dist/collapse-item/index"
+    "van-collapse-item": "./pages/dist/collapse-item/index",
+    "van-panel": "./pages/dist/panel/index"
   }
 }

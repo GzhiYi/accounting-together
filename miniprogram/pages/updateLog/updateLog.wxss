@@ -1,0 +1,6 @@
+/* pages/updateLog/updateLog.wxss */
+.update-content {
+  margin:0 30rpx;
+  font-size:30rpx;
+  padding:3rpx 0;
+}
