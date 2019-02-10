@@ -76,6 +76,7 @@
   loading="{{loadingEnd}}"
   custom-class="marginB"
   data-isend="Y" 
+  disabled="{{currentBill.paidTotal === 0}}"
 />
 <van-submit-bar
   wx:else

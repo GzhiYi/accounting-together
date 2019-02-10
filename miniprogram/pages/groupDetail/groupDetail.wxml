@@ -103,7 +103,7 @@
         <van-field
             placeholder="{{ menuUser.note || menuUser.nickName }}"
             center
-            border="{{ false }}"
+            border="{{ true }}"
             use-button-slot
             bind:change="onNoteChange"
           >
