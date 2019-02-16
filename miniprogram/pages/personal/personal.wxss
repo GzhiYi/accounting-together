@@ -47,3 +47,8 @@ page {
 .feedback-item-body {
   font-size:25rpx;
 }
+.hide-contact {
+  position:absolute;
+  width:87%;
+  opacity:0;
+}

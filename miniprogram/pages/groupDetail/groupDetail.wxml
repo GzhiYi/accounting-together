@@ -101,13 +101,13 @@
       <view><van-tag color="#7232dd" plain>{{groupInfo.createBy.openId === menuUser.openId ? '群主' : '成员'}}</van-tag></view>
       <view wx:if="{{userInfoFromCloud.openId === menuUser.openId}}" style='font-size:30rpx;margin-bottom:20rpx;margin-top:11rpx;'>
         <van-field
-            placeholder="{{ menuUser.note || menuUser.nickName }}"
+            placeholder="输入新备注"
             center
             border="{{ true }}"
             use-button-slot
             bind:change="onNoteChange"
           >
-          <van-button slot="button" size="small" type="primary" bindtap='updateNote' loading="{{loadingUpdateNote}}">更新备注</van-button>
+          <van-button slot="button" size="small" type="primary" bindtap='updateNote' loading="{{loadingUpdateNote}}">确定</van-button>
         </van-field>
       </view>
       <view wx:if="{{userInfoFromCloud.openId !== menuUser.openId}}" style='font-size:30rpx;margin-bottom:20rpx;margin-top:11rpx;'>{{ menuUser.note || menuUser.nickName }}</view>

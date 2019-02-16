@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
-    
     "pages/group/group",
+    "pages/index/index",
     "pages/history/history",
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
