@@ -1,4 +1,5 @@
 // pages/group/group.js
+import Dialog from '../dist/dialog/dialog'
 const app = getApp()
 Page({
 
@@ -13,7 +14,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 处理是否查看过教程
+    const isVisitedHelp = wx.getStorageSync('isVisitedHelp') || false
+    if (!isVisitedHelp) {
+      Dialog.confirm({
+        title: '等一下！',
+        message: '是否要查看下使用教程呢？'
+      }).then(() => {
+        wx.setStorageSync('isVisitedHelp', true)
+        wx.navigateTo({
+          url: '/pages/help/help',
+        })
+      }).catch(() => {
+        wx.showToast({
+          title: '你最好知道怎么用哦～😊',
+          icon: 'none'
+        })
+      });
+    }
   },
 
   /**
