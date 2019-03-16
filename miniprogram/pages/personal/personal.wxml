@@ -32,21 +32,13 @@
   </view>
 
   <view class='public-list'>
-    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
-      <view class='public-item-name'>意见反馈</view>
-      <view class='public-item-right'>
-        <!-- <text class='sum'>123</text> -->
-        <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx'/>
-      </view>
-    </view>
 
-    <view class='public-item' bindtap='showGithub'>
+    <!-- <view class='public-item' bindtap='showGithub'>
       <view class='public-item-name'>源码地址</view>
       <view class='public-item-right'>
-        <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
-    </view>
+    </view> -->
 
     <view class='public-item' bindtap='goToHelp'>
       <view class='public-item-name'>使用帮助</view>
@@ -77,14 +69,21 @@
       </view>
     </view> -->
 
-    <view class='public-item' bindtap='showAbout'>
+    <!-- <view class='public-item' bindtap='showAbout'>
       <view class='public-item-name'>关于</view>
       <view class='public-item-right'>
-        <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
-    </view>
+    </view> -->
 
+    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
+      <view class='public-item-name'>意见反馈</view>
+      <view class='public-item-right'>
+        <!-- <text class='sum'>123</text> -->
+        <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx'/>
+      </view>
+    </view>
+    
     <view class='public-item' bindtap='feedbackListModal' data-modal="showModal" wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}">
       <view class='public-item-name'>反馈内容</view>
       <view class='public-item-right'>
@@ -93,6 +92,7 @@
       </view>
     </view>
   </view>
+  <view class='source' bindtap='copySourceLink'>源码：Github搜索用户"GzhiYi"</view>
 </view>
 <!-- <view class='end'>Created By GzhiYi</view> -->
 

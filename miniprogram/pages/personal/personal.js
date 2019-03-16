@@ -152,5 +152,20 @@ Page({
     wx.navigateTo({
       url: '/pages/help/help',
     })
+  },
+  copySourceLink() {
+    wx.setClipboardData({
+      data: 'https://github.com/GzhiYi',
+      success(res) {
+        wx.getClipboardData({
+          success(inRes) {
+            wx.showToast({
+              title: '链接已复制，到浏览器打开吧～',
+              icon: 'none'
+            })
+          }
+        })
+      }
+    })
   }
 })
