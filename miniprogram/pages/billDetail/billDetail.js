@@ -35,7 +35,10 @@ Page({
     isEditProject: false,
     targetProject: {},
     myPaid: 0,
-    showMyPaid: false
+    showMyPaid: false,
+    wordList: [], // 说话列表
+    word: '', // 你要说啥
+    loadingSendWord: false
   },
 
   /**
@@ -60,6 +63,74 @@ Page({
   roundFun(value, n) {
     return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
   },
+  getWord() {
+    const self = this
+    console.log('diaoyong')
+    wx.cloud.callFunction({
+      name: 'createFeedback',
+      data: {
+        extend: 'getWord',
+        billId: self.data.currentBill._id
+      },
+      success(res) {
+        console.log(res, 'lalala')
+        self.setData({
+          wordList: res.result
+        })
+      },
+      error(err) {
+        console.log(err)
+      }
+    })
+  },
+  onWordChange(event) {
+    this.setData({
+      word: event.detail
+    })
+  },
+  sendWord() {
+    const { word } = this.data
+    const self = this
+    if (word === '') {
+      Notify({
+        text: '少说空话！你忘记写内容了',
+        duration: 1500,
+        selector: '#bill-notify-selector',
+        backgroundColor: '#dc3545'
+      });
+    } else {
+      self.setData({
+        loadingSendWord: true
+      })
+      wx.cloud.callFunction({
+        name: 'createFeedback',
+        data: {
+          extend: 'sendWord',
+          billId: self.data.currentBill._id,
+          word
+        },
+        success(res) {
+          Notify({
+            text: '你继续',
+            duration: 1500,
+            selector: '#bill-notify-selector',
+            backgroundColor: '#28a745'
+          })
+          self.setData({
+            word: ''
+          })
+        },
+        complete() {
+          self.setData({
+            loadingSendWord: false
+          })
+        }
+      })
+      setTimeout(() => {
+        self.getWord()
+      }, 1500)
+    }
+  },
   getBillLatest () {
     // 获取最新bill数据，主要是更新总价格
     const self = this
@@ -72,6 +143,8 @@ Page({
         self.setData({
           currentBill: res.result
         })
+        // 需要在获取bill数据后才获取留下的话
+        self.getWord()
         // app.globalData.currentBill = res.result
       }
     })

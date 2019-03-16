@@ -112,3 +112,39 @@ page {
   margin: 10rpx 0 0;
   color: #555;
 }
+.send-word {
+  padding:25rpx;
+  text-align:right;
+}
+.divide {
+  width:80%;
+  height:2rpx;
+  background-color:#ccc;
+  margin:20rpx auto;
+}
+.word-item {
+  display:flex;
+  align-items:center;
+  padding:14rpx 0;
+}
+.word-detail {
+  width:76%;
+  font-size:25rpx;
+  background-color:#e0f4ff;
+  padding:9px;
+  word-wrap:break-all; 
+  white-space:normal;
+  border-radius:12rpx;
+}
+.word-tang-left {
+  width:0;
+  height:0;
+  border-bottom:10px solid #e0f4ff;
+  border-left:10px solid transparent;
+}
+.word-tang-right {
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid #e0f4ff;
+  border-right: 10px solid transparent;
+}

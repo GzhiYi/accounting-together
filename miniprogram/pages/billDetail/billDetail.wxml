@@ -64,6 +64,43 @@
     <button class='btn btn-danger' bindtap='deleteBill' wx:if="{{userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">删除账单</button>
   </view>
 </view>
+
+<!-- leave a word -->
+<view class='public-list setting-area' wx:if="{{currentBill.ended || userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">
+  <view class='public-header'>
+    <view class='public-icon'>
+      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/billDetailChat.png?sign=a94fb3b72304c768a2f558555d4c2196&t=1552710449" size='16px' style='color: #C6C6C6;'/>
+    </view>
+    说说
+  </view>
+  <view class='setting'>
+    <view class='word-content'>
+      <view wx:for="{{wordList}}" wx:key="{{item._id}}">
+        <view class='word-item' wx:if="{{item.userId !== userInfoFromCloud.openId}}">
+          <image src='{{item.user.avatarUrl}}' class='user-avatar'></image>
+          <view class='word-tang-left'></view><view class='word-detail'>{{item.word}}</view>
+        </view>
+        <view class='word-item' wx:else>
+          <view class='word-detail'>{{item.word}}</view><view class='word-tang-right'></view>
+          <image src='{{item.user.avatarUrl}}' class='user-avatar'></image>
+        </view>
+      </view>
+    </view>
+    <view class='divide' wx:if="{{wordList.length > 0}}"></view>
+    <van-field
+      value="{{ word }}"
+      type="textarea"
+      placeholder="一定要好好说话"
+      autosize
+      border="{{ false }}"
+      bind:change="onWordChange"
+    />
+  </view>
+  <view class='send-word'>
+    <van-button square type="primary" size="small" bindtap='sendWord' loading='{{loadingSendWord}}'>发吧</van-button>
+  </view>
+</view>
+
 <view class='space'>
 
 </view>

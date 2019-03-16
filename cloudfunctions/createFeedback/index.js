@@ -34,6 +34,36 @@ exports.main = async (event, context) => {
       const version = await db.collection('update-log').get()
       return version.data.reverse()
     }
+    // 获取留话信息
+    if (event.extend === 'getWord') {
+      const wordData = await db.collection('bill-word').where({
+        billId: event.billId
+      }).get()
+      if (wordData.data.length > 0) {
+        for(let [index, oneWord] of wordData.data.entries()) {
+          let userInfo = await db.collection('user').where({
+            openId: oneWord.userId
+          })
+          .get()
+          wordData.data[index].user = userInfo.data[0]
+        }
+      }
+      return wordData.data
+    }
+    // 新增留话信息
+    if (event.extend === 'sendWord') {
+      const wordData = await db.collection('bill-word').add({
+        data: {
+          billId: event.billId,
+          userId: userInfo.openId,
+          word: event.word
+        }
+      })
+      return {
+        msg: '成功',
+        code: 1
+      }
+    }
   } else {
     await db.collection('feedback').add({
       data: {
