@@ -5,10 +5,14 @@ const app = getApp()
 Page({
   data: {
     newGroupModal: false,
-    groupName: ''
+    groupName: '',
+    num: 0
   },
 
   onLoad: function() {
+    this.setData({
+      num: Math.ceil(Math.random() * 10)
+    })
     wx.cloud.callFunction({
       // 云函数名称
       name: 'getGroup',
@@ -89,6 +93,12 @@ Page({
   onGroupNameChange (event) {
     this.setData({
       groupName: event.detail
+    })
+  },
+  showLucky() {
+    wx.showToast({
+      title: '愿所见之人幸运下去💗',
+      icon: 'none'
     })
   }
 })

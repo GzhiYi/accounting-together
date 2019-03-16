@@ -29,6 +29,7 @@
       </view>
     </view>
   </view>
+  <image bindtap='showLucky' src="https://images.vrm.cn/2019/03/16/account{{num}}.JPG" class='index-img'></image>
 </view>
 <!-- 新增群组弹层 -->
 <van-dialog

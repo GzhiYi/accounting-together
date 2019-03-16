@@ -26,6 +26,7 @@ Page({
           url: '/pages/help/help',
         })
       }).catch(() => {
+        wx.setStorageSync('isVisitedHelp', true)
         wx.showToast({
           title: '你最好知道怎么用哦～😊',
           icon: 'none'

@@ -1,8 +1,6 @@
 .group-dialog-body {
   padding: 40rpx 0;
 }
-page {
-}
 .new-item {
   width:80%;
   background-color: #fff;
@@ -35,3 +33,16 @@ page {
 .new-item:hover {
   box-shadow: none;
 }
+.index-img {
+  width:370rpx;
+  height:370rpx;
+  border-radius:50%;
+  position:absolute;
+  bottom:200rpx;
+  left:0;
+  right:0;
+  margin:auto;
+  box-shadow: 0px 7px 20px 4px #ececec;
+}
+
+
