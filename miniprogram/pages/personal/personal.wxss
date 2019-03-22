@@ -57,3 +57,9 @@ page {
   font-size:25rpx;
   color:grey;
 }
+.divide {
+  width:200rpx;
+  height:2rpx;
+  border-bottom:1px solid #eee;
+  margin:10rpx auto;
+}

@@ -155,13 +155,30 @@ Page({
   },
   copySourceLink() {
     wx.setClipboardData({
-      data: 'https://github.com/GzhiYi',
+      data: 'https://github.com/GzhiYi/accounting-together',
       success(res) {
         wx.getClipboardData({
           success(inRes) {
             wx.showToast({
-              title: '链接已复制，到浏览器打开吧～',
-              icon: 'none'
+              title: '源码地址已复制，到浏览器打开吧～',
+              icon: 'none',
+              duration: 3000
+            })
+          }
+        })
+      }
+    })
+  },
+  copyWechat() {
+    wx.setClipboardData({
+      data: 'Yi745285458',
+      success(res) {
+        wx.getClipboardData({
+          success(inRes) {
+            wx.showToast({
+              title: '微信号已复制，欢迎提建议～',
+              icon: 'none',
+              duration: 3000
             })
           }
         })

@@ -69,7 +69,7 @@
       </view>
     </view> -->
 
-    <!-- <view class='public-item' bindtap='showAbout'>
+    <!-- <view class='public-item' bindtap='showAbout'> 
       <view class='public-item-name'>关于</view>
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
@@ -91,8 +91,16 @@
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
+
+    <view class='public-item' bindtap='copySourceLink'>
+      <view class='public-item-name'>源码地址</view>
+      <view class='public-item-right'>
+        <text class='sum'>GzhiYi</text>
+        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+      </view>
+    </view>
   </view>
-  <view class='source' bindtap='copySourceLink'>源码：Github搜索用户"GzhiYi"</view>
+  <view class='source' bindtap='copyWechat'>微信反馈（点击复制）：Yi745285458</view>
 </view>
 <!-- <view class='end'>Created By GzhiYi</view> -->
 
