@@ -22,7 +22,7 @@
           <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
           <view class='item-and-name'>
             <view class='public-item-name'>{{item.title}}</view>
-            <view class='name'>{{item.createBy.nickName}}</view>
+            <view class='name'>{{item.createBy.note || item.createBy.nickName}}</view>
           </view>
         </view>
         <view class='project-item-right'>
@@ -77,12 +77,12 @@
     <view class='word-content'>
       <view wx:for="{{wordList}}" wx:key="{{item._id}}">
         <view class='word-item' wx:if="{{item.userId !== userInfoFromCloud.openId}}">
-          <image src='{{item.user.avatarUrl}}' class='user-avatar'></image>
+          <image bindtap='showWordUserName' data-user="{{item}}" src='{{item.user.avatarUrl}}' class='user-avatar'></image>
           <view class='word-tang-left'></view><view class='word-detail'>{{item.word}}</view>
         </view>
         <view class='word-item' wx:else>
           <view class='word-detail'>{{item.word}}</view><view class='word-tang-right'></view>
-          <image src='{{item.user.avatarUrl}}' class='user-avatar-right'></image>
+          <image bindtap='showWordUserName' data-user="{{item}}" src='{{item.user.avatarUrl}}' class='user-avatar-right'></image>
         </view>
       </view>
     </view>

@@ -168,10 +168,19 @@ Page({
           groupId: currentGroupInfo._id
         },
         success(res) {
+          const userList = res.result.reverse()
           self.setData({
-            userList: res.result.reverse()
+            userList
           })
-          app.globalData.currentGroupUserList = res.result.reverse()
+          // 向globalData 赋值一个含有备注的用户obj
+          const userRemark = {}
+          userList.forEach(item => {
+            if (item.note) {
+              userRemark[`${item.openId}`] = item.note
+            }
+          })
+          app.globalData.currentGroupUserList = userList
+          app.globalData.userRemark = userRemark
         }
       })
       wx.cloud.callFunction({

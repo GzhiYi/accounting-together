@@ -74,6 +74,15 @@ Page({
       },
       success(res) {
         console.log(res, 'lalala')
+        const wordList = res.result
+        const userRemark = app.globalData.userRemark
+        wordList.forEach(word => {
+          Object.keys(userRemark).forEach(openId => {
+            if (word.user.openId === openId) {
+              word.user.note = userRemark[`${openId}`]
+            }
+          })
+        })
         self.setData({
           wordList: res.result
         })
@@ -169,6 +178,20 @@ Page({
           if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
             myPaid += Number(item.price)
           }
+          // 处理备注
+          const userRemark = app.globalData.userRemark
+          Object.keys(userRemark).forEach(openId => {
+            if (item.createBy.openId === openId) {
+              item.createBy.note = userRemark[`${openId}`]
+            }
+          })
+          item.containUser.forEach(user => {
+            Object.keys(userRemark).forEach(openId => {
+              if (user.openId === openId) {
+                user.note = userRemark[`${openId}`]
+              }
+            })
+          })
         })
         self.setData({
           projectList: tempList,
@@ -367,7 +390,13 @@ Page({
   },
   showUserName(event) {
     wx.showToast({
-      title: event.currentTarget.dataset.user.nickName,
+      title: event.currentTarget.dataset.user.note || event.currentTarget.dataset.user.nickName,
+      icon: 'none'
+    })
+  },
+  showWordUserName(event) {
+    wx.showToast({
+      title: event.currentTarget.dataset.user.user.note || event.currentTarget.dataset.user.user.nickName,
       icon: 'none'
     })
   },

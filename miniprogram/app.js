@@ -40,7 +40,7 @@ App({
         }
       }
     })
-     wx.cloud.callFunction({
+    wx.cloud.callFunction({
       name: 'getUserInfo',
       data: {},
       success (res) {
@@ -55,6 +55,7 @@ App({
     userInfo: null,
     shareParam: null,
     billId: '', // 用于展示结果的billid
-    userInfoFromCloud: null
+    userInfoFromCloud: null,
+    userRemark: {}
   }
 })
