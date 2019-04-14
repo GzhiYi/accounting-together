@@ -5,7 +5,7 @@
       {{currentBill.name}}
     </view>
     <view class='add-project' bindtap='addProject' wx:if="{{!currentBill.ended}}">
-      <van-icon style='font-size: 50rpx;' name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/add.png?sign=4bf1c4bb1e742c6d46eef6b26fb2775e&t=1545791409" />
+    <van-icon style='font-size: 50rpx;' name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/add.png?sign=4bf1c4bb1e742c6d46eef6b26fb2775e&t=1545791409" />
     </view>
   </view>
   <van-collapse
@@ -82,7 +82,7 @@
         </view>
         <view class='word-item' wx:else>
           <view class='word-detail'>{{item.word}}</view><view class='word-tang-right'></view>
-          <image src='{{item.user.avatarUrl}}' class='user-avatar'></image>
+          <image src='{{item.user.avatarUrl}}' class='user-avatar-right'></image>
         </view>
       </view>
     </view>
@@ -90,7 +90,7 @@
     <van-field
       value="{{ word }}"
       type="textarea"
-      placeholder="一定要好好说话"
+      placeholder="留句话吧~"
       autosize
       border="{{ false }}"
       bind:change="onWordChange"

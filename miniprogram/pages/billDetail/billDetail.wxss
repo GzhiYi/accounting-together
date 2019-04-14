@@ -21,6 +21,12 @@ page {
   border-radius: 50%;
   margin-right: 15rpx;
 }
+.user-avatar-right {
+  width:70rpx;
+  height:70rpx;
+  margin-right:-7rpx;
+  border-radius: 50%;
+}
 .one-avatar {
   position:relative;
   margin:20rpx 10rpx 0
@@ -55,6 +61,7 @@ page {
   top:4rpx;
   right:4rpx;
   margin-bottom:-17rpx;
+  display:flex;
 }
 .sheet-body {
   padding: 40rpx;
@@ -126,6 +133,7 @@ page {
   display:flex;
   align-items:center;
   padding:14rpx 0;
+  justify-content:center;
 }
 .word-detail {
   width:76%;

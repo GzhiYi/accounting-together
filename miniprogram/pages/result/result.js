@@ -46,7 +46,9 @@ Page({
         self.setData({
           fetchUserInfo: userInfoRes.result
         })
-
+        wx.showLoading({
+          title: '加载结果中...'
+        })
         wx.cloud.callFunction({
           name: 'getResult',
           data: {
@@ -79,6 +81,9 @@ Page({
                 })
               })
             }
+          },
+          complete() {
+            wx.hideLoading()
           }
         })
       }
