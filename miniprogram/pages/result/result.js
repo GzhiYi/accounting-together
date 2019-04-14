@@ -56,10 +56,16 @@ Page({
           },
           success(res) {
             let visitorInBill = false
+            const userRemark = app.globalData.userRemark
             res.result.billInfo.result.forEach(user => {
               if (self.data.fetchUserInfo.storeUser.openId === user.openId) {
                 visitorInBill = true
               }
+              Object.keys(userRemark).forEach(openId => {
+                if (openId == user.openId) {
+                  user.note = userRemark[`${openId}`]
+                }
+              })
             })
             if (visitorInBill) {
               res.result.billInfo.createTime = parseTime(res.result.billInfo.createTime, '{y}-{m}-{d} {h}:{m}:{s}')

@@ -43,7 +43,7 @@
       <view class='check-list' wx:for="{{billInfo.result}}" wx:key="{{index}}">
         <view class='one-avatar'>
           <image src='{{item.avatarUrl}}' class='user-avatar-list' />
-          <view class='user-name'>{{item.nickName}}</view>
+          <view class='user-name'>{{item.note || item.nickName}}</view>
         </view>
         <view style='margin-top:10rpx;'>
           <text class='result-word {{item.shouldPay > 0 ? "up" : "down"}}'>{{item.shouldPay}}</text><text style='font-size: 23rpx;'>元</text>
