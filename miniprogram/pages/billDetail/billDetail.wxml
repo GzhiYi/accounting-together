@@ -1,11 +1,30 @@
-<view class='public-list' style='padding-bottom: 14rpx'>
+<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
+<view class='public-list' style='padding-bottom: 14rpx;margin-top:28rpx;'>
   <view class='public-header' style='justify-content:space-between;'>
-    <view class='public-icon'>
-      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/activity.png?sign=823072bd18577c0223abffd826ce8d8e&t=1545791280" size='20px' style='color: #C6C6C6;'/>
-      {{currentBill.name}}
+    <view>
+      <image class='public-icon' src="../../images/list.png"></image>{{currentBill.name}}
     </view>
-    <view class='add-project' bindtap='addProject' wx:if="{{!currentBill.ended}}">
-    <van-icon style='font-size: 50rpx;' name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/add.png?sign=4bf1c4bb1e742c6d46eef6b26fb2775e&t=1545791409" />
+  </view>
+    <view class='handle-basic'>
+    <view class="handle-one" bindtap='addProject' wx:if="{{!currentBill.ended}}">
+      <image class='handle-icon' src="../../images/plus.png"></image>
+      <text>支出项</text>
+    </view>
+    <view class="handle-one" wx:if="{{currentBill.ended}}" bindtap='onSubmitBill' data-isend="N">
+      <image class='handle-icon' src="../../images/do-not-roll.png"></image>
+      <text>取消结算</text>
+    </view>
+    <view class="handle-one" wx:if="{{currentBill.ended}}" bindtap='goToResult'>
+      <image class='handle-icon' src="../../images/cardiogram.png"></image>
+      <text>结果</text>
+    </view>
+    <view
+      class="handle-one"
+      bindtap='deleteBill'
+      wx:if="{{userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}"
+    >
+      <image class='handle-icon' src="../../images/cancel.png"></image>
+      <text>删除</text>
     </view>
   </view>
   <van-collapse
@@ -50,27 +69,10 @@
   <view class='tips' hidden='{{!showMyPaid}}'>本账单你已支出{{myPaid}}元（结算前）</view>
 </view>
 
-<!-- 更多操作 -->
-<view class='public-list setting-area' wx:if="{{currentBill.ended || userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">
-  <view class='public-header'>
-    <view class='public-icon'>
-      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
-    </view>
-    更多操作
-  </view>
-  <view class='setting'>
-    <button class='btn btn-default' wx:if="{{currentBill.ended}}" bindtap='onSubmitBill' data-isend="N">取消结算</button>
-    <button class='btn btn-primary' wx:if="{{currentBill.ended}}" bindtap='goToResult'>查看结算结果</button>
-    <button class='btn btn-danger' bindtap='deleteBill' wx:if="{{userInfoFromCloud.openId === currentBill.createBy || currentGroupInfo.createBy.openId === userInfoFromCloud.openId}}">删除账单</button>
-  </view>
-</view>
-
 <!-- leave a word -->
 <view class='public-list setting-area'>
   <view class='public-header'>
-    <view class='public-icon'>
-      <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/billDetailChat.png?sign=a94fb3b72304c768a2f558555d4c2196&t=1552710449" size='16px' style='color: #C6C6C6;'/>
-    </view>
+    <image class='public-icon' src="../../images/bubble-speak.png"></image>
     说说
   </view>
   <view class='setting'>

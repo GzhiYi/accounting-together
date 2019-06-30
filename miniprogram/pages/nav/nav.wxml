@@ -6,7 +6,7 @@
       </view>
       <view class='nav-icon-view has-font' wx:if="{{showHomeIcons}}" bindtap='newGroup'>
         <image style='margin-right: 10rpx;' class='nav-icon' src='../../images/plus.png'></image>
-        新建
+        群组
       </view>
       <view class='nav-icon-view' wx:if="{{showHomeIcons}}" bindtap='goTo' data-page="personal">
         <image class='nav-icon' style="width:38rpx;height:38rpx;" src='../../images/user.png'></image>

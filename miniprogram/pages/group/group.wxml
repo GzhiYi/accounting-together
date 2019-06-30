@@ -29,10 +29,10 @@
   show="{{ newGroupModal }}"
   show-cancel-button
   bind:close="callNewGroup"
-  title="创建一个群组"
+  title="新建一个群组"
   id="new-group-modal"
 >
-  <view class='group-dialog-body'>
+  <view class='group-dialog-body' style='margin:50rpx 0;'>
     <van-field
       value="{{ groupName }}"
       label="群组名"

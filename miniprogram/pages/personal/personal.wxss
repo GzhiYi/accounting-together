@@ -1,7 +1,5 @@
-page {
-  background-color: #F2F2F2;
-  width: 100%;
-  padding: 100rpx 0 40rpx;
+.personal {
+  margin-top:46rpx;
 }
 .mp-info {
   display:flex;

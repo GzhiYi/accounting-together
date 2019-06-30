@@ -29,7 +29,7 @@
     <view class='handle-basic'>
       <view class="handle-one" bindtap='newBill'>
         <image class='handle-icon' src="../../images/plus.png"></image>
-        <text>新建</text>
+        <text>账单</text>
       </view>
       <button class="handle-one handle-one-btn" open-type='share'>
         <image class='handle-icon' src="../../images/share.png"></image>
@@ -60,7 +60,7 @@
     </view>
     <view
       wx:if="{{billList.length > 0}}"
-      class='public-item {{index === 0 ? "top" : ""}} {{index === billList.length - 1 ? "bottom" : ""}}'
+      class='public-item {{index === 0 ? "top" : ""}} {{index === billList.length - 1 ? "public-item-bottom" : ""}}'
       wx:for="{{billList}}"
       wx:key="index"
       bindtap='goToBillDetail'
@@ -88,7 +88,7 @@
     title="群组内新建一个账单"
     id="new-bill-modal"
   >
-    <view class='bill-dialog-body'>
+    <view class='bill-dialog-body' style='margin:50rpx 0;'>
       <van-field
         value="{{ billName }}"
         label="账单名"

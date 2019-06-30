@@ -1,6 +1,7 @@
+<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
 <view class='personal'>
   <view class='public-list'>
-    <view class='public-header mp-info'>
+    <view class='public-header mp-info' style='border-bottom: none;'>
       <image src="{{userInfo.avatarUrl}}" class='icon'></image>
       <text class='mp-name'>{{userInfo.nickName}}</text>
     </view>
@@ -22,7 +23,7 @@
       </view>
     </view>
 
-    <view class='public-item' >
+    <view class='public-item' style='border-bottom: none;'>
       <view class='public-item-name'>加入时间</view>
       <view class='public-item-right'>
         <text class='sum'>{{fetchUserInfo.storeUser.createTime}}</text>
@@ -92,7 +93,7 @@
       </view>
     </view>
 
-    <view class='public-item' bindtap='copySourceLink'>
+    <view class='public-item' bindtap='copySourceLink' style='border-bottom: none;'>
       <view class='public-item-name'>源码地址</view>
       <view class='public-item-right'>
         <text class='sum'>GzhiYi</text>
