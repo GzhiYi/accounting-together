@@ -16,10 +16,12 @@ VantComponent({
       value: 3000
     }
   },
+  data: {
+    statusBarHeight: getApp().globalData.statusBarHeight
+  },
   methods: {
     show: function show() {
       var _this = this;
-
       var duration = this.data.duration;
       clearTimeout(this.timer);
       this.set({

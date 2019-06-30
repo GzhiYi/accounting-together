@@ -1,5 +1,5 @@
+<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
 <view class='group-detail-body'>
-  <!--pages/groupDetail/groupDetail.wxml-->
   <view class='group-detail'>
     <view class='group-basic'>
       <text class='name'>{{groupInfo.name}}</text>
@@ -25,12 +25,37 @@
         <view class='user-name'>{{item.note || item.nickName}}</view>
       </view>
     </view>
+    <!-- 操作按钮区 -->
+    <view class='handle-basic'>
+      <view class="handle-one" bindtap='newBill'>
+        <image class='handle-icon' src="../../images/plus.png"></image>
+        <text>新建</text>
+      </view>
+      <button class="handle-one handle-one-btn" open-type='share'>
+        <image class='handle-icon' src="../../images/share.png"></image>
+        <text>邀请</text>
+      </button>
+      <view
+        class="handle-one"
+        bindtap='deleteGroup'
+        wx:if="{{groupInfo.createBy.openId === userInfoFromCloud.openId}}"
+      >
+        <image class='handle-icon' src="../../images/cancel.png"></image>
+        <text>删除</text>
+      </view>
+      <view
+        class="handle-one"
+        bindtap='{{loadingLeave ? "" : "leaveGroup"}}'
+        wx:if="{{groupInfo.createBy.openId !== userInfoFromCloud.openId}}"
+      >
+        <image class='handle-icon' src="../../images/cancel.png"></image>
+        <text>退出</text>
+      </view>
+    </view>
   </view>
   <view class='public-list'>
     <view class='public-header'>
-      <view class='public-icon'>
-        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/list3.png?sign=6b4ffdf74a64b665fc7909246d60e355&t=1545558535" size='20px' style='color: #C6C6C6;'/>
-      </view>
+      <image class='public-icon' src="../../images/list.png"></image>
       账单列表
     </view>
     <view
@@ -48,24 +73,8 @@
       </view>
       <!-- <view>{{item.createTime}}</view> -->
     </view>
-    <view wx:if="{{billList.length === 0}}" class='public-item' style='font-size:27rpx;'>
+    <view wx:if="{{billList.length === 0}}" class='public-item' style='font-size:27rpx;border-bottom: none;'>
       快去新建账单吧~
-    </view>
-  </view>
-
-<!-- 更多操作 -->
-  <view class='public-list'>
-    <view class='public-header'>
-      <view class='public-icon'>
-        <van-icon name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/setting.png?sign=98e965319e1f62847e68f6b54874e3dd&t=1545558556" size='20px' style='color: #C6C6C6;'/>
-      </view>
-      更多操作
-    </view>
-    <view class='setting'>
-      <button class='btn btn-default' bindtap='newBill'>新建账单</button>
-      <button class='btn btn-primary' open-type='share'>邀请加入群组</button>
-      <button class='btn btn-danger' bindtap='deleteGroup' wx:if="{{groupInfo.createBy.openId === userInfoFromCloud.openId}}">删除群组</button>
-      <button class='btn btn-danger' bindtap='{{loadingLeave ? "" : "leaveGroup"}}' wx:if="{{groupInfo.createBy.openId !== userInfoFromCloud.openId}}">{{loadingLeave ? '正在离开...' : '离开群组'}}</button>
     </view>
   </view>
 

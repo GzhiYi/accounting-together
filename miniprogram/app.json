@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/group/group",
-    "pages/index/index",
     "pages/history/history",
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
@@ -13,36 +12,15 @@
     "pages/help/help"
   ],
   "window": {
-    "backgroundColor": "#F2F2F2",
+    "backgroundColor": "red≈",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "red",
     "navigationBarTitleText": "一起算账",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": false
   },
   "cloud": true,
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "新建",
-        "iconPath": "./images/plus-dark.png",
-        "selectedIconPath": "./images/plus-light.png"
-      },
-      {
-        "pagePath": "pages/group/group",
-        "text": "群组",
-        "iconPath": "./images/group-dark.png",
-        "selectedIconPath": "./images/group-light.png"
-      }, 
-      {
-        "pagePath": "pages/personal/personal",
-        "text": "个人",
-        "iconPath": "./images/user-dark.png",
-        "selectedIconPath": "./images/user-light.png"
-      }
-    ],
-    "selectedColor": "#3585F9"
-  },
   "usingComponents": {
     "van-button": "./pages/dist/button/index",
     "van-dialog": "./pages/dist/dialog/index",
@@ -60,6 +38,8 @@
     "van-rate": "./pages/dist/rate/index",
     "van-collapse": "./pages/dist/collapse/index",
     "van-collapse-item": "./pages/dist/collapse-item/index",
-    "van-panel": "./pages/dist/panel/index"
-  }
+    "van-panel": "./pages/dist/panel/index",
+    "nav": "./pages/nav/nav"
+  },
+  "sitemapLocation": "sitemap.json"
 }

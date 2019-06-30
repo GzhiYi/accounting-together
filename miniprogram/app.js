@@ -9,6 +9,13 @@ App({
         traceUser: true,
       })
     }
+    // 获取手机信息以配置顶栏
+    wx.getSystemInfo({
+      success: res => {
+        this.globalData.statusBarHeight = res.statusBarHeight
+        this.globalData.navBarHeight = 44 + res.statusBarHeight
+      }
+    }) 
     this.globalData.shareParam = options.query
     // 查看是否授权
     wx.getSetting({
@@ -56,6 +63,17 @@ App({
     shareParam: null,
     billId: '', // 用于展示结果的billid
     userInfoFromCloud: null,
-    userRemark: {}
-  }
+    userRemark: {},
+    statusBarHeight: 0,
+    navBarHeight: 0,
+    isLoading: false
+  },
+  showLoading(target) {
+    const nav = target.selectComponent('.nav-instance')
+    nav.showLoading()
+  },
+  hideLoading(target) {
+    const nav = target.selectComponent('.nav-instance')
+    nav.hideLoading()
+  },
 })

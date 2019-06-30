@@ -156,7 +156,7 @@ Page({
   getLatestData () {
     const { currentGroupInfo } = getApp().globalData
     const self = this
-    wx.showNavigationBarLoading()
+    getApp().showLoading(self)
     if (currentGroupInfo) {
       self.setData({
         groupInfo: currentGroupInfo,
@@ -194,7 +194,7 @@ Page({
           })
         },
         complete() {
-          wx.hideNavigationBarLoading()
+          getApp().hideLoading(self)
         }
       })
       this.setData({
@@ -318,6 +318,9 @@ Page({
             duration: 1500,
             selector: '#notify-selector',
             backgroundColor: '#28a745'
+          })
+          self.setData({
+            showAvatarMenu: false
           })
           self.getLatestData()
         },

@@ -11,6 +11,8 @@
 	"appid": "wx083a90f5ac602053",
 	"projectname": "accounting-together",
 	"libVersion": "2.2.5",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
