@@ -176,7 +176,7 @@ Page({
         wx.getClipboardData({
           success(inRes) {
             wx.showToast({
-              title: '微信号已复制，欢迎提建议～',
+              title: '微信号已复制',
               icon: 'none',
               duration: 3000
             })

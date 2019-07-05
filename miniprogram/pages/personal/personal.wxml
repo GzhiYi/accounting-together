@@ -85,7 +85,7 @@
       </view>
     </view>
   </view>
-  <!-- <view class='source' bindtap='copyWechat'>微信反馈（点击复制）：Yi745285458</view> -->
+  <view class='source' bindtap='copyWechat'>开发者微信</view>
 </view>
 
 <van-popup show="{{ showFeedback }}" bind:close="feedbackModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 80%;">
