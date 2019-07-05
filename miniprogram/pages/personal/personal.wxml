@@ -70,7 +70,7 @@
     <view class='public-item' bindtap='copySourceLink' style='border-bottom: none;'>
       <view class='public-item-name'>源码地址</view>
       <view class='public-item-right'>
-        <text class='sum'>GzhiYi</text>
+        <text class='sum'>github搜：GzhiYi</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>

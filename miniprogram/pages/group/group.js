@@ -30,6 +30,9 @@ Page({
     }
   },
   onShow: function () {
+    this.getGroup()
+  },
+  getGroup() {
     const self = this
     getApp().showLoading(self)
     wx.cloud.callFunction({
@@ -40,7 +43,7 @@ Page({
           groupList: res.result
         })
       },
-      complete () {
+      complete() {
         getApp().hideLoading(self)
       }
     })
@@ -93,12 +96,7 @@ Page({
             selector: '#notify-selector',
             backgroundColor: '#28a745'
           })
-          setTimeout(() => {
-            wx.switchTab({
-              url: `/pages/group/group`,
-            })
-              , 1500
-          })
+          self.getGroup()
         },
         fail(error) {
           // console.log('错误', error)
