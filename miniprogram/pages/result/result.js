@@ -38,6 +38,7 @@ Page({
         userInfo: app.globalData.userInfo
       })
     }
+    getApp().showLoading(self)
     wx.cloud.callFunction({
       name: 'getUserInfo',
       data: {},
@@ -45,9 +46,6 @@ Page({
         userInfoRes.result.storeUser.createTime = parseTime(userInfoRes.result.storeUser.createTime, '{y}-{m}-{d} {h}:{m}')
         self.setData({
           fetchUserInfo: userInfoRes.result
-        })
-        wx.showLoading({
-          title: '加载结果中...'
         })
         wx.cloud.callFunction({
           name: 'getResult',
@@ -89,7 +87,7 @@ Page({
             }
           },
           complete() {
-            wx.hideLoading()
+            getApp().hideLoading(self)
           }
         })
       }
@@ -97,9 +95,7 @@ Page({
 
   },
   goBack() {
-    wx.navigateTo({
-      url: '/pages/billDetail/billDetail',
-    })
+    wx.navigateBack()
   },
   onShareAppMessage: function () {
     const { billInfo, userInfo } = this.data

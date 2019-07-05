@@ -136,9 +136,6 @@ Page({
   getBillLatest () {
     // 获取最新bill数据，主要是更新总价格
     const self = this
-    self.setData({
-      isLoadingProject: true
-    })
     wx.cloud.callFunction({
       name: 'getOneBill',
       data: {
@@ -151,11 +148,6 @@ Page({
         // 需要在获取bill数据后才获取留下的话
         self.getWord()
         // app.globalData.currentBill = res.result
-      },
-      complete(res) {
-        self.setData({
-          isLoadingProject: false
-        })
       }
     })
   },
@@ -165,6 +157,10 @@ Page({
   getProject () {
     const self = this
     const { currentBill, currentGroupUserList } = this.data
+    self.setData({
+      isLoadingProject: true
+    })
+    getApp().showLoading(self)
     wx.cloud.callFunction({
       name: 'getProject',
       data: {
@@ -201,7 +197,10 @@ Page({
         })
       },
       complete () {
-        wx.hideNavigationBarLoading()
+        self.setData({
+          isLoadingProject: false
+        })
+        getApp().hideLoading(self)
       }
     })
   },

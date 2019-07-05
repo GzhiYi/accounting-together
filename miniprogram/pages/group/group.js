@@ -31,7 +31,6 @@ Page({
   },
   onShow: function () {
     const self = this
-    wx.showNavigationBarLoading()
     getApp().showLoading(self)
     wx.cloud.callFunction({
       name: 'getGroup',
@@ -42,7 +41,6 @@ Page({
         })
       },
       complete () {
-        wx.hideNavigationBarLoading()
         getApp().hideLoading(self)
       }
     })
