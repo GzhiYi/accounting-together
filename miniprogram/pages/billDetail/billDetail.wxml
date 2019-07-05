@@ -5,7 +5,7 @@
       <image class='public-icon' src="../../images/list.png"></image>{{currentBill.name}}
     </view>
   </view>
-    <view class='handle-basic'>
+  <view class='handle-basic'>
     <view class="handle-one" bindtap='addProject' wx:if="{{!currentBill.ended}}">
       <image class='handle-icon' src="../../images/plus.png"></image>
       <text>支出项</text>
@@ -26,6 +26,9 @@
       <image class='handle-icon' src="../../images/cancel.png"></image>
       <text>删除</text>
     </view>
+  </view>
+  <view class="load-project" wx:if="{{projectList.length === 0 &&  isLoadingProject === true}}">
+    正在加载支出项...
   </view>
   <van-collapse
     value="{{ activeCollapse }}"

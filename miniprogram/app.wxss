@@ -36,7 +36,7 @@ page {
   align-items:center;
 }
 .public-item-name {
-  font-size: 30rpx;
+  font-size: 34rpx;
   color: #313131;
   max-width: 400rpx;
   font-weight: bold;

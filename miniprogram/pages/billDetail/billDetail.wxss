@@ -155,3 +155,8 @@ page {
   border-bottom: 10px solid #e0f4ff;
   border-right: 10px solid transparent;
 }
+.load-project {
+  font-size:30rpx;
+  text-align:center;
+  padding:18rpx;
+}

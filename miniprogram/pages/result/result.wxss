@@ -1,7 +1,5 @@
 page {
-  background-color: #F2F2F2;
   width: 100%;
-  padding: 100rpx 0 40rpx;
 }
 .mp-info {
   display:flex;
@@ -39,7 +37,7 @@ page {
 
   background-color: #fff;
   border-radius:38rpx;
-  box-shadow: 0px 7px 20px 4px #ececec;
+  box-shadow: 0px 5px 12px 0px rgb(255, 232, 59);
   transition: .5s all;
 }
 .user-avatar-list {

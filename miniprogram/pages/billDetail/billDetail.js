@@ -4,10 +4,6 @@ import Dialog from '../dist/dialog/dialog'
 import Notify from '../dist/notify/notify'
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     currentBill: {
       paidTotal: 0,
@@ -16,6 +12,7 @@ Page({
     currentGroupInfo: null,
     projectList: [],
     loadingEnd: false,
+    isLoadingProject: false,
     showAddProjectSheet: false,
     currentGroupUserList: [], // 当前群所有成员列表
 
@@ -40,10 +37,6 @@ Page({
     word: '', // 你要说啥
     loadingSendWord: false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     const self = this
     wx.showNavigationBarLoading()
@@ -143,6 +136,9 @@ Page({
   getBillLatest () {
     // 获取最新bill数据，主要是更新总价格
     const self = this
+    self.setData({
+      isLoadingProject: true
+    })
     wx.cloud.callFunction({
       name: 'getOneBill',
       data: {
@@ -155,6 +151,11 @@ Page({
         // 需要在获取bill数据后才获取留下的话
         self.getWord()
         // app.globalData.currentBill = res.result
+      },
+      complete(res) {
+        self.setData({
+          isLoadingProject: false
+        })
       }
     })
   },

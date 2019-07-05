@@ -96,9 +96,9 @@ Page({
     })
 
   },
-  goHome () {
-    wx.switchTab({
-      url: '/pages/index/index',
+  goBack() {
+    wx.navigateTo({
+      url: '/pages/billDetail/billDetail',
     })
   },
   onShareAppMessage: function () {
