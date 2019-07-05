@@ -14,7 +14,7 @@ Page({
     if (!isVisitedHelp) {
       Dialog.confirm({
         title: '等一下！',
-        message: '是否要查看下使用教程呢？'
+        message: '先看下教程咧～'
       }).then(() => {
         wx.setStorageSync('isVisitedHelp', true)
         wx.navigateTo({
@@ -23,7 +23,7 @@ Page({
       }).catch(() => {
         wx.setStorageSync('isVisitedHelp', true)
         wx.showToast({
-          title: '你最好知道怎么用哦～😊',
+          title: '别不会用哦～😊',
           icon: 'none'
         })
       });

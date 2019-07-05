@@ -36,16 +36,9 @@ Page({
         success(res) {
         }
       })
-      const tabList = ['index', 'group', 'history', 'personal']
-      if (tabList.indexOf(backPath) !== -1) {
-        wx.switchTab({
-          url: `${backPath === '' ? '/pages/index/index' : `/pages/${backPath}/${backPath}`}`
-        })
-      } else {
-        wx.redirectTo({
-          url: `${backPath === '' ? '/pages/index/index' : `/pages/${backPath}/${backPath}`}`
-        })
-      }
+      wx.redirectTo({
+        url: `${backPath === '' ? '/pages/group/group' : `/pages/${backPath}/${backPath}`}`
+      })
     } else {
       // 加入提示
       Notify({

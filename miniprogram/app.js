@@ -9,6 +9,7 @@ App({
         traceUser: true,
       })
     }
+    console.log('showme', options)
     // 获取手机信息以配置顶栏
     wx.getSystemInfo({
       success: res => {
@@ -41,8 +42,8 @@ App({
             }
           })
         } else {
-          wx.redirectTo({
-            url: `/pages/login/login?back=${options.path.split('/')[1]}`,
+          wx.reLaunch({
+            url: `/pages/login/login?back=${options.path.split('/')[1]}`
           })
         }
       }
