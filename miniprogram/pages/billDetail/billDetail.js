@@ -58,7 +58,6 @@ Page({
   },
   getWord() {
     const self = this
-    console.log('diaoyong')
     wx.cloud.callFunction({
       name: 'createFeedback',
       data: {
@@ -66,10 +65,10 @@ Page({
         billId: self.data.currentBill._id
       },
       success(res) {
-        console.log(res, 'lalala')
         const wordList = res.result
         const userRemark = app.globalData.userRemark
         wordList.forEach(word => {
+          word.createTime = word.createTime ? parseTime(word.createTime, '{y}-{m}-{d} {h}:{m}:{s}') : '木有记录时间'
           Object.keys(userRemark).forEach(openId => {
             if (word.user.openId === openId) {
               word.user.note = userRemark[`${openId}`]
@@ -109,11 +108,12 @@ Page({
         data: {
           extend: 'sendWord',
           billId: self.data.currentBill._id,
-          word
+          word,
+          createTime: new Date()
         },
         success(res) {
           Notify({
-            text: '你继续',
+            text: '成功',
             duration: 1500,
             selector: '#bill-notify-selector',
             backgroundColor: '#28a745'

@@ -58,3 +58,12 @@
   border-bottom:1px solid #eee;
   margin:10rpx auto;
 }
+.credit {
+  font-size:25rpx;
+  color:grey;
+  text-align:center;
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:20rpx;
+}

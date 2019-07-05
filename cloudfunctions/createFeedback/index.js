@@ -56,7 +56,8 @@ exports.main = async (event, context) => {
         data: {
           billId: event.billId,
           userId: userInfo.openId,
-          word: event.word
+          word: event.word,
+          createTime: event.createTime
         }
       })
       return {

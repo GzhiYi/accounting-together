@@ -83,10 +83,17 @@
       <view wx:for="{{wordList}}" wx:key="{{item._id}}">
         <view class='word-item' wx:if="{{item.userId !== userInfoFromCloud.openId}}">
           <image bindtap='showWordUserName' data-user="{{item}}" src='{{item.user.avatarUrl}}' class='user-avatar'></image>
-          <view class='word-tang-left'></view><view class='word-detail'>{{item.word}}</view>
+          <view class='word-tang-left'></view>
+          <view class='word-detail'>
+            {{item.word}}
+            <view class="word-time">{{item.createTime}}</view>
+          </view>
         </view>
         <view class='word-item' wx:else>
-          <view class='word-detail'>{{item.word}}</view><view class='word-tang-right'></view>
+          <view class='word-detail'>
+            {{item.word}}
+            <view class="word-time">{{item.createTime}}</view>
+          </view><view class='word-tang-right'></view>
           <image bindtap='showWordUserName' data-user="{{item}}" src='{{item.user.avatarUrl}}' class='user-avatar-right'></image>
         </view>
       </view>

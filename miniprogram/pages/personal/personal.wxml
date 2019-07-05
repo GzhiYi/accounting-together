@@ -87,7 +87,9 @@
   </view>
   <view class='source' bindtap='copyWechat'>开发者微信</view>
 </view>
-
+<view class="credit">
+  icon from https://www.freepik.com
+</view>
 <van-popup show="{{ showFeedback }}" bind:close="feedbackModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 80%;">
   <view class='feedback-body'>
     <van-rate value="{{ stars }}" bind:change="onStarChange" />
