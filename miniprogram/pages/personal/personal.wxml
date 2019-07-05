@@ -24,7 +24,7 @@
     </view>
 
     <view class='public-item' style='border-bottom: none;'>
-      <view class='public-item-name'>加入时间</view>
+      <view class='public-item-name'>注册时间</view>
       <view class='public-item-right'>
         <text class='sum'>{{fetchUserInfo.storeUser.createTime}}</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
@@ -34,17 +34,9 @@
 
   <view class='public-list'>
 
-    <!-- <view class='public-item' bindtap='showGithub'>
-      <view class='public-item-name'>源码地址</view>
-      <view class='public-item-right'>
-        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
-      </view>
-    </view> -->
-
     <view class='public-item' bindtap='goToHelp'>
       <view class='public-item-name'>使用帮助</view>
       <view class='public-item-right'>
-        <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
@@ -52,35 +44,18 @@
     <view class='public-item' bindtap='goToUpdateLog'>
       <view class='public-item-name'>更新内容</view>
       <view class='public-item-right'>
-        <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
-    <!-- <view class='public-item'>
-      <button open-type="contact" class='hide-contact'>联系我</button>
-      <view class='public-item-name'>联系我</view>
+    <view class='public-item' bindtap='goToQuestion'>
+      <view class='public-item-name'>有疑问？</view>
       <view class='public-item-right'>
-        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
+        <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx' />
       </view>
-    </view> -->
-    <!-- <view class='public-item' bindtap='showPay'>
-      <view class='public-item-name'>别点</view>
-      <view class='public-item-right'>
-        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
-      </view>
-    </view> -->
-
-    <!-- <view class='public-item' bindtap='showAbout'> 
-      <view class='public-item-name'>关于</view>
-      <view class='public-item-right'>
-        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
-      </view>
-    </view> -->
-
-    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
+    </view>
+    <!-- <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
       <view class='public-item-name'>意见反馈</view>
       <view class='public-item-right'>
-        <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx'/>
       </view>
     </view>
@@ -88,10 +63,9 @@
     <view class='public-item' bindtap='feedbackListModal' data-modal="showModal" wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}">
       <view class='public-item-name'>反馈内容</view>
       <view class='public-item-right'>
-        <!-- <text class='sum'>123</text> -->
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
-    </view>
+    </view> -->
 
     <view class='public-item' bindtap='copySourceLink' style='border-bottom: none;'>
       <view class='public-item-name'>源码地址</view>
@@ -100,10 +74,19 @@
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>
+    <view
+    class='public-item'
+    bindtap='goToQuestion'
+    style='justify-content:center;background: pink; border-radius: 0 0 20rpx 20rpx;border-bottom: none;'
+    wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0WgxmQcgfhzchO7MNd7LZ8g' ||  fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}"
+    >
+      <view class='public-item-name'>给妳❤️</view>
+      <view class='public-item-right'>
+      </view>
+    </view>
   </view>
-  <view class='source' bindtap='copyWechat'>微信反馈（点击复制）：Yi745285458</view>
+  <!-- <view class='source' bindtap='copyWechat'>微信反馈（点击复制）：Yi745285458</view> -->
 </view>
-<!-- <view class='end'>Created By GzhiYi</view> -->
 
 <van-popup show="{{ showFeedback }}" bind:close="feedbackModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 80%;">
   <view class='feedback-body'>

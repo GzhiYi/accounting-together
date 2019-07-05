@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/personal/personal",
     "pages/group/group",
     "pages/history/history",
     "pages/groupDetail/groupDetail",
@@ -8,7 +9,6 @@
     "pages/share/share",
     "pages/result/result",
     "pages/updateLog/updateLog",
-    "pages/personal/personal",
     "pages/help/help"
   ],
   "window": {

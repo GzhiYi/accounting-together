@@ -1,6 +1,3 @@
-.personal {
-  margin-top:46rpx;
-}
 .mp-info {
   display:flex;
   flex-direction:column;

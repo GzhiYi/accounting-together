@@ -1,4 +1,4 @@
-<!--pages/help/help.wxml-->
+<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
 <view class='help-body'>
   <view class='item'>
     <view class='title'>为啥要写这个小程序？</view>
