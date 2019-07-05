@@ -35,6 +35,10 @@
         <image class='handle-icon' src="../../images/share.png"></image>
         <text>邀请</text>
       </button>
+      <view class="handle-one" bindtap='editGroup'>
+        <image class='handle-icon' src="../../images/gear.png"></image>
+        <text>编辑</text>
+      </view>
       <view
         class="handle-one"
         bindtap='deleteGroup'
