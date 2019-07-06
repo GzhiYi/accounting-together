@@ -129,3 +129,24 @@
     <button class='btn btn-default' bindtap='closeDropGrouUser'>取消</button>
   </view>
 </van-popup>
+<!-- 编辑群组弹层 -->
+<van-dialog
+  use-slot
+  async-close
+  show="{{ editGroupModal }}"
+  show-cancel-button
+  bind:close="confirmEditGroup"
+  title="编辑"
+  id="edit-group-modal"
+>
+  <view class='group-dialog-body' style='margin:50rpx 0;'>
+    <van-field
+      value="{{ groupName }}"
+      label="群组名"
+      maxlength="{{20}}"
+      placeholder="起个好名？"
+      bind:change="onGroupNameChange"
+      focus="{{true}}"
+    />
+  </view>
+</van-dialog>

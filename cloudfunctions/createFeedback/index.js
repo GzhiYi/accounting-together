@@ -65,6 +65,18 @@ exports.main = async (event, context) => {
         code: 1
       }
     }
+    // 编辑群标题
+    if (event.extend === 'editGroup') {
+      await db.collection('group').doc(event.groupId).update({
+        data: {
+          name: event.name
+        }
+      })
+      return {
+        msg: '修改成功',
+        code: 1
+      }
+    }
   } else {
     await db.collection('feedback').add({
       data: {

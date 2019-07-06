@@ -19,7 +19,9 @@ Page({
     loadingLeave: false,
     showAvatarMenu: false,
     menuUser: {},
-    loadingUpdateNote: false
+    loadingUpdateNote: false,
+    editGroupModal: false,
+    groupName: ''
   },
   onLoad: function (options) {
     // 获取再app.js中拿到的用户信息
@@ -329,6 +331,48 @@ Page({
             loadingUpdateNote: false
           })
         }
+      })
+    }
+  },
+  // 编辑群名
+  editGroup () {
+    this.setData({
+      editGroupModal: true,
+      groupName: this.data.groupInfo.name
+    })
+  },
+  onGroupNameChange(event) {
+    this.setData({
+      groupName: event.detail
+    })
+  },
+  confirmEditGroup (event) {
+    const { groupInfo, groupName } = this.data
+    const self = this
+    if (event.detail === 'confirm') {
+      wx.cloud.callFunction({
+        name: 'createFeedback',
+        data: {
+          extend: 'editGroup',
+          groupId: groupInfo._id,
+          name: groupName
+        },
+        success(res) {
+          groupInfo.name = groupName
+          self.setData({
+            groupName: '',
+            groupInfo
+          })
+        },
+        complete() {
+          self.setData({
+            editGroupModal: false
+          })
+        }
+      })
+    } else {
+      this.setData({
+        editGroupModal: false
       })
     }
   },

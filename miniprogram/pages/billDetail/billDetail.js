@@ -94,7 +94,7 @@ Page({
     const self = this
     if (word === '') {
       Notify({
-        text: '少说空话！你忘记写内容了',
+        text: '你忘记写内容了',
         duration: 1500,
         selector: '#bill-notify-selector',
         backgroundColor: '#dc3545'
