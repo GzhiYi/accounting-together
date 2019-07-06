@@ -14,7 +14,7 @@ VantComponent({
     placeholderStyle: String,
     background: {
       type: String,
-      value: '#f2f2f2'
+      value: 'rgb(252, 241, 163)'
     },
     maxlength: {
       type: Number,

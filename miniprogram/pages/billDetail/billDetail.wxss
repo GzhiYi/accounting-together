@@ -4,7 +4,7 @@
   font-size:28rpx;
 }
 page {
-  background-color: #F2F2F2;
+  background-color: rgb(252, 241, 163);
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -169,5 +169,5 @@ page {
   font-size:23rpx;
   text-align:center;
   margin-top:10rpx;
-  color:grey;
+  color:rgb(252, 241, 163);
 }

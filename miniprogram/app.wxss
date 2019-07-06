@@ -11,7 +11,7 @@ page {
 .public-header {
   padding:30rpx 20rpx;
   font-size:39rpx;
-  border-bottom:.5rpx solid #F2F2F2;
+  border-bottom:.5rpx solid rgb(252, 241, 163);
   display: flex;
   align-items: center;
 }
@@ -21,7 +21,7 @@ page {
   height:32rpx;
 }
 .public-item {
-  border-bottom: .5rpx solid #F2F2F2;
+  border-bottom: .5rpx solid rgb(252, 241, 163);
   padding:20rpx 20rpx;
   display:flex;
   justify-content: space-between;

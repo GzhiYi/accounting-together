@@ -98,7 +98,7 @@
         </view>
       </view>
     </view>
-    <view class="delete-tip">长按你发出的留言进行操作</view>
+    <view class="delete-tip" wx:if="{{wordList.length > 0}}">长按你发出的留言进行操作</view>
     <view class='divide' wx:if="{{wordList.length > 0}}"></view>
     <van-field
       value="{{ word }}"

@@ -51,7 +51,7 @@
       maxlength="{{20}}"
       placeholder="起个好名？"
       bind:change="onGroupNameChange"
-      focus="{{true}}"
+      focus="{{false}}"
     />
     <view class="new-tip">
       新建后进入群组通过邀请让好友加入，一起记账。别忘记邀请好友一起哦～

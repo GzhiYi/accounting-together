@@ -1,7 +1,7 @@
 <nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
 <view class='personal'>
   <view class='public-list'>
-    <view class='public-header mp-info'>
+    <view class='public-header mp-info' style="border-bottom: none;">
       <image src="{{userInfo.avatarUrl}}" class='icon'></image>
       <text class='mp-name'>{{userInfo.nickName}}</text>
     </view>

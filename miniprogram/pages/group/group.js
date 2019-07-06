@@ -35,7 +35,7 @@ Page({
     }
     // 这里逻辑是，如果打开次数为2就提示
     const openCount = wx.getStorageSync('openCount') || 0
-    self.handleTips([1, 20], 'showTips', 8000, openCount)
+    self.handleTips([3, 20], 'showTips', 8000, openCount)
     self.handleTips([4, 15, 25, 36, 50], 'showShareTips', 8000, openCount)
     wx.setStorageSync('openCount', openCount + 1)
   },

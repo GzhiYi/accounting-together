@@ -149,7 +149,7 @@
       maxlength="{{20}}"
       placeholder="起个好名？"
       bind:change="onGroupNameChange"
-      focus="{{true}}"
+      focus="{{false}}"
     />
     <view class="new-tip">
       修改为喜欢的群组名吧。

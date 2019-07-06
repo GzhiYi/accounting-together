@@ -20,7 +20,7 @@ page {
   padding:20rpx 20rpx 15rpx;
   display:flex;
   justify-content:space-between;
-  border-bottom:.5rpx solid #F2F2F2;
+  border-bottom:.5rpx solid rgb(252, 241, 163);
 }
 .group-basic-right {
   text-align:right;
@@ -42,7 +42,7 @@ page {
   border-radius: 50%;
 }
 .user-item {
-  border-bottom:.5rpx solid #F2F2F2;
+  border-bottom:.5rpx solid rgb(252, 241, 163);
   padding:20rpx;
   display:flex;
   justify-content:space-between;
@@ -81,7 +81,7 @@ page {
   align-items: center;
   margin-left:26rpx;
   padding:10rpx 0 29rpx;
-  border-bottom:.5rpx solid #F2F2F2;
+  border-bottom:.5rpx solid rgb(252, 241, 163);
 }
 .user-avatar-list {
   width: 80rpx;
