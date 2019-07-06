@@ -28,28 +28,28 @@
       1. 新建一个群组（在第一个页面）
       </text>
       <view style='text-align: center;margin-top: 20rpx;'>
-        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/newGroup2.jpg?sign=9f46c733c8a16835564485a7767906fd&t=1549422230'></image>
+        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/1.png?sign=1c31eb55999bbea6c02a49c0a8a4b321&t=1562390800'></image>
       </view>
 
        <text>
       2. 在群组内邀请你的好友（在某个群组内）
       </text>
       <view style='text-align: center;margin-top: 20rpx;'>
-        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/invite2.jpg?sign=0d36b64715606da8af431208f28677a1&t=1549422350'></image>
+        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/2.png?sign=7af90d3d8711876699a1914e704eee5e&t=1562390837'></image>
       </view>
 
       <text>
       3. 新建一个账单
       </text>
       <view style='text-align: center;margin-top: 20rpx;'>
-        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/newBill2.jpg?sign=67c1517254d660c19903d4a07ba5c6b5&t=1549422385'></image>
+        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/6.png?sign=8c0fe230455d9187317bdfbbc8c69d58&t=1562390962'></image>
       </view>
 
       <text>
-      4. 在账单右上角新建支出项
+      4. 在账单内新建支出项
       </text>
       <view style='text-align: center;margin-top: 20rpx;'>
-        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/newItem2.jpg?sign=b3fc7f3004b2237f2be96486aab2a32e&t=1549422423'></image>
+        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/3.png?sign=61d4ff27ab566bccb904684065602530&t=1562390985'></image>
       </view>
 
       <text>
@@ -57,7 +57,7 @@
       </text>
       注意，结算结果，正数（绿色字）为这笔账单中应该要拿回多少钱，负数（红色字）为这笔账单中应该要出多少钱。
       <view style='text-align: center;margin-top: 20rpx;'>
-        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/endResult2.jpg?sign=2105e2607edd0334b5e45dd4488318b5&t=1549422705'></image>
+        <image mode='widthFix' src='https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/4.png?sign=950d4ac15a80ac7fe74a363c38739eea&t=1562391042'></image>
       </view>
 
       <text>

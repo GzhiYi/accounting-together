@@ -100,7 +100,7 @@
         bind:change="onBillNameChange"
       />
       <view class="new-tip">
-        账单并不是记录支出什么，是一次AA过程的集合，比如一次聚会，一段时间的支出等。进入新建的账单添加支出项才正确。
+        账单并不是记录支出什么，是一次AA过程的集合，比如一次聚会，一段时间的支出等。
       </view>
     </view>
   </van-dialog>
