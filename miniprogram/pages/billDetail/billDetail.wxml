@@ -73,7 +73,7 @@
 </view>
 
 <!-- leave a word -->
-<view class='public-list setting-area'>
+<view class='public-list setting-area' wx:if="{{canShowWord}}">
   <view class='public-header'>
     <image class='public-icon' src="../../images/bubble-speak.png"></image>
     说说
