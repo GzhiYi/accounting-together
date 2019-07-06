@@ -53,6 +53,9 @@
       bind:change="onGroupNameChange"
       focus="{{true}}"
     />
+    <view class="new-tip">
+      新建后进入群组通过邀请让好友加入，一起记账。别忘记邀请好友一起哦～
+    </view>
   </view>
 </van-dialog>
 <van-notify id="notify-selector" />

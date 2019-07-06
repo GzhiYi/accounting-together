@@ -108,3 +108,13 @@ page {
   font-size:26rpx;
   margin-top:4rpx;
 }
+.new-tip {
+  width:70%;
+  margin:0 auto;
+  background:rgb(255, 248, 198);
+  padding:39rpx;
+  margin-top:45rpx;
+  border-radius:20rpx;
+  font-size:30rpx;
+  color:#333;
+}
