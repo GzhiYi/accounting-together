@@ -6,11 +6,15 @@ Page({
   data: {
     groupList: [],
     newGroupModal: false,
-    groupName: ''
+    groupName: '',
+    statusBarHeight: getApp().globalData.statusBarHeight,
+    screenWidth: getApp().globalData.screenWidth,
+    showTips: false
   },
-  onLoad: function (options) {
+  onLoad: function () {
     // 处理是否查看过教程
     const isVisitedHelp = wx.getStorageSync('isVisitedHelp') || false
+    const self = this
     if (!isVisitedHelp) {
       Dialog.confirm({
         title: '等一下！',
@@ -28,6 +32,19 @@ Page({
         })
       });
     }
+    // 这里逻辑是，如果打开次数为2就提示
+    const openCount = wx.getStorageSync('openCount') || 0
+    if (openCount === 1 || openCount === 20) {
+      self.setData({
+        showTips: true
+      })
+      setTimeout(() => {
+        self.setData({
+          showTips: false
+        })
+      }, 8000)
+    }
+    wx.setStorageSync('openCount', openCount + 1)
   },
   onShow: function () {
     this.getGroup()
@@ -85,7 +102,7 @@ Page({
         data: {
           groupName: this.data.groupName
         },
-        success(res) {
+        success() {
           self.setData({
             groupName: '',
             newGroupModal: false
@@ -97,9 +114,6 @@ Page({
             backgroundColor: '#28a745'
           })
           self.getGroup()
-        },
-        fail(error) {
-          // console.log('错误', error)
         }
       })
     } else {

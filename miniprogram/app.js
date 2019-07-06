@@ -13,8 +13,10 @@ App({
     // 获取手机信息以配置顶栏
     wx.getSystemInfo({
       success: res => {
+        console.log('res', res)
         this.globalData.statusBarHeight = res.statusBarHeight
         this.globalData.navBarHeight = 44 + res.statusBarHeight
+        this.globalData.screenWidth = res.screenWidth
       }
     }) 
     this.globalData.shareParam = options.query
@@ -67,6 +69,7 @@ App({
     userRemark: {},
     statusBarHeight: 0,
     navBarHeight: 0,
+    screenWidth: 0,
     isLoading: false
   },
   showLoading(target) {
