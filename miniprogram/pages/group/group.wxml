@@ -27,6 +27,12 @@
     添加到小程序，使用更方便
   </div>
 </view>
+<view wx-if="{{showShareTips}}" class="org-outer" style="top: {{statusBarHeight * 1.041 + 54.18}}px;right: {{screenWidth * 0.1282 + 1.925}}px;">
+  <div class="org_box">
+    <span class="org_bot_cor"></span>
+    觉得好用的话，转发让更多小伙伴加入吧！
+  </div>
+</view>
 <van-dialog id="van-dialog" />
 <!-- 新增群组弹层 -->
 <van-dialog

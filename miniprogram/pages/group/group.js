@@ -9,7 +9,8 @@ Page({
     groupName: '',
     statusBarHeight: getApp().globalData.statusBarHeight,
     screenWidth: getApp().globalData.screenWidth,
-    showTips: false
+    showTips: false,
+    showShareTips: false
   },
   onLoad: function () {
     // 处理是否查看过教程
@@ -27,24 +28,29 @@ Page({
       }).catch(() => {
         wx.setStorageSync('isVisitedHelp', true)
         wx.showToast({
-          title: '别不会用哦～😊',
+          title: '看来你会用了呢～😊',
           icon: 'none'
         })
       });
     }
     // 这里逻辑是，如果打开次数为2就提示
     const openCount = wx.getStorageSync('openCount') || 0
-    if (openCount === 1 || openCount === 20) {
+    self.handleTips([1, 20], 'showTips', 8000, openCount)
+    self.handleTips([4, 8, 20, 36, 50], 'showShareTips', 8000, openCount)
+    wx.setStorageSync('openCount', openCount + 1)
+  },
+  handleTips(inArr, whatTip, time, openCount) {
+    const self = this
+    if (inArr.includes(openCount)) {
       self.setData({
-        showTips: true
+        [`${whatTip}`]: true
       })
       setTimeout(() => {
         self.setData({
-          showTips: false
+          [`${whatTip}`]: false
         })
-      }, 8000)
+      }, time)
     }
-    wx.setStorageSync('openCount', openCount + 1)
   },
   onShow: function () {
     this.getGroup()
