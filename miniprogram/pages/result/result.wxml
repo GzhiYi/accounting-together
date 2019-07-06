@@ -41,7 +41,11 @@
       <view class='public-item-name'>结果</view>  
     </view>
     <view class='bill-result'>
-      <view class='check-list' wx:for="{{billInfo.result}}" wx:key="{{index}}">
+      <view
+        class="check-list {{item.openId === fetchUserInfo.storeUser.openId ? item.shouldPay > 0 ?  'check-me-receive' :  'check-me-pay' : ''}}"
+        wx:for="{{billInfo.result}}"
+        wx:key="{{index}}"
+      >
         <view class='one-avatar'>
           <image src='{{item.avatarUrl}}' class='user-avatar-list' />
           <view class='user-name'>{{item.note || item.nickName}}</view>

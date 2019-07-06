@@ -35,11 +35,22 @@ page {
   padding: 6rpx 21rpx;
   width:246rpx;
   margin-bottom:20rpx;
-
   background-color: #fff;
   border-radius:38rpx;
   box-shadow: 0px 5px 12px 0px rgb(255, 232, 59);
   transition: .5s all;
+}
+.check-me-receive {
+  width:100%;
+  background:rgba(40, 167, 70, 0.304);
+  box-shadow:0px 5px 12px 0px rgba(40, 167, 70, 0.304);
+  border: 1px solid rgb(30, 131, 53);
+}
+.check-me-pay {
+  width: 100%;
+  background: rgba(220, 53, 70, 0.304);
+  box-shadow: 0px 5px 12px 0px rgba(220, 53, 70, 0.304);
+  border: 1px solid #dc3545;
 }
 .user-avatar-list {
   width: 80rpx;

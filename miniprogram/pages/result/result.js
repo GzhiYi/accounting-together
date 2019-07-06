@@ -66,10 +66,18 @@ Page({
               })
             })
             if (visitorInBill) {
-              res.result.billInfo.createTime = parseTime(res.result.billInfo.createTime, '{y}-{m}-{d} {h}:{m}:{s}')
-              res.result.billInfo.endTime = parseTime(res.result.billInfo.endTime, '{y}-{m}-{d} {h}:{m}:{s}')
+              let billInfo = res.result.billInfo
+              billInfo.createTime = parseTime(billInfo.createTime, '{y}-{m}-{d} {h}:{m}:{s}')
+              billInfo.endTime = parseTime(billInfo.endTime, '{y}-{m}-{d} {h}:{m}:{s}')
+              // 将自己提前到最上面
+              billInfo.result.forEach((item, index) => {
+                if (item.openId === self.data.fetchUserInfo.storeUser.openId) {
+                  billInfo.result.splice(index, 1)
+                  billInfo.result.unshift(item)
+                }
+              })
               self.setData({
-                billInfo: res.result.billInfo
+                billInfo
               })
             } else {
               Dialog.confirm({
