@@ -1,5 +1,9 @@
-/* pages/share/share.wxss */.login {
-  padding: 20rpx;
+.login {
+  padding: 4rpx;
+  background: rgb(255, 248, 198);
+  width: 90%;
+  margin: 50% auto;
+  border-radius: 20rpx;
 }
 .mp-info {
   display:flex;

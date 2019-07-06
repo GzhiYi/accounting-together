@@ -108,7 +108,7 @@ Page({
   onShareAppMessage: function () {
     const { billInfo, userInfo } = this.data
     return {
-      title: `账单【${billInfo.name}】结算结果已出，快来查看吧~`,
+      title: `AA账单【${billInfo.name}】结算结果已出，你猜这次花了多少钱？`,
       path: `/pages/result/result?billId=${billInfo._id}`
     }
   }

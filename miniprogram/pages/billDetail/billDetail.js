@@ -609,10 +609,10 @@ Page({
       url: `/pages/result/result?billId=${this.data.currentBill._id}`,
     })
   },
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
-
+    return {
+      title: getApp().globalData.shareWord(),
+      path: getApp().globalData.sharePath
+    }
   }
 })

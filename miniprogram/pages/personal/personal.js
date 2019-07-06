@@ -184,5 +184,11 @@ Page({
         })
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: getApp().globalData.shareWord(),
+      path: getApp().globalData.sharePath
+    }
   }
 })

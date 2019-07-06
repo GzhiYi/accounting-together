@@ -9,7 +9,7 @@ App({
         traceUser: true,
       })
     }
-    console.log('showme', options)
+    console.log('this', this)
     // 获取手机信息以配置顶栏
     wx.getSystemInfo({
       success: res => {
@@ -70,7 +70,12 @@ App({
     statusBarHeight: 0,
     navBarHeight: 0,
     screenWidth: 0,
-    isLoading: false
+    isLoading: false,
+    shareWord: function() {
+      console.log('this', this)
+      return `你的好友${this.userInfo.nickName}在用这个AA记账，加入一起开心记账吧。`
+    },
+    sharePath: '/pages/group/group'
   },
   showLoading(target) {
     const nav = target.selectComponent('.nav-instance')

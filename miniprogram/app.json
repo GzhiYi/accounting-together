@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/group/group",
-    "pages/history/history",
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
     "pages/login/login",

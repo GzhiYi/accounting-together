@@ -16,9 +16,7 @@ Page({
       })
     }
   },
-  onShow: function () {
-
-  },
+  onShow: function () {},
   onGotUserInfo (event) {
     const { backPath } = this.data
     // 确认获取到用户信息
@@ -48,11 +46,5 @@ Page({
         backgroundColor: '#dc3545'
       });
     }
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

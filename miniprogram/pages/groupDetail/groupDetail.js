@@ -380,7 +380,7 @@ Page({
     const { groupInfo } = this.data
     const userInfo = app.globalData.userInfo
     return {
-      title: `快来加入群组【${groupInfo.name}】啦，AA收款超方便~`,
+      title: `${userInfo.nickName}邀你加入【${groupInfo.name}】一起AA记账，快加入吧！`,
       path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`
     }
   }
