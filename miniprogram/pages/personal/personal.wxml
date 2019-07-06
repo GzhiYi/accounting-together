@@ -47,14 +47,8 @@
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
-    <view class='public-item' bindtap='goToQuestion'>
-      <view class='public-item-name'>有疑问？</view>
-      <view class='public-item-right'>
-        <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx' />
-      </view>
-    </view>
-    <!-- <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
-      <view class='public-item-name'>意见反馈</view>
+    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
+      <view class='public-item-name'>留个言咧？</view>
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx'/>
       </view>
@@ -65,16 +59,16 @@
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
-    </view> -->
+    </view>
 
     <view class='public-item' bindtap='copySourceLink' style='border-bottom: none;'>
       <view class='public-item-name'>源码地址</view>
       <view class='public-item-right'>
-        <text class='sum'>github搜：GzhiYi</text>
+        <text class='sum'>Github</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>
-    <view
+    <!-- <view
     class='public-item'
     bindtap='goToQuestion'
     style='justify-content:center;background: pink; border-radius: 0 0 20rpx 20rpx;border-bottom: none;'
@@ -83,7 +77,7 @@
       <view class='public-item-name'>给妳❤️</view>
       <view class='public-item-right'>
       </view>
-    </view>
+    </view> -->
   </view>
   <view class='source' bindtap='copyWechat'>开发者微信</view>
 </view>
@@ -103,7 +97,7 @@
         border="{{ false }}"
       />
     </view>
-    <button class='btn btn-primary' bindtap='leaveMessage'>{{message === '' ? '确认' : '谢谢你的留言😘'}}</button>
+    <button class='btn btn-primary' bindtap='leaveMessage'>{{message === '' ? '确认' : '谢谢你的留言😘，我会看的'}}</button>
     <button class='btn btn-default' bindtap='closeLeaveMessage'>算了</button>
   </view>
 </van-popup>
