@@ -81,7 +81,7 @@
   <view class='setting'>
     <view class='word-content'>
       <view wx:for="{{wordList}}" wx:key="{{item._id}}">
-        <view class='word-item' wx:if="{{item.userId !== userInfoFromCloud.openId}}">
+        <view class='word-item' bindlongpress="deleteWord" data-word="{{item}}" wx:if="{{item.userId !== userInfoFromCloud.openId}}">
           <image bindtap='showWordUserName' data-user="{{item}}" src='{{item.user.avatarUrl}}' class='user-avatar'></image>
           <view class='word-tang-left'></view>
           <view class='word-detail'>
@@ -89,7 +89,7 @@
             <view class="word-time">{{item.createTime}}</view>
           </view>
         </view>
-        <view class='word-item' wx:else>
+        <view class='word-item' bindlongpress="deleteWord" data-word="{{item}}" wx:else>
           <view class='word-detail'>
             {{item.word}}
             <view class="word-time">{{item.createTime}}</view>
@@ -98,6 +98,7 @@
         </view>
       </view>
     </view>
+    <view class="delete-tip">长按你发出的留言进行操作</view>
     <view class='divide' wx:if="{{wordList.length > 0}}"></view>
     <van-field
       value="{{ word }}"
@@ -139,6 +140,7 @@
 <van-notify id="bill-notify-selector" />
 <van-notify id="bill-delete-selector" />
 <van-dialog id="confirm-delete-bill" />
+<van-dialog id="confirm-delete-word" />
 <van-action-sheet show="{{ showAddProjectSheet }}" title="新建一个支出项" bind:close='closeAddProjectSheet'>
   <view class='sheet-body'>
     <van-field

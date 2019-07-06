@@ -3,6 +3,7 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
@@ -37,7 +38,8 @@ exports.main = async (event, context) => {
     // 获取留话信息
     if (event.extend === 'getWord') {
       const wordData = await db.collection('bill-word').where({
-        billId: event.billId
+        billId: event.billId,
+        deleted: _.neq(true)
       }).get()
       if (wordData.data.length > 0) {
         for(let [index, oneWord] of wordData.data.entries()) {
@@ -52,7 +54,7 @@ exports.main = async (event, context) => {
     }
     // 新增留话信息
     if (event.extend === 'sendWord') {
-      const wordData = await db.collection('bill-word').add({
+      await db.collection('bill-word').add({
         data: {
           billId: event.billId,
           userId: userInfo.openId,
@@ -64,6 +66,25 @@ exports.main = async (event, context) => {
         msg: '成功',
         code: 1
       }
+    }
+    if (event.extend === 'deleteWord') {
+      await db.collection('bill-word').doc(event._id).update({
+        data: {
+          deleted: true
+        },
+        success() {
+          return {
+            msg: '成功',
+            code: 1
+          }
+        },
+        fail() {
+          return {
+            msg: '删除失败',
+            code: 0
+          }
+        }
+      })
     }
     // 编辑群标题
     if (event.extend === 'editGroup') {

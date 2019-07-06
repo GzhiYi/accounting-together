@@ -68,7 +68,7 @@ Page({
         const wordList = res.result
         const userRemark = app.globalData.userRemark
         wordList.forEach(word => {
-          word.createTime = word.createTime ? parseTime(word.createTime, '{y}-{m}-{d} {h}:{m}:{s}') : '木有记录时间'
+          word.createTime = word.createTime ? parseTime(word.createTime, '{y}-{m}-{d} {h}:{i}:{s}') : '木有记录时间'
           Object.keys(userRemark).forEach(openId => {
             if (word.user.openId === openId) {
               word.user.note = userRemark[`${openId}`]
@@ -109,7 +109,7 @@ Page({
           extend: 'sendWord',
           billId: self.data.currentBill._id,
           word,
-          createTime: new Date()
+          createTime: Date.parse(new Date())
         },
         success(res) {
           Notify({
@@ -565,9 +565,45 @@ Page({
       activeCollapse: event.detail
     })
   },
-  onShow: function () {
-
+  deleteWord (event) {
+    const { word } = event.currentTarget.dataset
+    const self = this
+    if (word.userId === this.data.userInfoFromCloud.openId) {
+      Dialog.confirm({
+          message: `确定要删除: ${word.word} ?`,
+          selector: '#confirm-delete-word'
+        }).then(() => {
+          wx.showLoading({
+            title: '正在删除...'
+          })
+          wx.cloud.callFunction({
+            name: 'createFeedback',
+            data: {
+              extend: 'deleteWord',
+              _id: word._id
+            },
+            success() {
+              self.getWord()
+            },
+            fail() {
+              wx.showToast({
+                title: '删除失败，稍后再试...',
+                icon: 'none'
+              })
+            },
+            complete() {
+              wx.hideLoading()
+            }
+          })
+        })
+    } else {
+      wx.showToast({
+        title: '这不是你的留言呢～',
+        icon: 'none'
+      })
+    }
   },
+  onShow: function () {},
   goToResult () {
     wx.navigateTo({
       url: `/pages/result/result?billId=${this.data.currentBill._id}`,

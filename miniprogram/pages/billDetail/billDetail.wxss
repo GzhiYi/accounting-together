@@ -165,3 +165,9 @@ page {
   text-align:right;
   color:#333;
 }
+.delete-tip {
+  font-size:23rpx;
+  text-align:center;
+  margin-top:10rpx;
+  color:grey;
+}
