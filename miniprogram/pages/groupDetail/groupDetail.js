@@ -381,7 +381,8 @@ Page({
     const userInfo = app.globalData.userInfo
     return {
       title: `${userInfo.nickName}邀你加入【${groupInfo.name}】一起AA记账，快加入吧！`,
-      path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`
+      path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`,
+      imageUrl: getApp().globalData.imageUrl
     }
   }
 })

@@ -109,7 +109,8 @@ Page({
     const { billInfo, userInfo } = this.data
     return {
       title: `AA账单【${billInfo.name}】结算结果已出，你猜这次花了多少钱？`,
-      path: `/pages/result/result?billId=${billInfo._id}`
+      path: `/pages/result/result?billId=${billInfo._id}`,
+      imageUrl: getApp().globalData.imageUrl
     }
   }
 })

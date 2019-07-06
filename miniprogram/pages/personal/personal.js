@@ -188,7 +188,8 @@ Page({
   onShareAppMessage: function () {
     return {
       title: getApp().globalData.shareWord(),
-      path: getApp().globalData.sharePath
+      path: getApp().globalData.sharePath,
+      imageUrl: getApp().globalData.imageUrl
     }
   }
 })
