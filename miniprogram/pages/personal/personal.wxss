@@ -67,3 +67,8 @@
   right:0;
   bottom:20rpx;
 }
+.nav-mini {
+  text-align:center;
+  padding:25rpx;
+  margin-top:50rpx;
+}

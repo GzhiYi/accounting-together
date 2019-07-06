@@ -7,8 +7,8 @@
     "pages/share/share",
     "pages/result/result",
     "pages/updateLog/updateLog",
-    "pages/help/help",
-    "pages/personal/personal"
+    "pages/personal/personal",
+    "pages/help/help"
   ],
   "window": {
     "backgroundColor": "red≈",
@@ -40,5 +40,6 @@
     "van-panel": "./pages/dist/panel/index",
     "nav": "./pages/nav/nav"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": ["wx158a14d1810b8fc1"]
 }

@@ -80,6 +80,12 @@
     </view> -->
   </view>
   <view class='source' bindtap='copyWechat'>开发者微信</view>
+  <view class="nav-mini">
+    <navigator target="miniProgram" open-type="navigate" app-id="wx158a14d1810b8fc1" path="/pages/index/index" extra-data="" version="release">
+      <image src="../../images/walkmark.png" style="width: 64rpx;height: 64rpx;" />
+    </navigator>
+  </view>
+
 </view>
 <view class="credit">
   icon from https://www.freepik.com
