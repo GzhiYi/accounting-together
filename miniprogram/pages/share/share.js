@@ -56,7 +56,7 @@ Page({
           backgroundColor: `${joinRes.result.code === 1 ? '#28a745' : '#dc3545'}`
         });
         setTimeout(() => {
-          wx.switchTab({
+          wx.redirectTo({
             url: '/pages/group/group',
           })
         }, 2000)
