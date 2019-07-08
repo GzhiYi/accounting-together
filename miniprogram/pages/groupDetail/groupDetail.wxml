@@ -31,7 +31,7 @@
         <image class='handle-icon' src="../../images/plus.png"></image>
         <text>账单</text>
       </view>
-      <button class="handle-one handle-one-btn" open-type='share'>
+      <button class="handle-one handle-one-btn" open-type='share' wx:if="{{isEscape}}">
         <image class='handle-icon' src="../../images/share.png"></image>
         <text>邀请</text>
       </button>

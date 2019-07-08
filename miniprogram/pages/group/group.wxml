@@ -3,7 +3,7 @@
   <view class='public-list'>
     <view class='public-header'>
       <image class='public-icon' src="../../images/group.png"></image>
-      我的群组
+      我的{{isEscape ? '群组' : '账单'}}
     </view>
     <view
       class='public-item {{index === 0 ? "top" : ""}} {{index === groupList.length - 1 ? "public-item-bottom" : ""}}'
@@ -41,20 +41,20 @@
   show="{{ newGroupModal }}"
   show-cancel-button
   bind:close="callNewGroup"
-  title="新建一个群组"
+  title="新建一个{{isEscape ? '群组' : '账单'}}"
   id="new-group-modal"
 >
   <view class='group-dialog-body' style='margin:50rpx 0;'>
     <van-field
       value="{{ groupName }}"
-      label="群组名"
+      label="{{isEscape ? '群组' : '账单'}}名"
       maxlength="{{20}}"
       placeholder="起个好名？"
       bind:change="onGroupNameChange"
       focus="{{false}}"
     />
     <view class="new-tip">
-      新建后进入群组通过邀请让好友加入，一起记账。别忘记邀请好友一起哦～
+      {{isEscape ? '新建后进入群组通过邀请让好友加入，一起记账。别忘记邀请好友一起哦～' : '新建一个账单组用于汇集你所创建的账单吧～'}}
     </view>
   </view>
 </van-dialog>

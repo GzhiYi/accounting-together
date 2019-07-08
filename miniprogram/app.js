@@ -76,7 +76,8 @@ App({
       return `你的好友${this.userInfo.nickName}在用这个AA记账，加入一起开心记账吧。`
     },
     sharePath: '/pages/group/group',
-    imageUrl: 'https://images.vrm.cn/2019/07/06/banner-new.png'
+    imageUrl: 'https://images.vrm.cn/2019/07/06/banner-new.png',
+    isEscape: true
   },
   showLoading(target) {
     const nav = target.selectComponent('.nav-instance')

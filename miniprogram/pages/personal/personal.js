@@ -14,13 +14,17 @@ Page({
     stars: 5,
     message: '',
     fetchUserInfo: {},
-    feedbackList: []
+    feedbackList: [],
+    isEscape: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      isEscape: getApp().globalData.isEscape
+    })
   },
   onShow: function () {
     const self = this

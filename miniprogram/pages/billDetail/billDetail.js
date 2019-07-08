@@ -55,7 +55,7 @@ Page({
     self.getProject()
     // 用于判断是否显示账单留言
     const nowTime = Date.parse(new Date())
-    if (nowTime < 1562502600000) { // 2019-07-07 20:30:00
+    if (nowTime < 1562662800000) { // 2019-07-09 17:00:00
       self.setData({
         canShowWord: false
       })

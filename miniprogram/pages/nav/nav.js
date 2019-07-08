@@ -14,19 +14,22 @@ Component({
   data: {
     showLoadingIcon: false,
     showBackIcon: false,
-    showHomeIcons: false
+    showHomeIcons: false,
+    isEscape: true
   },
   ready() {
     let {
       statusBarHeight,
-      navBarHeight
+      navBarHeight,
+      isEscape
     } = getApp().globalData
     const { showIcons } = this.data
     this.setData({
       statusBarHeight,
       navBarHeight,
       showBackIcon: showIcons.includes('back'),
-      showHomeIcons: showIcons.includes('home')
+      showHomeIcons: showIcons.includes('home'),
+      isEscape
     })
   },
   attached() {

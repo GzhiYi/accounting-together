@@ -2,8 +2,8 @@
 <view class='personal'>
   <view class='public-list'>
     <view class='public-header mp-info' style='border-bottom: none;'>
-      <image src="{{fetchUserInfo.storeUser.avatarUrl}}" class='icon'></image>
-      <text class='mp-name'>{{fetchUserInfo.storeUser.nickName}}</text>
+      <image src="{{userInfo.avatarUrl}}" class='icon'></image>
+      <text class='mp-name'>{{userInfo.nickName}}</text>
     </view>
   </view>
   <view class='public-list'>
@@ -15,7 +15,7 @@
       </view>
     </view>
 
-    <view class='public-item' >
+    <view class='public-item' wx:if="{{isEscape}}">
       <view class='public-item-name'>累计群组数</view>
       <view class='public-item-right'>
         <text class='sum'>{{fetchUserInfo.groupNum}}</text>

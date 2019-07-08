@@ -21,12 +21,14 @@ Page({
     menuUser: {},
     loadingUpdateNote: false,
     editGroupModal: false,
-    groupName: ''
+    groupName: '',
+    isEscape: true
   },
   onLoad: function (options) {
     // 获取再app.js中拿到的用户信息
     this.setData({
-      userInfoFromCloud: app.globalData.userInfoFromCloud
+      userInfoFromCloud: app.globalData.userInfoFromCloud,
+      isEscape: getApp().globalData.isEscape
     })
   },
 
