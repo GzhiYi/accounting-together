@@ -22,7 +22,9 @@ Page({
     loadingUpdateNote: false,
     editGroupModal: false,
     groupName: '',
-    isEscape: getApp().globalData.isEscape
+    isEscape: getApp().globalData.isEscape,
+    skin: getApp().globalData.skin,
+    exactArray: []
   },
   onLoad: function (options) {
     // 获取再app.js中拿到的用户信息
@@ -173,7 +175,8 @@ Page({
         success(res) {
           const userList = res.result.reverse()
           self.setData({
-            userList
+            userList,
+            exactArray: new Array((parseInt((userList.length / 5)) + 1) * 5 - userList.length)
           })
           // 向globalData 赋值一个含有备注的用户obj
           const userRemark = {}

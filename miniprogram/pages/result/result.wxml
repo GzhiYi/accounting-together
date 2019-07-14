@@ -1,66 +1,74 @@
-<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
-<view class='personal'>
-  <view class='public-list'>
-    <view class='public-header mp-info' style="border-bottom: none;">
-      <image src="{{userInfo.avatarUrl}}" class='icon'></image>
-      <text class='mp-name'>{{userInfo.nickName}}</text>
-    </view>
-  </view>
-  <view class='public-list'>
-    <view class='public-item' >
-      <view class='public-item-name'>账单</view>
-      <view class='public-item-right'>
-        <text class='sum'>{{billInfo.name}}</text>
-        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+<scroll-view scroll-y="true" class='personal' style="background: {{skin.colorList[skin.index].bg0}};">
+  <nav class="nav-instance" showIcons="{{['back']}}"></nav>
+  <view >
+    <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
+      <view class='public-header mp-info' style="border-bottom: none;">
+        <image src="{{userInfo.avatarUrl}}" class='icon'></image>
+        <text class='mp-name'>{{userInfo.nickName}}</text>
       </view>
     </view>
-
-    <view class='public-item' >
-      <view class='public-item-name'>所在{{isEscape ? '群组' : '账单'}}</view>
-      <view class='public-item-right'>
-        <text class='sum'>{{billInfo.groupId.name}}</text>
-        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
-      </view>
-    </view>
-
-    <view class='public-item' >
-      <view class='public-item-name'>创建时间</view>
-      <view class='public-item-right'>
-        <text class='sum'>{{billInfo.createTime}}</text>
-        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
-      </view>
-    </view>
-    <view class='public-item' >
-      <view class='public-item-name'>结算时间</view>
-      <view class='public-item-right'>
-        <text class='sum'>{{billInfo.endTime}}</text>
-        <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
-      </view>
-    </view>
-    <view class='public-item' style="border: none;">
-      <view class='public-item-name'>结果</view>  
-    </view>
-    <view class='bill-result'>
-      <view
-        class="check-list {{item.openId === fetchUserInfo.storeUser.openId ? item.shouldPay > 0 ?  'check-me-receive' :  'check-me-pay' : ''}}"
-        wx:for="{{billInfo.result}}"
-        wx:key="{{index}}"
-      >
-        <view class='one-avatar'>
-          <image src='{{item.avatarUrl}}' class='user-avatar-list' />
-          <view class='user-name'>{{item.note || item.nickName}}</view>
-        </view>
-        <view style='margin-top:10rpx;'>
-          <text class='result-word {{item.shouldPay > 0 ? "up" : "down"}}'>{{item.shouldPay}}</text><text style='font-size: 23rpx;'>元</text>
+    <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
+      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+        <view class='public-item-name'>账单</view>
+        <view class='public-item-right'>
+          <text class='sum'>{{billInfo.name}}</text>
+          <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
         </view>
       </view>
-      <view class='result-tips'><text class='up'>绿色</text>数字：应收钱数，<text class='down'>红色</text>数字：应付钱数</view>
-      <view class='result-tips'>结算结果可能存在少许误差，为计算精度丢失</view>
+      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+        <view class='public-item-name'>所在{{isEscape ? '群组' : '账单'}}</view>
+        <view class='public-item-right'>
+          <text class='sum'>{{billInfo.groupId.name}}</text>
+          <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+        </view>
+      </view>
+      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+        <view class='public-item-name'>创建时间</view>
+        <view class='public-item-right'>
+          <text class='sum'>{{billInfo.createTime}}</text>
+          <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+        </view>
+      </view>
+      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+        <view class='public-item-name'>结算时间</view>
+        <view class='public-item-right'>
+          <text class='sum'>{{billInfo.endTime}}</text>
+          <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
+        </view>
+      </view>
+      <view class='public-item' style="border: none;">
+        <view class='public-item-name'>结果</view>
+      </view>
+      <view class='bill-result'>
+        <view
+          class="check-list {{item.openId === fetchUserInfo.storeUser.openId ? item.shouldPay > 0 ?  'check-me-receive' :  'check-me-pay' : ''}}"
+          wx:for="{{billInfo.result}}"
+          wx:key="{{index}}"
+          style="box-shadow: 0px 5px 12px 0px {{skin.colorList[skin.index].bg0}}"
+        >
+          <view class='one-avatar'>
+            <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+            <view class='user-name'>{{item.note || item.nickName}}</view>
+          </view>
+          <view style='margin-top:22rpx;display: flex;align-items: center;margin-bottom:12rpx;'>
+            <text class='result-word {{item.shouldPay > 0 ? "up" : "down"}}' style="line-height: 0;">
+              {{item.shouldPay}}
+            </text>
+            <text style='font-size: 23rpx;'>元</text>
+          </view>
+        </view>
+        <view class='result-tips'>
+          <text class='up'>绿色</text>
+          数字：应收钱数，
+          <text class='down'>红色</text>
+          数字：应付钱数
+        </view>
+        <view class='result-tips'>结算结果可能存在少许误差，为计算精度丢失</view>
+      </view>
     </view>
   </view>
-</view>
-<!-- 更多操作 -->
-  <view class='public-list'>
+  <!-- 更多操作 -->
+  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
     <view class='handle-basic'>
       <button class="handle-one handle-one-btn" open-type='share'>
         <image class='handle-icon' src="../../images/share.png"></image>
@@ -72,6 +80,8 @@
       </view>
     </view>
   </view>
+  <view class='space'></view>
+</scroll-view>
 
 <van-notify id="feedback-tips" />
 <van-dialog id="permission" />

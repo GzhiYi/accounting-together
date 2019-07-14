@@ -1,6 +1,6 @@
 <nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
-<view class='group-detail-body'>
-  <view class='group-detail'>
+<view class='group-detail-body' style="background: {{skin.colorList[skin.index].bg0}};">
+  <view class='group-detail' style="background: {{skin.colorList[skin.index].bg2}};">
     <view class='group-basic'>
       <text class='name'>{{groupInfo.name}}</text>
       <view class='group-basic-right'>
@@ -8,7 +8,7 @@
         <view class='group-createtime'>{{groupCreateTime}}</view>
       </view>
     </view>
-    <view class='check-list'>
+    <view class='check-list' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
       <view
         class='one-avatar'
         wx:for="{{userList}}"
@@ -24,6 +24,7 @@
         <image src='{{item.avatarUrl}}' class='user-avatar-list' />
         <view class='user-name'>{{item.note || item.nickName}}</view>
       </view>
+      <view class="one-avatar" wx:for="{{exactArray}}" wx:key="{{item}}"></view>
     </view>
     <!-- 操作按钮区 -->
     <view class='handle-basic'>
@@ -57,7 +58,7 @@
       </view>
     </view>
   </view>
-  <view class='public-list'>
+  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
     <view class='public-header'>
       <image class='public-icon' src="../../images/list.png"></image>
       账单列表
@@ -69,6 +70,7 @@
       wx:key="index"
       bindtap='goToBillDetail'
       data-bill="{{item}}"
+      style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};"
     >
       <view class='public-item-name'>{{item.name}}<van-tag wx:if="{{item.ended}}" plain type="default" style="margin-left: 20rpx;">已结算</van-tag></view>
       <view class='public-item-right'>
@@ -99,7 +101,7 @@
         placeholder="请输入账单名"
         bind:change="onBillNameChange"
       />
-      <view class="new-tip">
+      <view class="new-tip" style="background: {{skin.colorList[skin.index].bg2}};">
         账单并不是记录支出什么，是一次AA过程的集合，比如一次聚会，一段时间的支出等。
       </view>
     </view>
@@ -151,7 +153,7 @@
       bind:change="onGroupNameChange"
       focus="{{false}}"
     />
-    <view class="new-tip">
+    <view class="new-tip" style="background: {{skin.colorList[skin.index].bg2}};">
       修改为喜欢的{{isEscape ? '群组' : '账单'}}名吧。
     </view>
   </view>

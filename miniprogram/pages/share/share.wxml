@@ -1,4 +1,5 @@
-<view class="login">
+<view class="login-body" style="background: {{skin.colorList[skin.index].bg0}};">
+  <view class="login" style="background: {{skin.colorList[skin.index].bg2}};">
   <view class='public-list' wx:if="{{isEscape}}">
     <view class='public-header mp-info'>
       <image src="{{inviteInfo.avatarUrl}}" class='icon'></image>
@@ -17,5 +18,6 @@
     </view>
     <button class='btn btn-primary login-btn' bindtap='{{loading ? "" : "joinGroup"}}'>{{loading ? '正在加入...' : '立即加入'}}</button>
   </view>
+</view>
 </view>
 <van-notify id="join-tips" />

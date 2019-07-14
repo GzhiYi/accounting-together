@@ -15,7 +15,8 @@ Page({
     message: '',
     fetchUserInfo: {},
     feedbackList: [],
-    isEscape: getApp().globalData.isEscape
+    isEscape: getApp().globalData.isEscape,
+    skin: getApp().globalData.skin
   },
 
   /**

@@ -11,7 +11,8 @@ Page({
     screenWidth: getApp().globalData.screenWidth,
     showTips: false,
     showShareTips: false,
-    isEscape: getApp().globalData.isEscape
+    isEscape: getApp().globalData.isEscape,
+    skin: getApp().globalData.skin
   },
   onLoad: function () {
     const self = this

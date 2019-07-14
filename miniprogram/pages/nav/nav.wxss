@@ -9,7 +9,6 @@
 /* 新增图标 */
 .nav-icon-view {
   border-radius:50%;
-  background:rgb(255, 248, 198);
   width:70rpx;
   height:70rpx;
   display:flex;

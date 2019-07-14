@@ -36,7 +36,8 @@ Page({
     wordList: [], // 说话列表
     word: '', // 你要说啥
     loadingSendWord: false,
-    isEscape: getApp().globalData.isEscape
+    isEscape: getApp().globalData.isEscape,
+    skin: getApp().globalData.skin
   },
   onLoad: function (options) {
     const self = this

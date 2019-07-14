@@ -9,7 +9,8 @@ Page({
   data: {
     inviteInfo: {},
     loading: false,
-    isEscape: getApp().globalData.isEscape
+    isEscape: getApp().globalData.isEscape,
+    skin: getApp().globalData.skin
   },
 
   /**

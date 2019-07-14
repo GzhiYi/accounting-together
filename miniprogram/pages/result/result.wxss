@@ -1,6 +1,8 @@
-page {
+.personal {
   width: 100%;
-  padding-bottom:80rpx;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .mp-info {
   display:flex;
@@ -43,13 +45,13 @@ page {
 .check-me-receive {
   width:100%;
   background:rgba(40, 167, 70, 0.304);
-  box-shadow:0px 5px 12px 0px rgba(40, 167, 70, 0.304);
+  box-shadow:0px 5px 12px 0px rgba(40, 167, 70, 0.304) !important;
   border: 1px solid rgb(30, 131, 53);
 }
 .check-me-pay {
   width: 100%;
   background: rgba(220, 53, 70, 0.304);
-  box-shadow: 0px 5px 12px 0px rgba(220, 53, 70, 0.304);
+  box-shadow: 0px 5px 12px 0px rgba(220, 53, 70, 0.304) !important;
   border: 1px solid #dc3545;
 }
 .user-avatar-list {
@@ -96,4 +98,8 @@ page {
   width:100%;
   margin:10rpx 0 0;
   color:#555;
+}
+.space {
+  height: 230rpx;
+  width: 100%;
 }

@@ -1,14 +1,13 @@
 /* pages/billDetail/billDetail.wxss */
+.group-body {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .project-item-right {
   text-align:right;
   font-size:28rpx;
-}
-page {
-  background-color: #F2F2F2;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 .head {
   display:flex;
@@ -125,7 +124,6 @@ page {
 .divide {
   width:80%;
   height:2rpx;
-  background-color:rgb(252, 241, 163);
   margin:20rpx auto;
 }
 .word-item {

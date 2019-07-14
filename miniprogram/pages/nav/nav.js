@@ -15,7 +15,8 @@ Component({
     showLoadingIcon: false,
     showBackIcon: false,
     showHomeIcons: false,
-    isEscape: getApp().globalData.isEscape
+    isEscape: getApp().globalData.isEscape,
+    skin: getApp().globalData.skin
   },
   ready() {
     let {

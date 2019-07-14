@@ -1,17 +1,11 @@
-page {
-  /* height: 100%; */
-  background-color: rgb(255, 232, 59) !important;
-}
 .public-list {
   width:90%;
-  background-color:rgb(255, 248, 198);
   margin:0 auto 20rpx;
   border-radius:20rpx;
 }
 .public-header {
   padding:30rpx 20rpx;
   font-size:39rpx;
-  border-bottom:.5rpx solid rgb(252, 241, 163);
   display: flex;
   align-items: center;
 }
@@ -21,7 +15,6 @@ page {
   height:32rpx;
 }
 .public-item {
-  border-bottom: .5rpx solid rgb(252, 241, 163);
   padding:20rpx 20rpx;
   display:flex;
   justify-content: space-between;
@@ -111,7 +104,6 @@ page {
 .new-tip {
   width:70%;
   margin:0 auto;
-  background:rgb(255, 248, 198);
   padding:39rpx;
   margin-top:45rpx;
   border-radius:20rpx;

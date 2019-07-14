@@ -1,6 +1,6 @@
-<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['home']}}"></nav>
-<view class="group-body">
-  <view class='public-list'>
+<nav class="nav-instance" showIcons="{{['home']}}"></nav>
+<view class="group-body" style="background: {{skin.colorList[skin.index].bg0}};">
+  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
     <view class='public-header'>
       <image class='public-icon' src="../../images/group.png"></image>
       我的{{isEscape ? '群组' : '账单'}}
@@ -11,6 +11,7 @@
       wx:key="index"
       bindtap='goToGroupDetail'
       data-group="{{item}}"
+      style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};"
     >
       <view class='public-item-name'>{{item.name}}</view>
       <view style="display:flex;align-items:center;">
@@ -53,7 +54,7 @@
       bind:change="onGroupNameChange"
       focus="{{false}}"
     />
-    <view class="new-tip">
+    <view class="new-tip" style="background: {{skin.colorList[skin.index].bg2}};">
       {{isEscape ? '新建后进入群组通过邀请让好友加入，一起记账。别忘记邀请好友一起哦～' : '新建一个账单组用于汇集你所创建的账单吧～'}}
     </view>
   </view>

@@ -1,6 +1,8 @@
 // pages/help/help.js
 Page({
-  data: {},
+  data: {
+    skin: getApp().globalData.skin
+  },
   onLoad: function () {},
   onShareAppMessage: function () {
     return {

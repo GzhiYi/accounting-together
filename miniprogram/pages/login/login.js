@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    backPath: ''
+    backPath: '',
+    skin: getApp().globalData.skin
   },
   onLoad: function (options) {
     if (options.hasOwnProperty("back")) {

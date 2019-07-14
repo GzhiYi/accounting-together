@@ -11,7 +11,7 @@ App({
     }
     // 判断是否在审核期间
     const nowTime = Date.parse(new Date())
-    if (nowTime < 1563181200000) {
+    if (nowTime < 563181200000) {
       this.globalData.isEscape = false
     }
     // 获取手机信息以配置顶栏
@@ -79,7 +79,22 @@ App({
     },
     sharePath: '/pages/group/group',
     imageUrl: 'https://images.vrm.cn/2019/07/06/banner-new.png',
-    isEscape: true
+    isEscape: true,
+    skin: {
+      colorList: [
+        {
+          bg0: 'rgb(255, 232, 59)',
+          bg1: 'rgb(252, 241, 163)',
+          bg2: 'rgb(255, 248, 198)'
+        },
+        {
+          bg0: '#F2F2F2',
+          bg1: '#F2F2F2',
+          bg2: '#fff'
+        }
+      ],
+      index: 0
+    }
   },
   showLoading(target) {
     const nav = target.selectComponent('.nav-instance')

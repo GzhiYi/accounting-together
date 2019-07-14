@@ -1,13 +1,13 @@
-<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
-<view class='personal'>
-  <view class='public-list'>
+<view class='personal' style="background: {{skin.colorList[skin.index].bg0}};">
+  <nav class="nav-instance" showIcons="{{['back']}}"></nav>
+  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
     <view class='public-header mp-info' style='border-bottom: none;'>
       <image src="{{userInfo.avatarUrl}}" class='icon'></image>
       <text class='mp-name'>{{userInfo.nickName}}</text>
     </view>
   </view>
-  <view class='public-list'>
-    <view class='public-item' >
+  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
+    <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
       <view class='public-item-name'>累计账单数</view>
       <view class='public-item-right'>
         <text class='sum'>{{fetchUserInfo.billNum}}</text>
@@ -15,7 +15,7 @@
       </view>
     </view>
 
-    <view class='public-item' wx:if="{{isEscape}}">
+    <view class='public-item' wx:if="{{isEscape}}" style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
       <view class='public-item-name'>累计群组数</view>
       <view class='public-item-right'>
         <text class='sum'>{{fetchUserInfo.groupNum}}</text>
@@ -23,7 +23,7 @@
       </view>
     </view>
 
-    <view class='public-item' style='border-bottom: none;'>
+    <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};border-bottom: none;">
       <view class='public-item-name'>注册时间</view>
       <view class='public-item-right'>
         <text class='sum'>{{fetchUserInfo.storeUser.createTime}}</text>
@@ -32,36 +32,42 @@
     </view>
   </view>
 
-  <view class='public-list'>
+  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
 
-    <view class='public-item' bindtap='goToHelp'>
+    <view class='public-item' bindtap='goToHelp' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
       <view class='public-item-name'>使用帮助</view>
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
 
-    <view class='public-item' bindtap='goToUpdateLog'>
+    <view class='public-item' bindtap='goToUpdateLog' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
       <view class='public-item-name'>更新内容</view>
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
-    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
+    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback" style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
       <view class='public-item-name'>留个言咧？</view>
       <view class='public-item-right'>
-        <van-icon name="arrow" style='color: #C6C6C6;;font-size: 26rpx'/>
+        <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
     
-    <view class='public-item' bindtap='feedbackListModal' data-modal="showModal" wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}">
+    <view
+      class='public-item'
+      bindtap='feedbackListModal'
+      data-modal="showModal"
+      wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}"
+      style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};"
+    >
       <view class='public-item-name'>反馈内容</view>
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
 
-    <view class='public-item' bindtap='copySourceLink' style='border-bottom: none;'>
+    <view class='public-item' bindtap='copySourceLink' style='border-bottom: none;border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};'>
       <view class='public-item-name'>源码地址</view>
       <view class='public-item-right'>
         <text class='sum'>Github</text>
@@ -86,9 +92,6 @@
     </navigator>
   </view>
 
-</view>
-<view class="credit">
-  icon from https://www.freepik.com
 </view>
 <van-popup show="{{ showFeedback }}" bind:close="feedbackModal" data-modal="hideModal" custom-style="border-radius: 20rpx;width: 80%;">
   <view class='feedback-body'>
