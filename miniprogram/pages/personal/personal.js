@@ -15,17 +15,13 @@ Page({
     message: '',
     fetchUserInfo: {},
     feedbackList: [],
-    isEscape: true
+    isEscape: getApp().globalData.isEscape
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.setData({
-      isEscape: getApp().globalData.isEscape
-    })
-  },
+  onLoad: function (options) {},
   onShow: function () {
     const self = this
     // 获取账单信息

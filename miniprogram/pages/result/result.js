@@ -10,7 +10,8 @@ Page({
    */
   data: {
     userInfo: {},
-    billInfo: {}
+    billInfo: {},
+    isEscape: getApp().globalData.isEscape
   },
 
   /**

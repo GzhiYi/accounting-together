@@ -9,11 +9,14 @@ App({
         traceUser: true,
       })
     }
-    console.log('this', this)
+    // 判断是否在审核期间
+    const nowTime = Date.parse(new Date())
+    if (nowTime < 1563181200000) {
+      this.globalData.isEscape = false
+    }
     // 获取手机信息以配置顶栏
     wx.getSystemInfo({
       success: res => {
-        console.log('res', res)
         this.globalData.statusBarHeight = res.statusBarHeight
         this.globalData.navBarHeight = 44 + res.statusBarHeight
         this.globalData.screenWidth = res.screenWidth
@@ -72,8 +75,7 @@ App({
     screenWidth: 0,
     isLoading: false,
     shareWord: function() {
-      console.log('this', this)
-      return `你的好友${this.userInfo.nickName}在用这个AA记账，加入一起开心记账吧。`
+      return `你的好友${this.userInfo.nickName}在用这个AA记账，你也来试试吧 (๑>◡<๑) `
     },
     sharePath: '/pages/group/group',
     imageUrl: 'https://images.vrm.cn/2019/07/06/banner-new.png',

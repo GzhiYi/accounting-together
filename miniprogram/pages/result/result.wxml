@@ -16,7 +16,7 @@
     </view>
 
     <view class='public-item' >
-      <view class='public-item-name'>所在群组</view>
+      <view class='public-item-name'>所在{{isEscape ? '群组' : '账单'}}</view>
       <view class='public-item-right'>
         <text class='sum'>{{billInfo.groupId.name}}</text>
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->

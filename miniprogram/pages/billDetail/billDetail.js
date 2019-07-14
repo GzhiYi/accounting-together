@@ -36,7 +36,7 @@ Page({
     wordList: [], // 说话列表
     word: '', // 你要说啥
     loadingSendWord: false,
-    canShowWord: true
+    isEscape: getApp().globalData.isEscape
   },
   onLoad: function (options) {
     const self = this
@@ -53,13 +53,6 @@ Page({
       userInfoFromCloud: app.globalData.userInfoFromCloud
     })
     self.getProject()
-    // 用于判断是否显示账单留言
-    const nowTime = Date.parse(new Date())
-    if (nowTime < 1562749200000) { // 2019-07-10 17:00:00
-      self.setData({
-        canShowWord: false
-      })
-    }
   },
   roundFun(value, n) {
     return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);

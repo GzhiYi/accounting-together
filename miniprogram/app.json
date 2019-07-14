@@ -4,11 +4,11 @@
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
     "pages/login/login",
-    "pages/share/share",
     "pages/result/result",
     "pages/updateLog/updateLog",
     "pages/personal/personal",
-    "pages/help/help"
+    "pages/help/help",
+    "pages/share/share"
   ],
   "window": {
     "backgroundColor": "red≈",

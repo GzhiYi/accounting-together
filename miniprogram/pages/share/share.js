@@ -8,13 +8,19 @@ Page({
    */
   data: {
     inviteInfo: {},
-    loading: false
+    loading: false,
+    isEscape: getApp().globalData.isEscape
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (!getApp().globalData.isEscape) {
+      wx.redirectTo({
+        url: '/pages/group/group'
+      })
+    }
     if (options.hasOwnProperty('groupId')) {
       this.setData({
         inviteInfo: options

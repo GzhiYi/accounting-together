@@ -22,13 +22,12 @@ Page({
     loadingUpdateNote: false,
     editGroupModal: false,
     groupName: '',
-    isEscape: true
+    isEscape: getApp().globalData.isEscape
   },
   onLoad: function (options) {
     // 获取再app.js中拿到的用户信息
     this.setData({
-      userInfoFromCloud: app.globalData.userInfoFromCloud,
-      isEscape: getApp().globalData.isEscape
+      userInfoFromCloud: app.globalData.userInfoFromCloud
     })
   },
 
@@ -381,9 +380,16 @@ Page({
   onShareAppMessage: function () {
     const { groupInfo } = this.data
     const userInfo = app.globalData.userInfo
+    if (getApp().globalData.isEscape) {
+      return {
+        title: `${userInfo.nickName}邀你加入【${groupInfo.name}】一起AA记账，快加入吧 (๑>◡<๑) `,
+        path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`,
+        imageUrl: getApp().globalData.imageUrl
+      }
+    }
     return {
-      title: `${userInfo.nickName}邀你加入【${groupInfo.name}】一起AA记账，快加入吧！`,
-      path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`,
+      title: getApp().globalData.shareWord(),
+      path: getApp().globalData.sharePath,
       imageUrl: getApp().globalData.imageUrl
     }
   }

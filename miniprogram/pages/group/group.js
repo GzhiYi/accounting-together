@@ -11,18 +11,10 @@ Page({
     screenWidth: getApp().globalData.screenWidth,
     showTips: false,
     showShareTips: false,
-    isEscape: true
+    isEscape: getApp().globalData.isEscape
   },
   onLoad: function () {
     const self = this
-    // 用于判断是否显示账单留言
-    const nowTime = Date.parse(new Date())
-    if (nowTime < 1562749200000) { // 2019-07-10 17:00:00
-      self.setData({
-        isEscape: false
-      })
-      getApp().globalData.isEscape = false
-    }
     // 处理是否查看过教程
     const isVisitedHelp = wx.getStorageSync('isVisitedHelp') || false
     if (!isVisitedHelp) {

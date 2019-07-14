@@ -89,7 +89,7 @@
     show="{{ newBillModal }}"
     show-cancel-button
     bind:close="callNewBill"
-    title="群组内新建一个账单"
+    title="{{isEscape ? '群组' : '账单组'}}内新建一个账单"
     id="new-bill-modal"
   >
     <view class='bill-dialog-body' style='margin:50rpx 0;'>
@@ -145,14 +145,14 @@
   <view class='group-dialog-body' style='margin:50rpx 0;'>
     <van-field
       value="{{ groupName }}"
-      label="群组名"
+      label="{{isEscape ? '群组' : '账单'}}名"
       maxlength="{{20}}"
       placeholder="起个好名？"
       bind:change="onGroupNameChange"
       focus="{{false}}"
     />
     <view class="new-tip">
-      修改为喜欢的群组名吧。
+      修改为喜欢的{{isEscape ? '群组' : '账单'}}名吧。
     </view>
   </view>
 </van-dialog>

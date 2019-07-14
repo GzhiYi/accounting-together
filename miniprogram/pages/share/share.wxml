@@ -1,5 +1,5 @@
 <view class="login">
-  <view class='public-list'>
+  <view class='public-list' wx:if="{{isEscape}}">
     <view class='public-header mp-info'>
       <image src="{{inviteInfo.avatarUrl}}" class='icon'></image>
       <text class='mp-name'>{{inviteInfo.inviter}}</text>
