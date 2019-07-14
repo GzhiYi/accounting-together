@@ -14,6 +14,8 @@ App({
     if (nowTime < 563181200000) {
       this.globalData.isEscape = false
     }
+    // 查看主题设置
+    this.globalData.skin.index = wx.getStorageSync('skin') || 0
     // 获取手机信息以配置顶栏
     wx.getSystemInfo({
       success: res => {

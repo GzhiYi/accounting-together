@@ -186,6 +186,15 @@ Page({
       }
     })
   },
+  selectTheme (event) {
+    wx.setStorageSync('skin', event.target.dataset.theme)
+    getApp().globalData.skin.index = event.target.dataset.theme
+    wx.showToast({
+      title: '已设置，重启小程序生效～',
+      icon: 'none',
+      duration: 5000
+    })
+  },
   onShareAppMessage: function () {
     return {
       title: getApp().globalData.shareWord(),

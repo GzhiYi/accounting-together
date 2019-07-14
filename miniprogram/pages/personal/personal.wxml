@@ -74,6 +74,19 @@
         <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
       </view>
     </view>
+    <view class='public-item' style='border-bottom: none;border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};'>
+      <view class='public-item-name'>主题</view>
+      <view class='public-item-right'>
+        <view
+          class="theme"
+          wx:for="{{skin.colorList}}"
+          wx:key="{{index}}"
+          style="background: {{item.bg0}};{{skin.index === index ? 'box-shadow:0 4px 6px #ccc;' : ''}}"
+          bindtap="selectTheme"
+          data-theme="{{index}}"
+        ></view>
+      </view>
+    </view>
     <!-- <view
     class='public-item'
     bindtap='goToQuestion'
