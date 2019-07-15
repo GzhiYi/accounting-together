@@ -37,7 +37,6 @@ Page({
     word: '', // 你要说啥
     loadingSendWord: false,
     isEscape: getApp().globalData.isEscape,
-    skin: getApp().globalData.skin,
     theme: 'white-skin'
   },
   onLoad: function (options) {

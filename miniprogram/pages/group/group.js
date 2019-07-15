@@ -12,7 +12,6 @@ Page({
     showTips: false,
     showShareTips: false,
     isEscape: getApp().globalData.isEscape,
-    skin: getApp().globalData.skin,
     theme: 'white-skin'
   },
   onLoad: function () {

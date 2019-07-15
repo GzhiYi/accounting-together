@@ -12,7 +12,6 @@ Page({
     userInfo: {},
     billInfo: {},
     isEscape: getApp().globalData.isEscape,
-    skin: getApp().globalData.skin,
     theme: 'white-skin'
   },
 

@@ -1,8 +1,7 @@
 // pages/updateLog/updateLog.js
 Page({
   data: {
-    logs: [],
-    skin: getApp().globalData.skin
+    logs: []
   },
   onLoad: function () {},
   onShow: function () {

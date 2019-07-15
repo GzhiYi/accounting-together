@@ -23,7 +23,6 @@ Page({
     editGroupModal: false,
     groupName: '',
     isEscape: getApp().globalData.isEscape,
-    skin: getApp().globalData.skin,
     exactArray: [],
     theme: 'white-skin'
   },

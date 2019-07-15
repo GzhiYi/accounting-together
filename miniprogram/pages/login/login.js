@@ -8,7 +8,6 @@ Page({
    */
   data: {
     backPath: '',
-    skin: getApp().globalData.skin,
     theme: 'white-skin'
   },
   onLoad: function (options) {
