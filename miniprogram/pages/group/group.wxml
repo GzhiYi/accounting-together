@@ -1,6 +1,6 @@
-<nav class="nav-instance" showIcons="{{['home']}}"></nav>
-<view class="group-body" style="background: {{skin.colorList[skin.index].bg0}};">
-  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
+<nav class="nav-instance" my-class="set-bg" my-icon-class="set-icon-bg" showIcons="{{['home']}}"></nav>
+<view class="group-body" id="{{theme}}">
+  <view class='public-list'>
     <view class='public-header'>
       <image class='public-icon' src="../../images/group.png"></image>
       我的{{isEscape ? '群组' : '账单'}}
@@ -11,14 +11,12 @@
       wx:key="index"
       bindtap='goToGroupDetail'
       data-group="{{item}}"
-      style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};"
     >
       <view class='public-item-name'>{{item.name}}</view>
       <view style="display:flex;align-items:center;">
         <image src='{{item.createBy.avatarUrl}}' class='creater'></image>
         <van-icon name="arrow" style='color: #C6C6C6;display: flex;'/>
       </view>
-      <!-- <view>{{item.createTime}}</view> -->
     </view>
   </view>
 </view>
@@ -54,7 +52,7 @@
       bind:change="onGroupNameChange"
       focus="{{false}}"
     />
-    <view class="new-tip" style="background: {{skin.colorList[skin.index].bg2}};">
+    <view class="new-tip">
       {{isEscape ? '新建后进入群组通过邀请让好友加入，一起记账。别忘记邀请好友一起哦～' : '新建一个账单组用于汇集你所创建的账单吧～'}}
     </view>
   </view>

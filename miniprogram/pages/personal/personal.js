@@ -3,10 +3,6 @@ import Notify from '../dist/notify/notify'
 import { parseTime } from '../../utils/parseTime.js'
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     userInfo: {},
     showFeedback: false,
@@ -16,13 +12,9 @@ Page({
     fetchUserInfo: {},
     feedbackList: [],
     isEscape: getApp().globalData.isEscape,
-    skin: getApp().globalData.skin
+    skin: getApp().globalData.skin,
+    theme: 'white-skin'
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {},
   onShow: function () {
     const self = this
     // 获取账单信息

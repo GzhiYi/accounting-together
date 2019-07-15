@@ -8,7 +8,8 @@ Page({
    */
   data: {
     backPath: '',
-    skin: getApp().globalData.skin
+    skin: getApp().globalData.skin,
+    theme: 'white-skin'
   },
   onLoad: function (options) {
     if (options.hasOwnProperty("back")) {

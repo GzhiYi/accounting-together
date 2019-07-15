@@ -1,7 +1,8 @@
 // pages/help/help.js
 Page({
   data: {
-    skin: getApp().globalData.skin
+    skin: getApp().globalData.skin,
+    theme: 'white-skin'
   },
   onLoad: function () {},
   onShareAppMessage: function () {

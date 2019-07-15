@@ -1,5 +1,5 @@
-<view class="login-body" style="background: {{skin.colorList[skin.index].bg0}};">
-  <view class="login" style="background: {{skin.colorList[skin.index].bg2}};">
+<view class="login-body" id="{{theme}}">
+  <view class="login">
     <view class='public-list'>
       <view class='public-header mp-info'>
         <image src="https://images.vrm.cn/2019/07/05/at-icon.png" class='icon'></image>

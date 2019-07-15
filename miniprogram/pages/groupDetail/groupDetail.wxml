@@ -1,6 +1,6 @@
-<nav bgColor="rgb(255, 232, 59)" class="nav-instance" showIcons="{{['back']}}"></nav>
-<view class='group-detail-body' style="background: {{skin.colorList[skin.index].bg0}};">
-  <view class='group-detail' style="background: {{skin.colorList[skin.index].bg2}};">
+<nav class="nav-instance" my-class="set-bg" my-icon-class="set-icon-bg" showIcons="{{['back']}}"></nav>
+<view class='group-detail-body' id="{{theme}}">
+  <view class='group-detail'>
     <view class='group-basic'>
       <text class='name'>{{groupInfo.name}}</text>
       <view class='group-basic-right'>
@@ -8,7 +8,7 @@
         <view class='group-createtime'>{{groupCreateTime}}</view>
       </view>
     </view>
-    <view class='check-list' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+    <view class='check-list'>
       <view
         class='one-avatar'
         wx:for="{{userList}}"
@@ -58,7 +58,7 @@
       </view>
     </view>
   </view>
-  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
+  <view class='public-list'>
     <view class='public-header'>
       <image class='public-icon' src="../../images/list.png"></image>
       账单列表
@@ -70,14 +70,12 @@
       wx:key="index"
       bindtap='goToBillDetail'
       data-bill="{{item}}"
-      style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};"
     >
       <view class='public-item-name'>{{item.name}}<van-tag wx:if="{{item.ended}}" plain type="default" style="margin-left: 20rpx;">已结算</van-tag></view>
       <view class='public-item-right'>
         <text class='paid-total'>总付：{{item.paidTotal}}元</text>
         <van-icon name="arrow" style='color: #C6C6C6;'/>
       </view>
-      <!-- <view>{{item.createTime}}</view> -->
     </view>
     <view wx:if="{{billList.length === 0}}" class='public-item' style='font-size:27rpx;border-bottom: none;'>
       快去新建账单吧~
@@ -101,7 +99,7 @@
         placeholder="请输入账单名"
         bind:change="onBillNameChange"
       />
-      <view class="new-tip" style="background: {{skin.colorList[skin.index].bg2}};">
+      <view class="new-tip">
         账单并不是记录支出什么，是一次AA过程的集合，比如一次聚会，一段时间的支出等。
       </view>
     </view>
@@ -153,7 +151,7 @@
       bind:change="onGroupNameChange"
       focus="{{false}}"
     />
-    <view class="new-tip" style="background: {{skin.colorList[skin.index].bg2}};">
+    <view class="new-tip">
       修改为喜欢的{{isEscape ? '群组' : '账单'}}名吧。
     </view>
   </view>

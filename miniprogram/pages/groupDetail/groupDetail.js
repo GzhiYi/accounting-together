@@ -24,7 +24,8 @@ Page({
     groupName: '',
     isEscape: getApp().globalData.isEscape,
     skin: getApp().globalData.skin,
-    exactArray: []
+    exactArray: [],
+    theme: 'white-skin'
   },
   onLoad: function (options) {
     // 获取再app.js中拿到的用户信息

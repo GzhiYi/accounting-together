@@ -1,35 +1,35 @@
-<scroll-view scroll-y="true" class='personal' style="background: {{skin.colorList[skin.index].bg0}};">
-  <nav class="nav-instance" showIcons="{{['back']}}"></nav>
+<scroll-view scroll-y="true" class='personal' id="{{theme}}">
+  <nav class="nav-instance" my-class="set-bg" my-icon-class="set-icon-bg" showIcons="{{['back']}}"></nav>
   <view >
-    <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
+    <view class='public-list'>
       <view class='public-header mp-info' style="border-bottom: none;">
         <image src="{{userInfo.avatarUrl}}" class='icon'></image>
         <text class='mp-name'>{{userInfo.nickName}}</text>
       </view>
     </view>
-    <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
-      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+    <view class='public-list'>
+      <view class='public-item' >
         <view class='public-item-name'>账单</view>
         <view class='public-item-right'>
           <text class='sum'>{{billInfo.name}}</text>
           <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
         </view>
       </view>
-      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+      <view class='public-item'>
         <view class='public-item-name'>所在{{isEscape ? '群组' : '账单'}}</view>
         <view class='public-item-right'>
           <text class='sum'>{{billInfo.groupId.name}}</text>
           <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
         </view>
       </view>
-      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+      <view class='public-item'>
         <view class='public-item-name'>创建时间</view>
         <view class='public-item-right'>
           <text class='sum'>{{billInfo.createTime}}</text>
           <!-- <van-icon name="arrow" style='color: #C6C6C6;'/> -->
         </view>
       </view>
-      <view class='public-item' style="border-bottom: 2rpx solid {{skin.colorList[skin.index].bg1}};">
+      <view class='public-item'>
         <view class='public-item-name'>结算时间</view>
         <view class='public-item-right'>
           <text class='sum'>{{billInfo.endTime}}</text>
@@ -41,10 +41,9 @@
       </view>
       <view class='bill-result'>
         <view
-          class="check-list {{item.openId === fetchUserInfo.storeUser.openId ? item.shouldPay > 0 ?  'check-me-receive' :  'check-me-pay' : ''}}"
+          class="check-list1 {{index !== 0 ? 'check-list-box' : ''}} {{item.openId === fetchUserInfo.storeUser.openId ? item.shouldPay > 0 ?  'check-me-receive' :  'check-me-pay' : ''}}"
           wx:for="{{billInfo.result}}"
           wx:key="{{index}}"
-          style="box-shadow: 0px 5px 12px 0px {{skin.colorList[skin.index].bg0}}"
         >
           <view class='one-avatar'>
             <image src='{{item.avatarUrl}}' class='user-avatar-list' />
@@ -68,7 +67,7 @@
     </view>
   </view>
   <!-- 更多操作 -->
-  <view class='public-list' style="background: {{skin.colorList[skin.index].bg2}};">
+  <view class='public-list'>
     <view class='handle-basic'>
       <button class="handle-one handle-one-btn" open-type='share'>
         <image class='handle-icon' src="../../images/share.png"></image>

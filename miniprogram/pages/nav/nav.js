@@ -1,4 +1,5 @@
 Component({
+  externalClasses: ['my-class', 'my-icon-class'],
   options: {
     multipleSlots: true
   },

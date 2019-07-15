@@ -1,3 +1,4 @@
+@import "style/white.wxss";
 .public-list {
   width:90%;
   margin:0 auto 20rpx;

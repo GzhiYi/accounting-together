@@ -93,6 +93,11 @@ App({
           bg0: '#F2F2F2',
           bg1: '#F2F2F2',
           bg2: '#fff'
+        },
+        {
+          bg0: '#7BB2D9',
+          bg1: '#7BB2D9',
+          bg02: '#7BB2D9'
         }
       ],
       index: 0
