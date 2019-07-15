@@ -18,7 +18,9 @@ Page({
       })
     }
   },
-  onShow: function () {},
+  onShow: function () {
+    getApp().setTheme(this)
+  },
   onGotUserInfo (event) {
     const { backPath } = this.data
     // 确认获取到用户信息

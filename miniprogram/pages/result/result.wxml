@@ -1,5 +1,5 @@
 <scroll-view scroll-y="true" class='personal' id="{{theme}}">
-  <nav class="nav-instance" my-class="set-bg" my-icon-class="set-icon-bg" showIcons="{{['back']}}"></nav>
+  <nav class="nav-instance" my-class="{{theme}}-set-bg" my-icon-class="{{theme}}-set-icon-bg" showIcons="{{['back']}}"></nav>
   <view >
     <view class='public-list'>
       <view class='public-header mp-info' style="border-bottom: none;">

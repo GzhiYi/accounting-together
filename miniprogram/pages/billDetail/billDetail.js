@@ -606,7 +606,9 @@ Page({
       })
     }
   },
-  onShow: function () {},
+  onShow: function () {
+    getApp().setTheme(this)
+  },
   goToResult () {
     wx.navigateTo({
       url: `/pages/result/result?billId=${this.data.currentBill._id}`,

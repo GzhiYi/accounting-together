@@ -157,6 +157,7 @@ Page({
    */
   onShow: function () {
     const self = this
+    getApp().setTheme(this)
     self.getLatestData()
   },
   getLatestData () {

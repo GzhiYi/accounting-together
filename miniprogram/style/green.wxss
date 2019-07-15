@@ -1,0 +1,55 @@
+#green-skin {
+  background-color: #60837F;
+}
+
+#green-skin .public-list {
+  background-color: rgb(209, 236, 233);
+}
+
+#green-skin .public-item {
+  border-bottom: 2rpx solid rgb(227, 243, 241);
+}
+
+.green-skin-set-bg {
+  background-color: #60837F;
+}
+
+.green-skin-set-icon-bg {
+  background-color: rgb(209, 236, 233);
+}
+
+#green-skin .group-detail-body {
+  background-color: #60837F;
+}
+
+#green-skin .group-detail {
+  background-color: rgb(209, 236, 233);
+}
+
+#green-skin .check-list {
+  border-bottom: 2rpx solid rgb(227, 243, 241);
+}
+
+#green-skin .group-body {
+  background-color: #60837F;
+}
+
+#green-skin .divide {
+  border-bottom: 2rpx solid rgb(227, 243, 241);
+}
+
+#green-skin .check-list-box {
+  box-shadow: 0px 5px 12px 0px #60837F;
+}
+
+#green-skin .personal {
+  background-color: #60837F;
+}
+
+#green-skin .login-body {
+  background-color: #60837F;
+}
+
+#green-skin .login {
+  background-color: rgb(209, 236, 233);
+}

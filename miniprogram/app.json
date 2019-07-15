@@ -6,8 +6,8 @@
     "pages/login/login",
     "pages/result/result",
     "pages/updateLog/updateLog",
-    "pages/personal/personal",
     "pages/help/help",
+    "pages/personal/personal",
     "pages/share/share"
   ],
   "window": {

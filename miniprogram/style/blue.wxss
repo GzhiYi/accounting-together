@@ -1,0 +1,55 @@
+#blue-skin {
+  background-color: #7BB2D9;
+}
+
+#blue-skin .public-list {
+  background-color: rgb(190, 222, 245)
+}
+
+#blue-skin .public-item {
+  border-bottom: 2rpx solid rgb(175, 214, 241);
+}
+
+.blue-skin-set-bg {
+  background-color: #7BB2D9;
+}
+
+.blue-skin-set-icon-bg {
+  background-color: rgb(190, 222, 245)
+}
+
+#blue-skin .group-detail-body {
+  background-color: #7BB2D9;
+}
+
+#blue-skin .group-detail {
+  background-color: rgb(190, 222, 245)
+}
+
+#blue-skin .check-list {
+  border-bottom: 2rpx solid rgb(175, 214, 241);
+}
+
+#blue-skin .group-body {
+  background-color: #7BB2D9;
+}
+
+#blue-skin .divide {
+  border-bottom: 2rpx solid rgb(175, 214, 241);
+}
+
+#blue-skin .check-list-box {
+  box-shadow: 0px 5px 12px 0px #7BB2D9;
+}
+
+#blue-skin .personal {
+  background-color: #7BB2D9;
+}
+
+#blue-skin .login-body {
+  background-color: #7BB2D9;
+}
+
+#blue-skin .login {
+  background-color: rgb(190, 222, 245)
+}

@@ -13,10 +13,12 @@ Page({
     feedbackList: [],
     isEscape: getApp().globalData.isEscape,
     skin: getApp().globalData.skin,
-    theme: 'white-skin'
+    theme: 'white-skin',
+    selectType: 'white-skin'
   },
   onShow: function () {
     const self = this
+    getApp().setTheme(this)
     // 获取账单信息
     wx.cloud.callFunction({
       name: 'getUserInfo',
@@ -179,13 +181,8 @@ Page({
     })
   },
   selectTheme (event) {
-    wx.setStorageSync('skin', event.target.dataset.theme)
-    getApp().globalData.skin.index = event.target.dataset.theme
-    wx.showToast({
-      title: '已设置，重启小程序生效～',
-      icon: 'none',
-      duration: 5000
-    })
+    wx.setStorageSync('theme', event.target.dataset.theme)
+    getApp().setTheme(this)
   },
   onShareAppMessage: function () {
     return {

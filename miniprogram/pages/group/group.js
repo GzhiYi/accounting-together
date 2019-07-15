@@ -56,6 +56,7 @@ Page({
     }
   },
   onShow: function () {
+    getApp().setTheme(this)
     this.getGroup()
   },
   getGroup() {

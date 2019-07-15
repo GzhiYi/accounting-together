@@ -5,6 +5,9 @@ Page({
     theme: 'white-skin'
   },
   onLoad: function () {},
+  onShow() {
+    getApp().setTheme(this)
+  },
   onShareAppMessage: function () {
     return {
       title: getApp().globalData.shareWord(),

@@ -1,4 +1,7 @@
 @import "style/white.wxss";
+@import "style/yellow.wxss";
+@import "style/blue.wxss";
+@import "style/green.wxss";
 .public-list {
   width:90%;
   margin:0 auto 20rpx;
@@ -23,7 +26,7 @@
   height:60rpx;
 }
 .public-item-bottom {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 .public-item-right {
   display:flex;

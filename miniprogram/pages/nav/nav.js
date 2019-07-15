@@ -17,7 +17,8 @@ Component({
     showBackIcon: false,
     showHomeIcons: false,
     isEscape: getApp().globalData.isEscape,
-    skin: getApp().globalData.skin
+    skin: getApp().globalData.skin,
+    showTheme: true
   },
   ready() {
     let {

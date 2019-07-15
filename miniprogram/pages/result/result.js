@@ -24,6 +24,7 @@ Page({
   },
   onShow: function () {
     const self = this
+    getApp().setTheme(this)
     // 如果用户未进行授权就进入这个页面就跳转到登录
     app.catchUserInfo = res => {
       if (!app.globalData.userInfo && !res) {

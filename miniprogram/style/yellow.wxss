@@ -1,0 +1,55 @@
+#yellow-skin {
+  background-color: rgb(255, 232, 59);
+}
+
+#yellow-skin .public-list {
+  background-color: rgb(255, 248, 198);
+}
+
+#yellow-skin .public-item {
+  border-bottom: 2rpx solid rgb(252, 241, 163);
+}
+
+.yellow-skin-set-bg {
+  background-color: rgb(255, 232, 59);
+}
+
+.yellow-skin-set-icon-bg {
+  background-color: rgb(255, 248, 198);
+}
+
+#yellow-skin .group-detail-body {
+  background-color: rgb(255, 232, 59);
+}
+
+#yellow-skin .group-detail {
+  background-color: rgb(255, 248, 198);
+}
+
+#yellow-skin .check-list {
+  border-bottom: 2rpx solid rgb(252, 241, 163);
+}
+
+#yellow-skin .group-body {
+  background-color: rgb(255, 232, 59);
+}
+
+#yellow-skin .divide {
+  border-bottom: 2rpx solid rgb(252, 241, 163);
+}
+
+#yellow-skin .check-list-box {
+  box-shadow: 0px 5px 12px 0px rgb(255, 232, 59);
+}
+
+#yellow-skin .personal {
+  background-color: rgb(255, 232, 59);
+}
+
+#yellow-skin .login-body {
+  background-color: rgb(255, 232, 59);
+}
+
+#yellow-skin .login {
+  background-color: rgb(255, 248, 198);
+}

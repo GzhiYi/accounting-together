@@ -1,6 +1,6 @@
 
 <scroll-view scroll-y="{{true}}" class="group-body" id="{{theme}}">
-  <nav class="nav-instance" my-class="set-bg" my-icon-class="set-icon-bg" showIcons="{{['back']}}"></nav>
+  <nav class="nav-instance" my-class="{{theme}}-set-bg" my-icon-class="{{theme}}-set-icon-bg" showIcons="{{['back']}}"></nav>
   <view class='public-list' style='padding-bottom: 14rpx;margin-top:28rpx;'>
     <view class='public-header' style='justify-content:space-between;'>
       <view>

@@ -10,11 +10,11 @@
   border-bottom: 2rpx solid #F2F2F2;
 }
 
-.set-bg {
+.white-skin-set-bg {
   background-color: #F2F2F2;
 }
 
-.set-icon-bg {
+.white-skin-set-icon-bg {
   background-color: #ffffff;
 }
 
