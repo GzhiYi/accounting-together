@@ -1,0 +1,55 @@
+#red-skin {
+  background-color: #AE303F;
+}
+
+#red-skin .public-list {
+  background-color: rgb(241, 151, 161);
+}
+
+#red-skin .public-item {
+  border-bottom: 2rpx solid rgb(245, 138, 150);
+}
+
+.red-skin-set-bg {
+  background-color: #AE303F;
+}
+
+.red-skin-set-icon-bg {
+  background-color: rgb(241, 151, 161);
+}
+
+#red-skin .group-detail-body {
+  background-color: #AE303F;
+}
+
+#red-skin .group-detail {
+  background-color: rgb(241, 151, 161);
+}
+
+#red-skin .check-list {
+  border-bottom: 2rpx solid rgb(245, 138, 150);
+}
+
+#red-skin .group-body {
+  background-color: #AE303F;
+}
+
+#red-skin .divide {
+  border-bottom: 2rpx solid rgb(245, 138, 150);
+}
+
+#red-skin .check-list-box {
+  box-shadow: 0px 5px 12px 0px #AE303F;
+}
+
+#red-skin .personal {
+  background-color: #AE303F;
+}
+
+#red-skin .login-body {
+  background-color: #AE303F;
+}
+
+#red-skin .login {
+  background-color: rgb(241, 151, 161);
+}

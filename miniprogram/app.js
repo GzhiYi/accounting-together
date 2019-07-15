@@ -65,7 +65,6 @@ App({
   },
   setTheme(page) {
     const storeTheme = wx.getStorageSync('theme') || 'yellow-skin'
-    console.log('hahah', page)
     page.setData({
       theme: storeTheme,
       selectType: storeTheme
@@ -94,26 +93,24 @@ App({
       colorList: [
         {
           bg0: 'rgb(255, 232, 59)',
-          bg1: 'rgb(252, 241, 163)',
-          bg2: 'rgb(255, 248, 198)',
           type: 'yellow-skin'
         },
         {
           bg0: '#F2F2F2',
-          bg1: '#F3F3F3',
-          bg2: '#fff',
           type: 'white-skin'
         },
         {
           bg0: '#7BB2D9',
-          bg1: '#7BB2D9',
-          bg02: '#7BB2D9',
           type: 'blue-skin'
         }, {
           bg0: '#60837F',
-          bg1: 'rgb(156, 192, 188)',
-          bg02: 'rgb(209, 236, 233)',
           type: 'green-skin'
+        }, {
+          bg0: '#AE303F',
+          type: 'red-skin'
+        }, {
+          bg0: '#6B60C8',
+          type: 'purple-skin'
         }
       ],
       index: 0

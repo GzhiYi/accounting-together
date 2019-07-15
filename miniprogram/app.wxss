@@ -2,6 +2,8 @@
 @import "style/yellow.wxss";
 @import "style/blue.wxss";
 @import "style/green.wxss";
+@import "style/red.wxss";
+@import "style/purple.wxss";
 .public-list {
   width:90%;
   margin:0 auto 20rpx;

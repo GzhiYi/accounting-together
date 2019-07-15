@@ -1,0 +1,55 @@
+#purple-skin {
+  background-color: #6B60C8;
+}
+
+#purple-skin .public-list {
+  background-color: rgb(160, 151, 236);
+}
+
+#purple-skin .public-item {
+  border-bottom: 2rpx solid rgb(153, 144, 253);
+}
+
+.purple-skin-set-bg {
+  background-color: #6B60C8;
+}
+
+.purple-skin-set-icon-bg {
+  background-color: rgb(160, 151, 236);
+}
+
+#purple-skin .group-detail-body {
+  background-color: #6B60C8;
+}
+
+#purple-skin .group-detail {
+  background-color: rgb(160, 151, 236);
+}
+
+#purple-skin .check-list {
+  border-bottom: 2rpx solid rgb(153, 144, 253);
+}
+
+#purple-skin .group-body {
+  background-color: #6B60C8;
+}
+
+#purple-skin .divide {
+  border-bottom: 2rpx solid rgb(153, 144, 253);
+}
+
+#purple-skin .check-list-box {
+  box-shadow: 0px 5px 12px 0px #6B60C8;
+}
+
+#purple-skin .personal {
+  background-color: #6B60C8;
+}
+
+#purple-skin .login-body {
+  background-color: #6B60C8;
+}
+
+#purple-skin .login {
+  background-color: rgb(160, 151, 236);
+}

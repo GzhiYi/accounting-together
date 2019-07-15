@@ -12,6 +12,7 @@ Page({
     fetchUserInfo: {},
     feedbackList: [],
     isEscape: getApp().globalData.isEscape,
+    skin: getApp().globalData.skin,
     theme: 'white-skin',
     selectType: 'white-skin'
   },
