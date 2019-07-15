@@ -30,7 +30,7 @@ Component({
       navBarHeight,
       showBackIcon: showIcons.includes('back'),
       showHomeIcons: showIcons.includes('home'),
-      showTheme: [1, 2, 3].includes(wx.getStorageSync('openCount'))
+      showTheme: [1, 2, 3, '1', '2', '3'].includes(wx.getStorageSync('openCount'))
     })
   },
   attached() {
