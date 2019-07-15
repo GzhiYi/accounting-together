@@ -83,4 +83,6 @@
   height:60rpx;
   margin-left:20rpx;
   border-radius:50%;
+  text-align:center;
+  line-height:60rpx;
 }

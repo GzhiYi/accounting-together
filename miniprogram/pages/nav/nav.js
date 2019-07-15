@@ -29,7 +29,8 @@ Component({
       statusBarHeight,
       navBarHeight,
       showBackIcon: showIcons.includes('back'),
-      showHomeIcons: showIcons.includes('home')
+      showHomeIcons: showIcons.includes('home'),
+      showTheme: [1, 2, 3].includes(wx.getStorageSync('openCount'))
     })
   },
   attached() {
