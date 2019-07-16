@@ -11,7 +11,7 @@ App({
     }
     // 判断是否在审核期间
     const nowTime = Date.parse(new Date())
-    if (nowTime < 1563336000000) {
+    if (nowTime < 1563595200000) {
       this.globalData.isEscape = false
     }
     // 查看主题设置
