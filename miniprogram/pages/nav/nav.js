@@ -41,7 +41,12 @@ Component({
   methods: {
     back() {
       wx.navigateBack({
-        delta: 1
+        delta: 1,
+        fail(error) {
+          wx.redirectTo({
+            url: '/pages/group/group',
+          })
+        }
       })
     },
     /**

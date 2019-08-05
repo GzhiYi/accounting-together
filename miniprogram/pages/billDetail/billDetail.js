@@ -173,7 +173,7 @@ Page({
         let myPaid = 0
         tempList.forEach(item => {
           // 处理购买日期格式转换
-          item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{m}')
+          item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{i}')
           if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
             myPaid += Number(item.price)
           }

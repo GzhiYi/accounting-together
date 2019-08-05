@@ -106,7 +106,13 @@ Page({
 
   },
   goBack() {
-    wx.navigateBack()
+    wx.navigateBack({
+      fail(error) {
+        wx.redirectTo({
+          url: '/pages/group/group',
+        })
+      }
+    })
   },
   onShareAppMessage: function () {
     const { billInfo, userInfo } = this.data
