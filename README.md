@@ -7,3 +7,5 @@
 ![小程序码](http://tva1.sinaimg.cn/large/0060lm7Tly1g4ifcks82lj3076076gmk.jpg)
 
 ### 欢迎微信扫码使用，觉得有帮助可以star支持下😄
+
+### 欢迎使用专为个人记账的全新小程序：单单记账，源码戳：[https://github.com/GzhiYi/dandan-account](https://github.com/GzhiYi/dandan-account)
