@@ -14,11 +14,15 @@
 	text-align: center;
 	border: 1rpx solid #bfbfbf;
 	border-radius: 8rpx;
-	background-color: rgb(222, 169, 222, 0.56);
-	border: 1rpx solid rgb(222, 169, 222, 0.56);
+	background-color: rgb(199, 199, 255, 0.56);
+  	border: 1rpx solid rgb(199, 199, 255, 0.56);
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	line-height: 30rpx;
+}
+.user-avatar-list {
+	border: 1rpx solid #ebeef5;
 }
 .rounded-full {
 	border-radius: 9999rpx;

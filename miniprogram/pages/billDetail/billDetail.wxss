@@ -14,14 +14,14 @@
   align-items:center;
 }
 .user-avatar {
-  width:70rpx;
-  height:70rpx;
+  width:80rpx;
+  height:80rpx;
   border-radius: 50%;
   margin-right: 15rpx;
 }
 .user-avatar-right {
-  width:70rpx;
-  height:70rpx;
+  width:80rpx;
+  height:80rpx;
   margin-right:-7rpx;
   border-radius: 50%;
 }

@@ -390,18 +390,6 @@ Page({
       showAddProjectSheet: true
     })
   },
-  showUserName(event) {
-    wx.showToast({
-      title: event.currentTarget.dataset.user.note || event.currentTarget.dataset.user.nickName,
-      icon: 'none'
-    })
-  },
-  showWordUserName(event) {
-    wx.showToast({
-      title: event.currentTarget.dataset.user.user.note || event.currentTarget.dataset.user.user.nickName,
-      icon: 'none'
-    })
-  },
   clickAvatar (event) {
     // 先算算勾选的人数
     const { currentGroupUserList } = this.data

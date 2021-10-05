@@ -33,10 +33,11 @@
       <van-collapse-item name="{{index}}">
         <view slot="title" class='coll-outer'>
           <view class="head">
-            <image src='{{item.createBy.avatarUrl}}' class='user-avatar'></image>
+            <avatar userInfo="{{item.createBy}}" style="margin-right: 8rpx;"></avatar>
             <view class='item-and-name'>
               <view class='public-item-name'>{{item.title}}</view>
-              <view class='name'>{{item.createBy.note || item.createBy.nickName}}</view>
+              <!-- <view class='name'>{{item.createBy.note || item.createBy.nickName}}</view> -->
+              <view class='paid-total' style="color: 909399;font-size: 22rpx;">{{item.paidDate}}</view>
             </view>
           </view>
           <view class='project-item-right'>
@@ -44,14 +45,13 @@
               <text style='color: #28a745;font-weight: bold;'>{{item.price}}</text>
               元
             </view>
-            <view class='paid-total'>{{item.paidDate}}</view>
           </view>
         </view>
         <view class='contain-avatars'>
           <van-tag mark type="success" style="margin-right:20rpx;">包含</van-tag>
           <view>
             <view class='check-list-contain'>
-              <view class='one-avatar' wx:for="{{item.containUser}}" wx:key="{{index}}" bindtap='showUserName' data-user="{{item}}">
+              <view class='one-avatar' wx:for="{{item.containUser}}" wx:key="{{index}}">
                 <avatar userInfo="{{item}}"></avatar>
               </view>
             </view>
@@ -75,7 +75,10 @@
       <view class='word-content'>
         <view wx:for="{{wordList}}" wx:key="{{item._id}}">
           <view class='word-item' bindlongpress="deleteWord" data-word="{{item}}" wx:if="{{item.userId !== userInfoFromCloud.openId}}">
-            <image bindtap='showWordUserName' data-user="{{item}}" src='{{item.user.avatarUrl}}' class='user-avatar'></image>
+            <avatar
+              userInfo="{{item.user}}"
+              style="margin-right: 15rpx"
+            ></avatar>
             <view class='word-tang-left'></view>
             <view class='word-detail'>
               {{item.word}}
@@ -88,7 +91,10 @@
               <view class="word-time">{{item.createTime}}</view>
             </view>
             <view class='word-tang-right'></view>
-            <image bindtap='showWordUserName' data-user="{{item}}" src='{{item.user.avatarUrl}}' class='user-avatar-right'></image>
+            <avatar
+              userInfo="{{item.user}}"
+              style="margin-right: -7rpx"
+            ></avatar>
           </view>
         </view>
       </view>
