@@ -69,6 +69,11 @@ Component({
     },
     goTo(event) {
       const { page } = event.currentTarget.dataset
+      if (page === 'personal') {
+        if (!getApp().checkAuth()) {
+          return
+        }
+      }
       wx.navigateTo({
         url: `/pages/${page}/${page}`
       })

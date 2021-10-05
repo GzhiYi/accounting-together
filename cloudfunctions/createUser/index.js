@@ -35,14 +35,22 @@ exports.main = async (event) => {
     }
   }
   if (mode === 'add') {
-    await db.collection('user').add({
-      avatarUrl,
-      nickName,
-      sex,
-      name: '',
-      openId: OPENID,
-      createTime: new Date()
+    const addRes = await db.collection('user').add({
+      data: {
+        avatarUrl,
+        nickName,
+        sex,
+        name: '',
+        openId: OPENID,
+        createTime: new Date()
+      }
     })
+    console.log(addRes);
+    return {
+      code: 1,
+      msg: '创建成功',
+      data: null
+    }
   }
   if (mode === 'update') {
     await db.collection('user').doc(_id)

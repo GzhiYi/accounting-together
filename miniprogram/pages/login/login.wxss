@@ -36,5 +36,5 @@
   color:grey;
 }
 .login-btn {
-  margin: 70rpx 0;
+  margin: 70rpx 0 40rpx;
 }

@@ -18,7 +18,7 @@ Page({
     const self = this
     // 处理是否查看过教程
     const isVisitedHelp = wx.getStorageSync('isVisitedHelp') || false
-    if (!isVisitedHelp) {
+    if (!isVisitedHelp && !!getApp().globalData.userInfoFromCloud) {
       Dialog.confirm({
         title: '等一下！',
         message: '先看下教程咧～'
@@ -90,6 +90,9 @@ Page({
     })
   },
   callNewGroup(event) {
+    if (!getApp().checkAuth()) {
+      return
+    }
     if (event.detail === 'confirm') {
       // 异步关闭弹窗
       const self = this

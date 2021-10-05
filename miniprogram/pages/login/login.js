@@ -20,34 +20,42 @@ Page({
   onShow: function () {
     getApp().setTheme(this)
   },
+  goGroup() {
+    wx.redirectTo({
+      url: '/pages/group/group',
+    })
+  },
   onGotUserInfo (event) {
     const { backPath } = this.data
-    // 确认获取到用户信息
-    if (event.detail.errMsg === 'getUserInfo:ok') {
-      const userInfo = event.detail.userInfo
-      app.globalData.userInfo = userInfo
-      wx.cloud.callFunction({
-        name: 'createUser',
-        data: {
-          avatarUrl: userInfo.avatarUrl,
-          name: '',
-          nickName: userInfo.nickName,
-          sex: userInfo.gender
-        },
-        success(res) {
+    wx.getUserProfile({
+      desc: '展示你的公开信息',
+      success(res) {
+        if (res.errMsg === 'getUserProfile:ok') {
+          app.globalData.userInfo = res.userInfo
+          const { avatarUrl, nickName, gender } = res.userInfo
+          wx.cloud.callFunction({
+            name: 'createUser',
+            data: {
+              mode: 'add',
+              avatarUrl,
+              name: '',
+              nickName,
+              sex: gender
+            },
+            success(createRes) {
+              console.log(createRes);
+              if (createRes.result.code === 1) {
+                wx.redirectTo({
+                  url: `${backPath === '' ? '/pages/group/group' : `/pages/${backPath}/${backPath}`}`
+                })
+              }
+            }
+          })
         }
-      })
-      wx.redirectTo({
-        url: `${backPath === '' ? '/pages/group/group' : `/pages/${backPath}/${backPath}`}`
-      })
-    } else {
-      // 加入提示
-      Notify({
-        text: "需要获取基本信息，请再次点击登录",
-        duration: 1500,
-        selector: '#login-tips',
-        backgroundColor: '#dc3545'
-      });
-    }
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
   }
 })

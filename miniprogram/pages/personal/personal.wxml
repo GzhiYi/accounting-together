@@ -2,8 +2,8 @@
   <nav class="nav-instance" my-class="set-bg" my-icon-class="set-icon-bg" showIcons="{{['back']}}"></nav>
   <view class='public-list'>
     <view class='public-header mp-info' style='border-bottom: none;'>
-      <image src="{{userInfo.avatarUrl}}" class='icon'></image>
-      <text class='mp-name'>{{userInfo.nickName}}</text>
+      <image src="{{fetchUserInfo.storeUser.avatarUrl}}" class='icon'></image>
+      <text class='mp-name'>{{fetchUserInfo.storeUser.nickName}}</text>
     </view>
   </view>
   <view class='public-list'>
@@ -47,14 +47,15 @@
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
-    <view class='public-item' bindtap='feedbackModal' data-modal="showFeedback">
-      <view class='public-item-name'>留个言咧？</view>
+    <view class='public-item relative'>
+      <button open-type="contact" class="absolute" style="width: 600rpx;height: 100rpx;opacity: 0;"></button>
+      <view class='public-item-name'>联系开发者</view>
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
     </view>
     
-    <view
+    <!-- <view
       class='public-item'
       bindtap='feedbackListModal'
       data-modal="showModal"
@@ -64,7 +65,7 @@
       <view class='public-item-right'>
         <van-icon name="arrow" style='color: #C6C6C6;font-size: 26rpx'/>
       </view>
-    </view>
+    </view> -->
 
     <view class='public-item' bindtap='copySourceLink' style='border-bottom: none;'>
       <view class='public-item-name'>源码地址</view>
@@ -80,24 +81,14 @@
           class="theme"
           wx:for="{{skin.colorList}}"
           wx:key="{{index}}"
-          style="background: {{item.bg0}};{{selectType ===  item.type ? 'box-shadow:0 4px 6px #ccc;' : ''}}"
+          style="background: {{item.bg0}};{{selectType === item.type ? 'box-shadow:0 4px 6px #ccc;' : ''}}"
           bindtap="selectTheme"
           data-theme="{{item.type}}"
         ></view>
       </view>
     </view>
-    <!-- <view
-    class='public-item'
-    bindtap='goToQuestion'
-    style='justify-content:center;background: pink; border-radius: 0 0 20rpx 20rpx;border-bottom: none;'
-    wx:if="{{fetchUserInfo.storeUser.openId === 'oUsod0WgxmQcgfhzchO7MNd7LZ8g' ||  fetchUserInfo.storeUser.openId === 'oUsod0XGJPCi_Sax1bMWVJAeRMok'}}"
-    >
-      <view class='public-item-name'>给妳❤️</view>
-      <view class='public-item-right'>
-      </view>
-    </view> -->
   </view>
-  <view class='source' bindtap='copyWechat'>开发者微信</view>
+  <!-- <view class='source' bindtap='copyWechat'>开发者微信</view> -->
   <view class="nav-mini">
     <navigator target="miniProgram" open-type="navigate" app-id="wx158a14d1810b8fc1" path="/pages/index/index" extra-data="" version="release">
       <image src="../../images/walkmark.png" style="width: 64rpx;height: 64rpx;" />

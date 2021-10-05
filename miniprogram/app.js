@@ -28,57 +28,34 @@ App({
       }
     }) 
     this.globalData.shareParam = options.query
-
-    // 查看是否授权
-    // wx.getSetting({
-    //   success (settingRes) {
-    //     console.log('查看授权', settingRes)
-    //     // 已经授权
-    //     if (settingRes.authSetting['scope.userInfo']) {
-    //       wx.getUserInfo({
-    //         success (infoRes) {
-    //           console.log(infoRes);
-    //           self.globalData.userInfo = infoRes.userInfo
-    //           if (self.catchUserInfo) {
-    //             self.catchUserInfo(infoRes.userInfo)
-    //           }
-    //           // 如果是旧用户就更新信息
-    //           wx.cloud.callFunction({
-    //             name: 'createUser',
-    //             data: {
-    //               mode: 'check',
-    //               avatarUrl: infoRes.userInfo.avatarUrl,
-    //               name: '',
-    //               nickName: infoRes.userInfo.nickName,
-    //               sex: infoRes.userInfo.gender
-    //             }
-    //           })
-    //         }
-    //       })
-    //     } else {
-    //       wx.reLaunch({
-    //         url: `/pages/login/login?back=${options.path.split('/')[1]}`
-    //       })
-    //     }
-    //   }
-    // })
-    this.checkLogin()
-    // wx.cloud.callFunction({
-    //   name: 'getUserInfo',
-    //   data: {},
-    //   success (res) {
-    //     self.globalData.userInfoFromCloud = res.result.storeUser
-    //   }
-    // })
+    this.checkLogin(options)
   },
-  checkLogin() {
+  checkAuth() {
+    const isLogin =  !!this.globalData.userInfoFromCloud
+    if (!isLogin) {
+      wx.reLaunch({
+        url: `/pages/login/login`
+      })
+    }
+    return isLogin
+  },
+  checkLogin(options) {
+    const self = this
     wx.cloud.callFunction({
       name: 'createUser',
       data: {
         mode: 'check'
       },
       success(res) {
-        console.log('red', res)
+        // 未保存信息
+        if (res.result.code === 0) {
+          wx.reLaunch({
+            url: `/pages/login/login?back=${options.path.split('/')[1]}`
+          })
+        } else {
+          // 已有信息
+          self.globalData.userInfoFromCloud = res.result.data
+        }
       }
     })
   },

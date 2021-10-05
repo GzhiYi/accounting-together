@@ -1,10 +1,8 @@
 // pages/personal/personal.js
 import Notify from '../dist/notify/notify'
 import { parseTime } from '../../utils/parseTime.js'
-const app = getApp()
 Page({
   data: {
-    userInfo: {},
     showFeedback: false,
     showFeedbackList: false,
     stars: 5,
@@ -30,23 +28,6 @@ Page({
         })
       }
     })
-    // 如果用户未进行授权就进入这个页面就跳转到登录
-    app.catchUserInfo = res => {
-      if (!app.globalData.userInfo && !res) {
-        wx.navigateTo({
-          url: '/pages/login/login?back=personal',
-        })
-      } else {
-        self.setData({
-          userInfo: res || app.globalData.userInfo
-        })
-      }
-    }
-    if (app.globalData.userInfo) {
-      self.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
     wx.cloud.callFunction({
       name: 'createFeedback',
       data: {
