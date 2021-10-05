@@ -11,9 +11,9 @@
     "pages/share/share"
   ],
   "window": {
-    "backgroundColor": "red≈",
+    "backgroundColor": "#fff",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "red",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "一起算账",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom",

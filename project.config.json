@@ -1,91 +1,116 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true
-	},
-	"appid": "wx083a90f5ac602053",
-	"projectname": "accounting-together",
-	"libVersion": "2.2.5",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"miniprogram": {
-			"current": 8,
-			"list": [
-				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "组",
-					"pathName": "pages/group/group",
-					"query": ""
-				},
-				{
-					"id": 2,
-					"name": "share",
-					"pathName": "pages/share/share",
-					"query": "groupId=XBnGVnffS3SWGdJK&inviter=GzhiYi&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/KanL6870JUe4WvJlKDGDYYicgZibo9XOrm7WPEKwOB9pqnUV0Cv9EOZfPAH3WulBWYl5NSJA8ICSqSts5v6Cy92A/132&groupName=7B304"
-				},
-				{
-					"id": -1,
-					"name": "login",
-					"pathName": "pages/login/login",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "结果页面",
-					"pathName": "pages/result/result",
-					"query": "billId=XBcyaHkPDdDCJ2gB"
-				},
-				{
-					"id": -1,
-					"name": "billDetail页",
-					"pathName": "pages/billDetail/billDetail",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "结果页面",
-					"pathName": "pages/personal/personal",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "个人页面",
-					"pathName": "pages/personal/personal",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "帮助页面",
-					"pathName": "pages/help/help"
-				}
-			]
-		}
-	}
+    "miniprogramRoot": "miniprogram/",
+    "cloudfunctionRoot": "cloudfunctions/",
+    "setting": {
+        "urlCheck": true,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": true,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "enableEngineNative": false,
+        "useIsolateContext": true,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "showES6CompileOption": false
+    },
+    "appid": "wx083a90f5ac602053",
+    "projectname": "accounting-together",
+    "libVersion": "2.2.5",
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+    "condition": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
+            "list": []
+        },
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "db guide",
+                    "pathName": "pages/databaseGuide/databaseGuide",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "组",
+                    "pathName": "pages/group/group",
+                    "query": ""
+                },
+                {
+                    "id": 2,
+                    "name": "share",
+                    "pathName": "pages/share/share",
+                    "query": "groupId=XBnGVnffS3SWGdJK&inviter=GzhiYi&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/KanL6870JUe4WvJlKDGDYYicgZibo9XOrm7WPEKwOB9pqnUV0Cv9EOZfPAH3WulBWYl5NSJA8ICSqSts5v6Cy92A/132&groupName=7B304"
+                },
+                {
+                    "id": -1,
+                    "name": "login",
+                    "pathName": "pages/login/login",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "结果页面",
+                    "pathName": "pages/result/result",
+                    "query": "billId=XBcyaHkPDdDCJ2gB"
+                },
+                {
+                    "id": -1,
+                    "name": "billDetail页",
+                    "pathName": "pages/billDetail/billDetail",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "结果页面",
+                    "pathName": "pages/personal/personal",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "个人页面",
+                    "pathName": "pages/personal/personal",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "帮助页面",
+                    "pathName": "pages/help/help"
+                }
+            ]
+        }
+    }
 }

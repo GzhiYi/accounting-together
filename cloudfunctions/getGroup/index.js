@@ -3,32 +3,37 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   const openId = cloud.getWXContext().OPENID
 
-  let groupList = await db.collection('user-group')
+  let relateGroupList = await db.collection('user-group')
   .where({
     userId: openId
   })
   .get()
-  let returnResult = []
-  for(let item of groupList.data) {
-    const oneGroup = await db.collection('group')
-      .where({
-        _id: item.groupId,
-        deleted: false
-      })
-      .get()
-    if (oneGroup.data.length > 0) {
-      const userInfo = await db.collection('user').where({
-        openId: oneGroup.data[0].createBy
-      })
-        .get()
-      oneGroup.data[0].createBy = userInfo.data[0]
-      oneGroup.data[0].relateUserGroupId = item._id
-      returnResult.push(oneGroup.data[0])
-    }
+  let groupIds = relateGroupList.data.map(item => item.groupId)
+  // 请求组列表
+  const groupRes = await db.collection('group').where({
+    _id: _.in(groupIds),
+    deleted: false,
+  }).get()
+  const groupList = groupRes.data
+  const userIds = groupList.map(item => item.createBy)
+  const userRes = await db.collection('user').where({
+    openId: _.in(Array.from(new Set(userIds)))
+  }).get()
+  const userList = userRes.data
+  let i = -1;
+  let temp = []
+  while(++i < groupList.length) {
+    let groupInfo = groupList[i]
+    const matchUser = userList.filter(u => u.openId === groupInfo.createBy)
+    const matchRelateGroup = relateGroupList.data.filter(item => item.groupId === groupInfo._id)
+    groupInfo.createBy = matchUser[0]
+    groupInfo.relateUserGroupId = matchRelateGroup[0]._id
+    temp.push(groupInfo)
   }
-  return returnResult.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
+  return temp.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
 }

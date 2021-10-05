@@ -3,41 +3,48 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   const openId = cloud.getWXContext().OPENID
 
-  let projectList = await db.collection('bill-project')
+  let relateProjectList = await db.collection('bill-project')
     .where({
       billId: event.billId
     })
     .get()
   let returnResult = []
-  for (let item of projectList.data) {
-    const oneProject = await db.collection('project')
-      .where({
-        _id: item.projectId,
-        deleted: false
-      })
-      .get()
-    
-    if (oneProject.data.length > 0) {
-      const userInfo = await db.collection('user').where({
-        openId: oneProject.data[0].createBy
-      })
-      .get()
-      let resultContainUser = []
-      for (let con_openId of oneProject.data[0].containUser) {
-        const oneContainUserInfo = await db.collection('user').where({
-          openId: con_openId
-        })
-        .get()
-        resultContainUser.push(oneContainUserInfo.data[0])
-      }
-      oneProject.data[0].createBy = userInfo.data[0]
-      oneProject.data[0].containUser = resultContainUser
-      returnResult.push(oneProject.data[0])
+  const projectIds = Array.from(new Set(relateProjectList.data.map(item => item.projectId)))
+  const projectRes = await db.collection('project').where({
+    _id: _.in(projectIds),
+    deleted: false
+  })
+  .get()
+  const projectList = projectRes.data
+  let userIds = []
+  projectList.forEach(p => {
+    userIds.push(...p.containUser)
+    userIds.push(p.createBy)
+  })
+  userIds = Array.from(new Set(userIds))
+  console.log('看看处理的userId', userIds)
+  const userRes = await db.collection('user').where({
+    openId: _.in(userIds)
+  }).get()
+  const userList = userRes.data
+  const fillUser = openId => {
+    const matchUser = userList.filter(u => u.openId === openId)
+    if (matchUser.length) {
+      return matchUser[0]
     }
+    return openId
+  }
+  let i = -1
+  while(++i < projectList.length) {
+    const project = projectList[i]
+    project.createBy = fillUser(project.createBy)
+    project.containUser = project.containUser.map(p => fillUser(p))
+    returnResult.push(project)
   }
   return returnResult.sort((a, b) => a.paidDate < b.paidDate ? 1 : -1)
 }
