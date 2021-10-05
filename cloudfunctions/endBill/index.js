@@ -50,6 +50,14 @@ function roundFun(value, n) {
   return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
 }
 exports.main = async (event, context) => {
+  const wxContext = cloud.getWXContext()
+  cloud.updateConfig({
+    env: wxContext.ENV === 'local' ? 'account-release-73522d' : wxContext.ENV,
+  })
+  // 初始化数据库
+  const db = cloud.database({
+    env: wxContext.ENV === 'local' ? 'account-release-73522d' : wxContext.ENV,
+  })
   const { groupUserList, currentBill, projectList, end} = event
   if (end) {
     const result = cal(groupUserList, projectList)

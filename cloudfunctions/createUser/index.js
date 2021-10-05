@@ -4,35 +4,53 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 // 云函数入口函数
-exports.main = async (event, context) => {
-  const userInfo = event.userInfo
-
-  // 先查询有无该用户openId
-  const checkUser = await db.collection('user')
-  .where({
-    openId: userInfo.openId
+exports.main = async (event) => {
+  const { mode, avatarUrl, nickName, sex, _id } = event
+  const { OPENID, ENV } = cloud.getWXContext()
+  cloud.updateConfig({
+    env: ENV === 'local' ? 'account-release-73522d' : ENV,
   })
-  .get()
-  // 如果有该用户，则更新基本用户信息
-  if (checkUser.data.length > 0) {
-    await db.collection('user').doc(checkUser.data[0]._id)
+  // 初始化数据库
+  const db = cloud.database({
+    env: ENV === 'local' ? 'account-release-73522d' : ENV,
+  })
+  console.log('OPENID', OPENID)
+  // 检查数据库是否已经保存了这个用户的信息
+  if (mode === 'check') {
+    const res = await db.collection('user').where({
+      openId: OPENID
+    }).get()
+    if (res.data.length) {
+      return {
+        code: 1,
+        msg: '已有该用户信息',
+        data: res.data[0]
+      }
+    } else {
+      return {
+        code: 0,
+        msg: '新用户',
+        data: null
+      }
+    }
+  }
+  if (mode === 'add') {
+    await db.collection('user').add({
+      avatarUrl,
+      nickName,
+      sex,
+      name: '',
+      openId: OPENID,
+      createTime: new Date()
+    })
+  }
+  if (mode === 'update') {
+    await db.collection('user').doc(_id)
     .update({
       data: {
-        avatarUrl: event.avatarUrl,
-        nickName: event.nickName,
-        sex: event.sex
-      }
-    })
-  } else {
-    // 插入
-    const insertResult = await db.collection('user').add({
-      data: {
-        avatarUrl: event.avatarUrl,
-        nickName: event.nickName,
-        sex: event.sex,
-        name: '',
-        openId: event.userInfo.openId,
-        createTime: new Date()
+        avatarUrl,
+        nickName,
+        sex
       }
     })
   }

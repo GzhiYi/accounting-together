@@ -6,6 +6,13 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  cloud.updateConfig({
+    env: wxContext.ENV === 'local' ? 'account-release-73522d' : wxContext.ENV,
+  })
+  // 初始化数据库
+  const db = cloud.database({
+    env: wxContext.ENV === 'local' ? 'account-release-73522d' : wxContext.ENV,
+  })
   const editRes = await db.collection('project').doc(event.projectId).update({
     data: {
       price: event.projectPrice,
