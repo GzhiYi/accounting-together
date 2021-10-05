@@ -38,7 +38,8 @@
     "van-collapse": "./pages/dist/collapse/index",
     "van-collapse-item": "./pages/dist/collapse-item/index",
     "van-panel": "./pages/dist/panel/index",
-    "nav": "./pages/nav/nav"
+    "nav": "./pages/nav/nav",
+    "avatar": "./components/avatar/avatar"
   },
   "sitemapLocation": "sitemap.json",
   "navigateToMiniProgramAppIdList": ["wx158a14d1810b8fc1"]

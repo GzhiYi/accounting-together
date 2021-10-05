@@ -1,0 +1,10 @@
+<view class="relative">
+    <image src='{{userInfo.avatarUrl}}' class='user-avatar-list {{className}}'
+			style="width: {{size}}rpx;height: {{size}}rpx;"
+			mode="widthFix"
+		/>
+    <view
+			class="absolute avatar-label"
+			wx:if="{{showLabel}}"
+    >{{userInfo.note || userInfo.nickName}}</view>
+</view>

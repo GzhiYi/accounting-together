@@ -1,0 +1,28 @@
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+}
+.avatar-label {
+	font-size: 18rpx;
+	bottom: 0rpx;
+	left: 0;
+	right: 0;
+	background-color: #ffffff8f;
+	margin: 0 2rpx;
+	text-align: center;
+	border: 1rpx solid #bfbfbf;
+	border-radius: 8rpx;
+	background-color: rgb(222, 169, 222, 0.56);
+	border: 1rpx solid rgb(222, 169, 222, 0.56);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.rounded-full {
+	border-radius: 9999rpx;
+}
+rounded-8 {
+	border-radius: 8rpx;
+}

@@ -52,8 +52,7 @@
           <view>
             <view class='check-list-contain'>
               <view class='one-avatar' wx:for="{{item.containUser}}" wx:key="{{index}}" bindtap='showUserName' data-user="{{item}}">
-                <image src='{{item.avatarUrl}}' class='user-avatar-list' />
-                <!-- <view class='user-name'>{{item.nickName}}</view> -->
+                <avatar userInfo="{{item}}"></avatar>
               </view>
             </view>
           </view>
@@ -120,7 +119,7 @@
       <view class='check-list'>
         <view class='one-avatar' wx:for="{{currentGroupUserList}}" wx:key="{{index}}" bindtap='clickAvatar' data-index="{{index}}">
           <van-icon wx:if="{{item.checked}}" name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/checkmark-circle-2.png?sign=90bae0ca23a06bede5809c4f143177c3&t=1545275048" class="user-checked" />
-          <image src='{{item.avatarUrl}}' class='user-avatar-list-sheet' />
+          <avatar userInfo="{{item}}"></avatar>
         </view>
       </view>
     </van-cell-group>

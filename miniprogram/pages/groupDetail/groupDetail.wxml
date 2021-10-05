@@ -21,7 +21,7 @@
           name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/light.png?sign=ae740745ffd1e70912a8467c53e60a76&t=1545455766"
           class="user-checked"
         />
-        <image src='{{item.avatarUrl}}' class='user-avatar-list' />
+        <avatar userInfo="{{item}}" showLabel="{{false}}"></avatar>
         <view class='user-name'>{{item.note || item.nickName}}</view>
       </view>
       <view class="one-avatar" wx:for="{{exactArray}}" wx:key="{{item}}"></view>

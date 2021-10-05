@@ -80,6 +80,7 @@ page {
 }
 .user-checked {
   position: absolute;
+  z-index: 10;
   right:13rpx;
   top:-10rpx;
 }

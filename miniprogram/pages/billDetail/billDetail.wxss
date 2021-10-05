@@ -40,13 +40,9 @@
   height: 60rpx;
   border-radius: 50%;
 }
-.user-avatar-list-sheet {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-}
 .user-checked {
   position: absolute;
+  z-index: 10;
   right:-7rpx;
   top:-10rpx;
 }
