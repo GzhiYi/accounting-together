@@ -27,13 +27,25 @@
 }
 .one-avatar {
   position:relative;
-  margin:20rpx 10rpx 0
+  display: flex;
+  align-items: center;
+  margin:20rpx 10rpx 0;
+}
+.one-avatar-in {
+  position:relative;
+  display: flex;
+  align-items: center;
+  margin:20rpx 10rpx 0;
+  background-color: #eaeaea;
+  border-radius: 39rpx;
+  padding: 4rpx 20rpx;
 }
 .check-list {
   display:flex;
   flex-wrap:wrap;
   align-items: center;
   margin-left:20rpx;
+  margin-bottom: 20rpx;
 }
 .user-avatar-list {
   width: 60rpx;
@@ -164,4 +176,21 @@
   text-align:center;
   margin-top:10rpx;
   color:grey;
+}
+.flex {
+  display: flex;
+}
+.items-center {
+  align-items: center;
+}
+.pay-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+}
+.item-input {
+  width: 200rpx;
+  text-align: right;
+  margin-right: 10rpx;
 }

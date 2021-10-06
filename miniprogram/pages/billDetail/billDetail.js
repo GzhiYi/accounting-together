@@ -37,7 +37,10 @@ Page({
     word: '', // 你要说啥
     loadingSendWord: false,
     isEscape: getApp().globalData.isEscape,
-    theme: 'white-skin'
+    theme: 'white-skin',
+
+    payType: 0, // 支出类型，0为平均支出，1为按人支出
+    payItem: [],
   },
   onLoad: function (options) {
     const self = this
@@ -57,6 +60,24 @@ Page({
   },
   roundFun(value, n) {
     return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
+  },
+  changePayType(value) {
+    console.log(value)
+    this.setData({
+      payType: value.detail.index
+    })
+  },
+  payItemInput(e) {
+    const { index, openid } = e.currentTarget.dataset
+    const { value } = e.detail
+    let oldPayItem = this.data.payItem
+    oldPayItem[index] = {
+      openId: openid,
+      value
+    }
+    this.setData({
+      payItem: oldPayItem
+    })
   },
   getWord() {
     const self = this
@@ -174,9 +195,6 @@ Page({
         tempList.forEach(item => {
           // 处理购买日期格式转换
           item.paidDate = parseTime(item.paidDate, '{y}-{m}-{d} {h}:{i}')
-          if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
-            myPaid += Number(item.price)
-          }
           // 处理备注
           const userRemark = app.globalData.userRemark
           Object.keys(userRemark).forEach(openId => {
@@ -191,6 +209,18 @@ Page({
               }
             })
           })
+          let total = 0
+          item.payItem?.forEach(p => {
+            total += Number(p.value)
+            const matchUser = item.containUser.filter(user => user.openId === p.openId)
+            if (matchUser.length) {
+              p.userInfo = matchUser[0]
+            }
+          })
+          item.payItemTotal = total
+          if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
+            myPaid += item.price ? Number(item.price) : item.payItemTotal
+          }
         })
         self.setData({
           projectList: tempList,
@@ -358,6 +388,8 @@ Page({
       projectPrice: clickProject.price,
       currentGroupUserList: this.data.currentGroupUserList,
       isEditProject: true,
+      payType: clickProject.payType === 'paid' ? 0 : 1,
+      payItem: clickProject.payItem,
       targetProject: clickProject
     })
   },
@@ -441,38 +473,53 @@ Page({
       showAddProjectSheet: false,
       projectPrice: '',
       projectTitle: '',
+      payType: 0,
+      payItem: [],
       isEditProject: false,
       paidDate: new Date().getTime(),
       currentGroupUserList: this.data.currentGroupUserList
     })
   },
   confirmAddProject () {
-    const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate } = this.data
+    const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate, payType, payItem } = this.data
     const self = this
-    if (projectTitle=== '') {
-      Notify({
-        text: '请输入支出项标题',
-        duration: 1500,
-        selector: '#bill-notify-selector',
-        backgroundColor: '#dc3545'
-      })
-      return
-    } else if (projectTitle.length > 10) {
-      Notify({
-        text: '支出项标题不能超过10个字哦~',
-        duration: 1500,
-        selector: '#bill-notify-selector',
-        backgroundColor: '#dc3545'
-      })
-      return
-    } else if ( projectPrice === '') {
-      Notify({
-        text: '价格未填写',
-        duration: 1500,
-        selector: '#bill-notify-selector',
-        backgroundColor: '#dc3545'
-      })
-      return
+    if (payType == 0) {
+      let err1 = ''
+      if (!projectPrice) err1 = '价格未填写'
+      if (!projectTitle.length > 10) err1 = '支出项名不能超过10个字哦~'
+      if (!projectTitle) err1 = '请输入支出项名'
+      if (err1) {
+        Notify({
+          text: err1,
+          duration: 1500,
+          selector: '#bill-notify-selector',
+          backgroundColor: '#dc3545'
+        })
+        return
+      }
+    }
+    if (payType == 1) {
+      let err1 = ''
+      // 对payItem输入项的输入值判断
+      let i = -1
+      while(++i < payItem.length) {
+        if (isNaN(Number(payItem[i].value))) {
+          err1 = '填写的参与金额有错误'
+        } 
+      }
+      // 对全部是否为空值判断
+      if (payItem.every(item => !item.value)) err1 = '至少填写一个参与人支出'
+      if (!projectTitle.length > 10) err1 = '支出项名不能超过10个字哦~'
+      if (!projectTitle) err1 = '请输入支出项名'
+      if (err1) {
+        Notify({
+          text: err1,
+          duration: 1500,
+          selector: '#bill-notify-selector',
+          backgroundColor: '#dc3545'
+        })
+        return
+      }
     }
     self.setData({
       loadingConfirm: true
@@ -487,8 +534,10 @@ Page({
       name: 'createProject',
       data: {
         projectTitle,
-        projectPrice: self.roundFun(projectPrice, 2),
+        projectPrice: payType == 0 ? self.roundFun(projectPrice, 2) : 0,
         paidDate,
+        payType,
+        payItem,
         groupId: currentGroupInfo._id,
         billId: currentBill._id,
         containUser: tempContainUser
@@ -512,7 +561,7 @@ Page({
     })
   },
   confirmEditProject () {
-    const { targetProject, currentBill, projectPrice, projectTitle, currentGroupUserList, paidDate } = this.data
+    const { targetProject, currentBill, projectPrice, projectTitle, currentGroupUserList, paidDate, payType, payItem } = this.data
     const self = this
     const tempContainUser = []
     currentGroupUserList.forEach(item => {
@@ -523,13 +572,14 @@ Page({
     wx.cloud.callFunction({
       name: 'editProject',
       data: {
-        projectPrice,
+        projectPrice: payType == 0 ? self.roundFun(projectPrice, 2) : 0,
         projectTitle,
         paidDate,
+        payType,
+        payItem,
         containUser: tempContainUser,
         projectId: targetProject._id,
-        billId: currentBill._id,
-        lastProjectPrice: targetProject.price
+        billId: currentBill._id
       },
       success (res) {
         Notify({

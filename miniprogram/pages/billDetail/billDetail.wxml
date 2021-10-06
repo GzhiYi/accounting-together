@@ -42,17 +42,27 @@
           </view>
           <view class='project-item-right'>
             <view class='paid-total'>
-              <text style='color: #28a745;font-weight: bold;'>{{item.price}}</text>
+              <text style='color: #28a745;font-weight: bold;font-size: 34rpx;'>{{item.type === 'paid' ? item.price : item.payItemTotal}}</text>
               元
             </view>
+            <van-tag
+              round
+              type="{{item.type === 'paid' ? 'success' : 'primary'}}"
+              style="margin-right:20rpx;"
+            >{{item.type === 'paid' ? '人均' : '个人'}}</van-tag>
           </view>
         </view>
         <view class='contain-avatars'>
-          <van-tag mark type="success" style="margin-right:20rpx;">包含</van-tag>
           <view>
-            <view class='check-list-contain'>
-              <view class='one-avatar' wx:for="{{item.containUser}}" wx:key="{{index}}">
-                <avatar userInfo="{{item}}"></avatar>
+            <view class='check-list-contain' wx:if="{{item.type === 'paid'}}">
+              <view class='one-avatar'  wx:for="{{item.containUser}}" wx:key="{{index}}">
+                <avatar size="80" userInfo="{{item}}"></avatar>
+              </view>
+            </view>
+            <view class='check-list-contain' wx:if="{{item.type === 'item'}}">
+              <view class='one-avatar'  wx:for="{{item.payItem}}" wx:for-item="p" wx:key="{{index}}">
+                <avatar size="60" userInfo="{{p.userInfo}}"></avatar>
+                <view style="font-size: 26rpx;margin-left: 10rpx;">{{p.value}}元</view>
               </view>
             </view>
           </view>
@@ -116,16 +126,40 @@
 <van-notify id="bill-delete-selector" />
 <van-dialog id="confirm-delete-bill" />
 <van-dialog id="confirm-delete-word" />
-<van-action-sheet show="{{ showAddProjectSheet }}" title="新建一个支出项" bind:close='closeAddProjectSheet'>
-  <view class='sheet-body'>
+<van-action-sheet show="{{ showAddProjectSheet }}" title="{{isEditProject ? '编辑' : '新建'}}一个支出项" bind:close='closeAddProjectSheet'>
+  <view class='sheet-body' style="padding-top: 0;">
+    <van-tabs active="{{ payType }}" bind:change="changePayType" style="margin-bottom: 20rpx;">
+      <van-tab title="人均模式"></van-tab>
+      <van-tab title="按人填金额"></van-tab>
+    </van-tabs>
     <van-field value="{{ projectTitle }}" clearable label="付了啥" placeholder="请输入支出项名" bind:change="addProjectInput" required data-field="title" />
     <van-cell-group>
-      <van-field value="{{ projectPrice }}" type="digit" label="价格" placeholder="花了多少钱" bind:change="addProjectInput" required data-field="price" />
-      <van-cell title="包含成员" value="" border="{{false}}" />
-      <view class='check-list'>
+      <van-field wx:if="{{payType == 0}}" value="{{ projectPrice }}" type="digit" label="价格" placeholder="花了多少钱" bind:change="addProjectInput" required data-field="price" />
+      <van-cell title="参与人" value="" border="{{false}}" />
+      <view wx:if="{{payType == 0}}" class='check-list'>
         <view class='one-avatar' wx:for="{{currentGroupUserList}}" wx:key="{{index}}" bindtap='clickAvatar' data-index="{{index}}">
           <van-icon wx:if="{{item.checked}}" name="https://677a-gzhiyi-154dd4-1256703754.tcb.qcloud.la/checkmark-circle-2.png?sign=90bae0ca23a06bede5809c4f143177c3&t=1545275048" class="user-checked" />
           <avatar userInfo="{{item}}"></avatar>
+        </view>
+      </view>
+      <view wx:if="{{payType == 1}}">
+        <view class="pay-item" wx:for="{{currentGroupUserList}}">
+          <view class="flex items-center">
+            <avatar userInfo="{{item}}" showLabel="{{false}}" style="margin-right: 20rpx;"></avatar>
+            <text>{{item.note || item.nickName}}</text>
+          </view>
+          <view class="flex items-center">
+            <input
+              class="item-input"
+              type="number"
+              data-index="{{index}}"
+              data-openid="{{item.openId}}"
+              placeholder="0.00"
+              value="{{payItem[index].value}}"
+              bindinput="payItemInput"
+            ></input>
+            <text>元</text>
+          </view>
         </view>
       </view>
     </van-cell-group>
