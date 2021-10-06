@@ -221,6 +221,9 @@ Page({
           if (item.createBy.openId === self.data.userInfoFromCloud.openId) {
             myPaid += item.price ? Number(item.price) : item.payItemTotal
           }
+          if (item.type === 'paid') {
+            item.avangePrice = (item.price / item.containUser.length).toFixed(2)
+          }
         })
         self.setData({
           projectList: tempList,
@@ -388,7 +391,7 @@ Page({
       projectPrice: clickProject.price,
       currentGroupUserList: this.data.currentGroupUserList,
       isEditProject: true,
-      payType: clickProject.payType === 'paid' ? 0 : 1,
+      payType: clickProject.type === 'paid' ? 0 : 1,
       payItem: clickProject.payItem,
       targetProject: clickProject
     })

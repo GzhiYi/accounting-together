@@ -48,21 +48,27 @@
             <van-tag
               round
               type="{{item.type === 'paid' ? 'success' : 'primary'}}"
-              style="margin-right:20rpx;"
             >{{item.type === 'paid' ? '人均' : '个人'}}</van-tag>
           </view>
         </view>
         <view class='contain-avatars'>
           <view>
             <view class='check-list-contain' wx:if="{{item.type === 'paid'}}">
-              <view class='one-avatar'  wx:for="{{item.containUser}}" wx:key="{{index}}">
-                <avatar size="80" userInfo="{{item}}"></avatar>
+              <view class='one-avatar-in'  wx:for="{{item.containUser}}" wx:for-item="user" wx:key="{{index}}">
+                <avatar size="60" userInfo="{{user}}" showLabel="{{false}}"></avatar>
+                <view style="font-size: 26rpx;margin-left: 10rpx;">
+                  <view>{{item.avangePrice}}元</view>
+                  <view style="font-size: 24rpx;" class="avatar-name">{{user.note || user.nickName}}</view>
+                </view>
               </view>
             </view>
             <view class='check-list-contain' wx:if="{{item.type === 'item'}}">
-              <view class='one-avatar'  wx:for="{{item.payItem}}" wx:for-item="p" wx:key="{{index}}">
-                <avatar size="60" userInfo="{{p.userInfo}}"></avatar>
-                <view style="font-size: 26rpx;margin-left: 10rpx;">{{p.value}}元</view>
+              <view class='one-avatar-in'  wx:for="{{item.payItem}}" wx:for-item="p" wx:key="{{index}}">
+                <avatar size="60" userInfo="{{p.userInfo}}" showLabel="{{false}}"></avatar>
+                <view style="font-size: 26rpx;margin-left: 10rpx;">
+                  <view>{{p.value}}元</view>
+                  <view style="font-size: 24rpx;" class="avatar-name">{{p.userInfo.note || p.userInfo.nickName}}</view>
+                </view>
               </view>
             </view>
           </view>

@@ -36,9 +36,16 @@
   display: flex;
   align-items: center;
   margin:20rpx 10rpx 0;
-  background-color: #eaeaea;
-  border-radius: 39rpx;
-  padding: 4rpx 20rpx;
+  background: #ebeef5;
+  border-radius: 18rpx;
+  padding: 10rpx;
+}
+.avatar-name {
+  font-size: 12px;
+  max-width: 194rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .check-list {
   display:flex;
