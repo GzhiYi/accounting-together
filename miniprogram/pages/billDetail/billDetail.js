@@ -375,7 +375,8 @@ Page({
       this.data.currentGroupUserList[index].checked = false
     })
     this.setData({
-      currentGroupUserList: this.data.currentGroupUserList
+      currentGroupUserList: this.data.currentGroupUserList,
+      payItem: []
     })
     // 判断哪些是勾选的
     this.data.currentGroupUserList.forEach((user, index) => {
@@ -388,11 +389,11 @@ Page({
     self.setData({
       showAddProjectSheet: true,
       projectTitle: clickProject.title,
-      projectPrice: clickProject.price,
+      projectPrice: clickProject.type === 'item' ? null : clickProject.price,
       currentGroupUserList: this.data.currentGroupUserList,
       isEditProject: true,
       payType: clickProject.type === 'paid' ? 0 : 1,
-      payItem: clickProject.payItem,
+      payItem: clickProject.type === 'paid' ? [] : clickProject.payItem || [],
       targetProject: clickProject
     })
   },
@@ -483,9 +484,8 @@ Page({
       currentGroupUserList: this.data.currentGroupUserList
     })
   },
-  confirmAddProject () {
+  checkProjectField() {
     const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate, payType, payItem } = this.data
-    const self = this
     if (payType == 0) {
       let err1 = ''
       if (!projectPrice) err1 = '价格未填写'
@@ -498,7 +498,7 @@ Page({
           selector: '#bill-notify-selector',
           backgroundColor: '#dc3545'
         })
-        return
+        return false
       }
     }
     if (payType == 1) {
@@ -521,8 +521,16 @@ Page({
           selector: '#bill-notify-selector',
           backgroundColor: '#dc3545'
         })
-        return
+        return false
       }
+    }
+    return true
+  },
+  confirmAddProject () {
+    const { projectTitle, projectPrice, currentGroupUserList, currentGroupInfo, currentBill, paidDate, payType, payItem } = this.data
+    const self = this
+    if (!this.checkProjectField()) {
+      return
     }
     self.setData({
       loadingConfirm: true
@@ -572,6 +580,9 @@ Page({
         tempContainUser.push(item.openId)
       }
     })
+    if (!this.checkProjectField()) {
+      return
+    }
     wx.cloud.callFunction({
       name: 'editProject',
       data: {

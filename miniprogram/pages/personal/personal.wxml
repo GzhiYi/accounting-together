@@ -90,7 +90,7 @@
   </view>
 
   <view class='public-list'>
-    <view class='public-item' style="display: block;height: auto;">
+    <view class='public-item' style="display: block;height: auto;border-bottom: none;">
       <view class='public-item-name' style="padding: 20rpx 0;">个人其余作品（欢迎支持）</view>
       <view class='public-item-right'>
       </view>
@@ -126,7 +126,7 @@
   </view>
 
   <view class='public-list' bindtap="onPreview">
-    <view class='public-item' style="display: block;height: auto;">
+    <view class='public-item' style="display: block;height: auto;border-bottom: none;">
       <view class='public-item-name' style="padding: 20rpx 0;">如果你喜欢❤️</view>
       <view>希望你可以捐赠一下开发者，你的支持真的是我的很大动力，让我持续用爱发电。</view>
       <view style="text-align: center;margin: 30rpx 0;">

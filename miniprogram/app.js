@@ -14,7 +14,7 @@ App({
     }
     // 判断是否在审核期间
     const nowTime = Date.parse(new Date())
-    if (nowTime < 1633600800000) { // 2021-10-07 18:00:00
+    if (nowTime < 1633665600000) { // new Date('2021-10-08 12:00').getTime()
       this.globalData.isEscape = false
     }
     // 查看主题设置
