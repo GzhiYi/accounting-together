@@ -163,6 +163,7 @@
               placeholder="0.00"
               value="{{payItem[index].value}}"
               bindinput="payItemInput"
+              confirm-type="next"
             ></input>
             <text>元</text>
           </view>

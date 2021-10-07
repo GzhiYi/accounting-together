@@ -8,13 +8,13 @@ App({
     } else {
       wx.cloud.init({
         traceUser: true,
-        env: 'account-release-73522d', // 测试环境
-        // env: 'gzhiyi-154dd4', // 正式环境
+        // env: 'account-release-73522d', // 测试环境
+        env: 'gzhiyi-154dd4', // 正式环境
       })
     }
     // 判断是否在审核期间
     const nowTime = Date.parse(new Date())
-    if (nowTime < 1565078400000) { // 2019-08-06 16:00:00
+    if (nowTime < 1633600800000) { // 2021-10-07 18:00:00
       this.globalData.isEscape = false
     }
     // 查看主题设置
@@ -86,7 +86,7 @@ App({
     screenWidth: 0,
     isLoading: false,
     shareWord: function() {
-      return `你的好友${this.userInfo.nickName}在用这个AA记账，你也来试试吧 (๑>◡<๑) `
+      return `你的好友${this.userInfoFromCloud.nickName}在用这个AA记账，你也来试试吧 (๑>◡<๑) `
     },
     sharePath: '/pages/group/group',
     imageUrl: 'https://images.vrm.cn/2019/07/06/banner-new.png',

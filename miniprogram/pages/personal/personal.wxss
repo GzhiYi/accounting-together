@@ -92,3 +92,34 @@
   text-align:center;
   line-height:60rpx;
 }
+.mini-item {
+  display: flex;
+  padding: 20rpx 0;
+  margin: 20rpxx 0;
+}
+.mini-item image {
+  width: 100rpx;
+  height: 100rpx;
+  min-width: 100rpx;
+  border-radius: 9999rpx;
+  margin-right: 20rpx;
+}
+.mini-item .title {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.mini-item .desc {
+  font-size: 26rpx;
+  color: #606266;
+}
+.mini-item .go {
+  width: fit-content;
+  padding: 10rpx 40rpx;
+  border: 1rpx solid #2454FF;
+  border-radius: 30rpx;
+  background-color: #2454FF;
+  color: #fff;
+  font-size: 24rpx;
+  margin: 20rpx 0;
+}

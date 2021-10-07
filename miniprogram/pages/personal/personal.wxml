@@ -88,11 +88,52 @@
       </view>
     </view>
   </view>
-  <!-- <view class='source' bindtap='copyWechat'>开发者微信</view> -->
-  <view class="nav-mini">
-    <navigator target="miniProgram" open-type="navigate" app-id="wx158a14d1810b8fc1" path="/pages/index/index" extra-data="" version="release">
-      <image src="../../images/walkmark.png" style="width: 64rpx;height: 64rpx;" />
-    </navigator>
+
+  <view class='public-list'>
+    <view class='public-item' style="display: block;height: auto;">
+      <view class='public-item-name' style="padding: 20rpx 0;">个人其余作品（欢迎支持）</view>
+      <view class='public-item-right'>
+      </view>
+      <view class="mini-item" style="border-bottom: 1rpx solid #ebeef5;">
+        <image src="../../images/account.jpeg"></image>
+        <view>
+          <view class="title">单单记账</view>
+          <view class="desc">
+            可能是唯一不获取用户身份信息的记账小程序；不花里胡哨；专注记账的目的；账单清晰自然，报表易懂易分析；助你理财之路轻松有意义。
+          </view>
+          <view style="display: flex;justify-content: flex-end;">
+            <navigator target="miniProgram" open-type="navigate" app-id="wxda00e9b7cd5f39b1" path="/pages/tab/tab" extra-data="" version="release">
+              <view class="go">使用</view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <view class="mini-item">
+        <image src="../../images/jielong.jpeg"></image>
+        <view>
+          <view class="title">单单接龙</view>
+          <view class="desc">
+            面向社交活动的一个接龙小程序，不要老是鸽子🕊好不好。
+          </view>
+          <view style="display: flex;justify-content: flex-end;">
+            <navigator target="miniProgram" open-type="navigate" app-id="wxf3515fa60b618cd5" path="/pages/chain/chain" extra-data="" version="release">
+              <view class="go">使用</view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='public-list' bindtap="onPreview">
+    <view class='public-item' style="display: block;height: auto;">
+      <view class='public-item-name' style="padding: 20rpx 0;">如果你喜欢❤️</view>
+      <view>希望你可以捐赠一下开发者，你的支持真的是我的很大动力，让我持续用爱发电。</view>
+      <view style="text-align: center;margin: 30rpx 0;">
+        <image src="https://6461-dandan-zdm86-1259814516.tcb.qcloud.la/donate/IMG_2451.JPG?sign=6c60168b3e63c375cd2619a5599c9a97&t=1623579505" style="width: 200rpx;height: 200rpx;border-radius: 14rpx;" mode="widthFix"></image>
+        <view style="font-size: 22rpx;margin-top: 20rpx;">点击图片长按保存后识别进行捐赠</view>
+      </view>
+    </view>
   </view>
 
 </view>

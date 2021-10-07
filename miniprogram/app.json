@@ -44,5 +44,5 @@
     "van-tabs": "./pages/dist/tabs/index"
   },
   "sitemapLocation": "sitemap.json",
-  "navigateToMiniProgramAppIdList": ["wx158a14d1810b8fc1"]
+  "navigateToMiniProgramAppIdList": ["wxda00e9b7cd5f39b1", "wxf3515fa60b618cd5"]
 }

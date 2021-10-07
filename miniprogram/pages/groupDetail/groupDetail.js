@@ -382,11 +382,17 @@ Page({
     }
   },
   onShareAppMessage: function () {
+    console.log('调用');
     const { groupInfo } = this.data
-    const userInfo = app.globalData.userInfoFromCloud
+    const userInfo = app.globalData.userInfoFromCloud || {}
+    console.log(userInfo);
+    if (!userInfo) {
+      userInfo.nickName = '😄'
+      userInfo.avatarUrl = ''
+    }
     if (getApp().globalData.isEscape) {
       return {
-        title: `${userInfo.nickName}邀你加入【${groupInfo.name}】一起AA记账，快加入吧 (๑>◡<๑) `,
+        title: `${userInfo.nickName || '😄'}邀你加入【${groupInfo.name}】一起AA记账，快加入吧 (๑>◡<๑) `,
         path: `/pages/share/share?groupId=${groupInfo._id}&inviter=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}&groupName=${groupInfo.name}`,
         imageUrl: getApp().globalData.imageUrl
       }

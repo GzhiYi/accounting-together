@@ -165,6 +165,12 @@ Page({
     wx.setStorageSync('theme', event.target.dataset.theme)
     getApp().setTheme(this)
   },
+  onPreview() {
+    wx.previewImage({
+      current: 'https://6461-dandan-zdm86-1259814516.tcb.qcloud.la/donate/IMG_2451.JPG?sign=6c60168b3e63c375cd2619a5599c9a97&t=1623579505', // 当前显示图片的http链接
+      urls: ['https://6461-dandan-zdm86-1259814516.tcb.qcloud.la/donate/IMG_2451.JPG?sign=6c60168b3e63c375cd2619a5599c9a97&t=1623579505'], // 需要预览的图片http链接列表
+    })
+  },
   onShareAppMessage: function () {
     return {
       title: getApp().globalData.shareWord(),
