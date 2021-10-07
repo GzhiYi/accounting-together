@@ -16,7 +16,8 @@
         · <text>轻松一起开心记账\n</text>
       </view>
     </view>
-    <button class='btn btn-primary login-btn' bindtap='{{loading ? "" : "joinGroup"}}'>{{loading ? '正在加入...' : '立即加入'}}</button>
+    <button wx:if="{{!isInGroup}}" class='btn btn-primary login-btn' bindtap='{{loading ? "" : "joinGroup"}}'>{{loading ? '正在加入...' : '立即加入'}}</button>
+    <button wx:if="{{isInGroup}}" class='btn btn-primary login-btn' bindtap='goToGroup'>你已在该组，点击进入</button>
   </view>
 </view>
 </view>

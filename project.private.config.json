@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -24,10 +25,10 @@
           "query": ""
         },
         {
-          "id": 2,
           "name": "share",
           "pathName": "pages/share/share",
-          "query": "groupId=XBnGVnffS3SWGdJK&inviter=GzhiYi&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/KanL6870JUe4WvJlKDGDYYicgZibo9XOrm7WPEKwOB9pqnUV0Cv9EOZfPAH3WulBWYl5NSJA8ICSqSts5v6Cy92A/132&groupName=7B304"
+          "query": "groupId=2d44d6c2615c71f11165651567797dd9&inviter=GzhiYi&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/KanL6870JUe4WvJlKDGDYYicgZibo9XOrm7WPEKwOB9pqnUV0Cv9EOZfPAH3WulBWYl5NSJA8ICSqSts5v6Cy92A/132&groupName=7B304",
+          "scene": null
         },
         {
           "id": -1,

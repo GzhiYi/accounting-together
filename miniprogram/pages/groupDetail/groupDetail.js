@@ -383,7 +383,7 @@ Page({
   },
   onShareAppMessage: function () {
     const { groupInfo } = this.data
-    const userInfo = app.globalData.userInfo
+    const userInfo = app.globalData.userInfoFromCloud
     if (getApp().globalData.isEscape) {
       return {
         title: `${userInfo.nickName}邀你加入【${groupInfo.name}】一起AA记账，快加入吧 (๑>◡<๑) `,

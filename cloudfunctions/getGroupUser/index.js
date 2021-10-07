@@ -3,6 +3,7 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 const db = cloud.database()
+const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
@@ -13,25 +14,23 @@ exports.main = async (event, context) => {
   const db = cloud.database({
     env: wxContext.ENV === 'local' ? 'account-release-73522d' : wxContext.ENV,
   })
-  const openId = cloud.getWXContext().OPENID
-  let userList = await db.collection('user-group')
+  const { OPENID } = cloud.getWXContext()
+  let relateUserList = await db.collection('user-group')
   .where({
     groupId: event.groupId
   })
   .get()
-  let returnResult = []
-  await Promise.all(userList.data.map(async item => {
-    const oneUser = await db.collection('user')
-    .where({
-      openId: item.userId
-    })
-    .get()
-    if (oneUser.data.length > 0) {
-      let oneUserData = oneUser.data[0]
-      oneUserData.userGroupId = item._id
-      oneUserData.note = item.note
-      returnResult.push(oneUserData)
+  const userIds = relateUserList.data.map(item => item.userId)
+  const userRes = await db.collection('user').where({
+    openId: _.in(userIds)
+  }).get()
+  const userList = userRes.data
+  userList.forEach(user => {
+    const matchRelateUser = relateUserList.data.filter(item => item.userId === user.openId)
+    if (matchRelateUser.length) {
+      user.userGroupId = matchRelateUser[0]._id
+      user.note = matchRelateUser[0].note
     }
-  }))
-  return returnResult.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
+  })
+  return userList.sort((a, b) => a.createTime < b.createTime ? 1 : -1)
 }

@@ -10,7 +10,9 @@ Page({
     inviteInfo: {},
     loading: false,
     isEscape: getApp().globalData.isEscape,
-    theme: 'white-skin'
+    theme: 'white-skin',
+    isInGroup: false,
+    groupData: null
   },
 
   /**
@@ -26,13 +28,14 @@ Page({
       this.setData({
         inviteInfo: options
       })
+      this.getGroupInfo(options.groupId)
     } else if (app.globalData.shareParam) {
       this.setData({
         inviteInfo: app.globalData.shareParam
       })
     } else {
       wx.switchTab({
-        url: '/pages/index/index',
+        url: '/pages/group/group',
       })
     }
   },
@@ -42,6 +45,31 @@ Page({
    */
   onShow: function () {
     getApp().setTheme(this)
+  },
+  // 获取组的信息
+  getGroupInfo(groupId) {
+    const self = this
+    wx.cloud.callFunction({
+      name: 'joinGroup',
+      data: {
+        mode: 'check',
+        groupId
+      },
+      success(res) {
+        if (res.result.code === 2) {
+          self.setData({
+            isInGroup: true,
+            groupData: res.result.data
+          })
+          getApp().globalData.currentGroupInfo = res.result.data
+        }
+      }
+    })
+  },
+  goToGroup() {
+    wx.redirectTo({
+      url: '/pages/groupDetail/groupDetail',
+    })
   },
   joinGroup () {
     const { inviteInfo } = this.data
@@ -62,10 +90,9 @@ Page({
           selector: '#join-tips',
           backgroundColor: `${joinRes.result.code === 1 ? '#28a745' : '#dc3545'}`
         });
+        getApp().globalData.currentGroupInfo = joinRes.result.data
         setTimeout(() => {
-          wx.redirectTo({
-            url: '/pages/group/group',
-          })
+          self.goToGroup()
         }, 2000)
       },
       complete() {
