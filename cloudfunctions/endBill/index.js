@@ -4,47 +4,45 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 // 云函数入口函数
+/**
+ * 
+ * @param {*} groupUserList 组的用户列表
+ * @param {*} projectList 当前账单的账单列表
+ * result 返回结果数组，单项结构为：{...用户信息,shouldPay: +-Number}
+ */
 function cal(groupUserList, projectList) {
-  let [...result] = groupUserList
-
-  // 每个结果增加一个shouldPay字段
-  result.forEach(item => item.shouldPay = 0)
-
-  projectList.forEach(project => {
-    // 如果支付人和包含人一致，那就跳过这笔帐（project）
-    if (project.containUser.length === 1 && project.containUser[0].openId === project.createBy.openId) {
-      return
-    }
-    let inContainUser = false
-    project.containUser.forEach(containUser => {
-      groupUserList.forEach((groupUser, groupUserIndex) => {
-        if (groupUser.openId === containUser.openId) {
-          result[groupUserIndex].shouldPay = result[groupUserIndex].shouldPay - roundFun(Number(project.price) / project.containUser.length, 2)
-        }
-      })
-      // 判断发起人是否包含账单情况的处理
-      if (containUser.openId === project.createBy.openId) {
-        inContainUser = true
-        result.forEach(item => {
-          if (item.openId === containUser.openId) {
-            item.shouldPay = Number(project.price) + item.shouldPay
-          }
-        })
+  let i = -1
+  while(++i < groupUserList.length) {
+    const user = groupUserList[i]
+    user.shouldPay = 0
+    // 遍历账单列表
+    let pIndex = -1
+    let userPayTotal = 0 // 该用户在支出方时的总支出（因为可能有些支出项没包含支出人）
+    let userShouldPay = 0 // 该用户每一笔应该的支出总和
+    while(++pIndex < projectList.length) {
+      const project = projectList[pIndex]
+      if (project.createBy.openId === user.openId) {
+        userPayTotal += project.price || project.payItemTotal // 只有两种情况，平均的读price，非平均的读payItemTotal
       }
-    })
-    // 如果发起人不在账单内，就把在账单内的人的这笔帐的钱的平均值全部被转给发起人
-    if (!inContainUser) {
-      result.forEach(item => {
-        if (item.openId === project.createBy.openId) {
-          item.shouldPay += roundFun(project.price / project.containUser.length, 2)
+      // 分两种情况计算userShouldPay
+      // 计算平均的时候
+      if (project.type === 'paid') {
+        // 判断该用户是否包含在内(是否在container中)，就算是组成员，也不一定在支出成员内
+        const isInContain = project.containUser.findIndex(u => u.openId === user.openId) !== -1
+        if (isInContain) {
+          userShouldPay += (project.price / project.containUser.length)
         }
-      })
+      } else if (project.type === 'item') {
+        // 判断该用户是否包含在内(是否在payItem中)，就算是组成员，也不一定在支出成员内
+        const itemIndex = project.payItem.findIndex(p => p.openId === user.openId)
+        if (itemIndex !== -1) {
+          userShouldPay += Number(project.payItem[itemIndex].value)
+        }
+      }
     }
-  })
-  result.forEach(item => {
-    item.shouldPay = Math.floor(item.shouldPay * 100) / 100
-  })
-  return result
+    user.shouldPay = userPayTotal - userShouldPay
+  }
+  return groupUserList
 }
 function roundFun(value, n) {
   return Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
@@ -58,10 +56,10 @@ exports.main = async (event, context) => {
   const db = cloud.database({
     env: wxContext.ENV === 'local' ? 'account-release-73522d' : wxContext.ENV,
   })
-  const { groupUserList, currentBill, projectList, end} = event
+  const { groupUserList, billId, projectList, end} = event
   if (end) {
     const result = cal(groupUserList, projectList)
-    await db.collection('bill').doc(currentBill._id).update({
+    await db.collection('bill').doc(billId).update({
       data: {
         ended: true,
         endTime: new Date(),
@@ -69,7 +67,7 @@ exports.main = async (event, context) => {
       }
     })
   } else {
-    await db.collection('bill').doc(currentBill._id).update({
+    await db.collection('bill').doc(billId).update({
       data: {
         ended: false
       }

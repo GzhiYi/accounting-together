@@ -24,23 +24,6 @@ Page({
   onShow: function () {
     const self = this
     getApp().setTheme(this)
-    // 如果用户未进行授权就进入这个页面就跳转到登录
-    app.catchUserInfo = res => {
-      if (!app.globalData.userInfo && !res) {
-        wx.navigateTo({
-          url: '/pages/login/login?back=result',
-        })
-      } else {
-        self.setData({
-          userInfo: res || app.globalData.userInfo
-        })
-      }
-    }
-    if (app.globalData.userInfo) {
-      self.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
     getApp().showLoading(self)
     wx.cloud.callFunction({
       name: 'getUserInfo',

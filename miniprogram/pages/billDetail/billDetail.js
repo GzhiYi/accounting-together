@@ -271,7 +271,7 @@ Page({
         name: 'endBill',
         data: {
           projectList,
-          currentBill,
+          billId: currentBill._id,
           groupUserList: newArr,
           end: true
         },
@@ -310,7 +310,7 @@ Page({
         name: 'endBill',
         data: {
           projectList,
-          currentBill,
+          billId: currentBill._id,
           groupUserList: currentGroupUserList,
           end: false
         },

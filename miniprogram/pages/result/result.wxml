@@ -3,8 +3,8 @@
   <view >
     <view class='public-list'>
       <view class='public-header mp-info' style="border-bottom: none;">
-        <image src="{{userInfo.avatarUrl}}" class='icon'></image>
-        <text class='mp-name'>{{userInfo.nickName}}</text>
+        <image src="{{fetchUserInfo.storeUser.avatarUrl}}" class='icon'></image>
+        <text class='mp-name'>{{fetchUserInfo.storeUser.nickName}}</text>
       </view>
     </view>
     <view class='public-list'>

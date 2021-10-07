@@ -11,11 +11,9 @@ Page({
     theme: 'white-skin'
   },
   onLoad: function (options) {
-    if (options.hasOwnProperty("back")) {
-      this.setData({
-        backPath: options.back
-      })
-    }
+    this.setData({
+      backPath: decodeURIComponent(options.back)
+    })
   },
   onShow: function () {
     getApp().setTheme(this)
@@ -46,7 +44,7 @@ Page({
               console.log(createRes);
               if (createRes.result.code === 1) {
                 wx.redirectTo({
-                  url: `${backPath === '' ? '/pages/group/group' : `/pages/${backPath}/${backPath}`}`
+                  url: backPath || '/pages/group/group'
                 })
               }
             }

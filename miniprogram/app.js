@@ -40,6 +40,7 @@ App({
     return isLogin
   },
   checkLogin(options) {
+    console.log(options);
     const self = this
     wx.cloud.callFunction({
       name: 'createUser',
@@ -49,8 +50,13 @@ App({
       success(res) {
         // 未保存信息
         if (res.result.code === 0) {
+          let query = ''
+          Object.keys(options.query).forEach(key => {
+            query += `${key}=${options.query[key]}&`
+          })
+          console.log('/' + options.path + '?' + query);
           wx.reLaunch({
-            url: `/pages/login/login?back=${options.path.split('/')[1]}`
+            url: `/pages/login/login?back=${encodeURIComponent('/' + options.path + '?' + query)}`
           })
         } else {
           // 已有信息
