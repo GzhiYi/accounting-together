@@ -20,8 +20,4 @@
     <view class="contact-btn">联系我</view>
     <button class="absolute contact" open-type="contact">联系我</button>
   </view>
-  <view class="p" style="margin-bottom: 20rpx;">如果你想看看原来的一些页面，也可以（很多页面看不到啦）：</view>
-  <view class="relative" style="margin-left: 20rpx;">
-    <view class="contact-btn" bindtap="goHome">去首页</view>
-  </view>
 </view>

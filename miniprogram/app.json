@@ -1,15 +1,6 @@
 {
   "pages": [
-    "pages/goodby/goodby",
-    "pages/group/group",
-    "pages/groupDetail/groupDetail",
-    "pages/billDetail/billDetail",
-    "pages/login/login",
-    "pages/result/result",
-    "pages/updateLog/updateLog",
-    "pages/help/help",
-    "pages/personal/personal",
-    "pages/share/share"
+    "pages/goodby/goodby"
   ],
   "window": {
     "backgroundColor": "#fff",
