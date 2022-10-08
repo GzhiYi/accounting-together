@@ -1,0 +1,64 @@
+page {
+  background-color: #edf1f7;
+}
+.redirect {
+  padding: 160rpx 30rpx;
+  color: #111b55;
+}
+.title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 20rpx;
+}
+.p {
+  font-size: 28rpx;
+  line-height: 42rpx;
+  margin-bottom: 16rpx;
+}
+.flex {
+  display: flex;
+}
+.items-center {
+  align-items: center;
+}
+.dandan-logo {
+  width: 160rpx;
+  height: 160rpx;
+  min-width: 160rpx;
+  border-radius: 9999rpx;
+  margin-right: 20rpx;
+}
+.mp-name {
+  font-size: 36rpx;
+  margin-bottom: 8rpx;
+  font-weight: bold;
+}
+.mp-desc {
+  font-size: 24rpx;
+  color: #293994;
+}
+.item {
+  border-radius: 30rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10rpx 15rpx -3rpx, rgba(0, 0, 0, 0.05) 0px 4rpx 6rpx -2rpx;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.contact-btn {
+  width: 200rpx;
+  background-color: #fff;
+  padding: 20rpx 40rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10rpx 15rpx -3rpx, rgba(0, 0, 0, 0.05) 0px 4rpx 6rpx -2rpx;
+}
+.contact {
+  width: 300rpx;
+  top: 0;
+  opacity: 0;
+}

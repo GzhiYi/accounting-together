@@ -1,0 +1,27 @@
+<view class="redirect">
+  <view class="title">服务停止 🤚</view>
+  <view class="p">因个人小程序需要额外承担一些服务费用，所以一起算账小程序不再提供服务了，感谢一段时间来的支持。</view>
+  <view class="p" style="margin-bottom: 40rpx;">如果你对共享记账以及团队、聚会 AA 记账有需求，可以去使用我另外开发的记账小程序《单单记账》。它包含了一起算账核心功能，而且也是个人记账小程序。《单单记账》会持续的服务下去，可以放心使用。</view>
+  <navigator target="miniProgram" open-type="navigate" app-id="wxda00e9b7cd5f39b1" path="/pages/tab/tab" extra-data="" version="release">
+    <view class="item flex items-center" style="margin: 20rpx 20rpx 40rpx;">
+      <image class="dandan-logo" src="../../images/account.jpeg" mode="widthFix"></image>
+      <view>
+        <view class="mp-name">单单记账</view>
+        <view class="mp-desc">
+          界面美观易用；快速记账，打开就记；共享账单，一起记账；多种方式 AA 记账；分类收支图表；月消费日历，一目了然；存钱目标，鼓励存钱。
+        </view>
+      </view>
+    </view>
+  </navigator>
+  <view class="p">如果你对一起算账小程序源码有兴趣，可以直接到 github 查看。</view>
+  <view class="p" style="margin-bottom: 40rpx;" bindtap="copy">https://github.com/GzhiYi/accounting-together</view>
+  <view class="p" style="margin-bottom: 20rpx;">如果你想付费开发小程序，可以联系我。</view>
+  <view class="relative" style="margin-left: 20rpx;margin-bottom: 40rpx;">
+    <view class="contact-btn">联系我</view>
+    <button class="absolute contact" open-type="contact">联系我</button>
+  </view>
+  <view class="p" style="margin-bottom: 20rpx;">如果你想看看原来的一些页面，也可以（很多页面看不到啦）：</view>
+  <view class="relative" style="margin-left: 20rpx;">
+    <view class="contact-btn" bindtap="goHome">去首页</view>
+  </view>
+</view>

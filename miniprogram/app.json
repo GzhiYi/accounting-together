@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/goodby/goodby",
     "pages/group/group",
     "pages/groupDetail/groupDetail",
     "pages/billDetail/billDetail",
@@ -44,5 +45,8 @@
     "van-tabs": "./pages/dist/tabs/index"
   },
   "sitemapLocation": "sitemap.json",
-  "navigateToMiniProgramAppIdList": ["wxda00e9b7cd5f39b1", "wxf3515fa60b618cd5"]
+  "navigateToMiniProgramAppIdList": [
+    "wxda00e9b7cd5f39b1",
+    "wxf3515fa60b618cd5"
+  ]
 }
